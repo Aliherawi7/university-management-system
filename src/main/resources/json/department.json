@@ -1,0 +1,37 @@
+[
+  {
+    "fieldOfStudyId": 1,
+    "departmentName": "Criminal law",
+    "description": "test"
+  },
+  {
+    "fieldOfStudyId": 1,
+    "departmentName": "society law",
+    "description": "test"
+  },
+  {
+    "fieldOfStudyId": 2,
+    "departmentName": "Civil",
+    "description": "test"
+  },
+  {
+    "fieldOfStudyId": 2,
+    "departmentName": "Architecture",
+    "description": "test"
+  },
+  {
+    "fieldOfStudyId": 3,
+    "departmentName": "Software Engineering",
+    "description": "test"
+  },
+  {
+    "fieldOfStudyId": 4,
+    "departmentName": "nursing",
+    "description": "test"
+  },
+  {
+    "fieldOfStudyId": 4,
+    "departmentName": "dentist",
+    "description": "test"
+  }
+]

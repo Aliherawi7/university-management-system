@@ -1,0 +1,53 @@
+{
+  "studentPersonalInfo": {
+    "name": "Ali Ahmad",
+    "lastName": "Herawi",
+    "fatherName": "Nasar Ahmad",
+    "grandFatherName": "Mohammad",
+    "dob": "2000-03-10",
+    "motherTongue": "Dari",
+    "maritalStatus": "Single",
+    "highSchool": "jami",
+    "schoolGraduationDate": "2017-10-03",
+    "fieldOfStudy": "IT and technology",
+    "department": "Software Engineering"
+  },
+  "relatives": [
+    {
+      "name": "ahmad",
+      "job": "engineer",
+      "phoneNumber": "798798798",
+      "jobLocation": "kabul",
+      "relation": "brother"
+    },
+    {
+      "name": "falani",
+      "job": "engineer",
+      "phoneNumber": "89998798",
+      "jobLocation": "Herat",
+      "relation": "uncle"
+    }
+  ],
+  "identification": {
+    "nationalId": 8768769876,
+    "caseNumber": 6,
+    "pageNumber": 87,
+    "registrationNumber": 9756765
+  },
+  "locations": {
+    "current": {
+      "villageOrQuarter": "urdokhan",
+      "district": "injil",
+      "city": "herat",
+      "current": true
+    },
+    "previous": {
+      "villageOrQuarter": "urdokhan",
+      "district": "injil",
+      "city": "herat",
+      "current": false
+    }
+  },
+  "studentImage": null
+
+}

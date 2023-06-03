@@ -1,8 +1,7 @@
 package com.mycompany.portalapi.utils;
 
-
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class BaseURI {
 

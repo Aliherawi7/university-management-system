@@ -1,15 +1,14 @@
 package com.mycompany.portalapi.services;
 
 import com.mycompany.portalapi.constants.APIEndpoints;
-import com.mycompany.portalapi.dtos.IdentificationDTO;
-import com.mycompany.portalapi.dtos.StudentPersonalInfo;
 import com.mycompany.portalapi.dtos.StudentResponseDTO;
-import com.mycompany.portalapi.models.Identification;
+import com.mycompany.portalapi.dtos.StudentResponsePersonalInfo;
 import com.mycompany.portalapi.models.Student;
 import com.mycompany.portalapi.utils.BaseURI;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+
 import java.util.function.Function;
 
 @AllArgsConstructor
@@ -25,7 +24,7 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
 
     @Override
     public StudentResponseDTO apply(Student student) {
-        StudentPersonalInfo studentPersonalInfo = StudentPersonalInfo
+        StudentResponsePersonalInfo studentPersonalInfo = StudentResponsePersonalInfo
                 .builder()
                 .name(student.getName())
                 .dob(student.getDob().toString())

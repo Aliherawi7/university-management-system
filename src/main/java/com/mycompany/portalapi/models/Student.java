@@ -2,13 +2,14 @@ package com.mycompany.portalapi.models;
 
 
 import com.mycompany.portalapi.constants.MaritalStatus;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -36,5 +37,7 @@ public class Student {
     private String department;
     private Long currentLocation;
     private Long previousLocation;
+    private String email;
+    private String password;
 
 }

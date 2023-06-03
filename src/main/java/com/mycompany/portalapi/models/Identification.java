@@ -1,13 +1,12 @@
 package com.mycompany.portalapi.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Bean;
+import jakarta.persistence.*;
+
 
 @Entity
 @AllArgsConstructor

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.mycompany.portalapi.constants.Gender;
+import com.mycompany.portalapi.exceptions.IllegalArgumentException;
 
 import java.io.IOException;
 
@@ -17,7 +18,7 @@ public class GenderDeserializer extends JsonDeserializer<Gender> {
             try {
                 return Gender.valueOf(value.toUpperCase());
             }catch (IllegalArgumentException ex){
-                throw new JsonParseException("Invalid Gender parameter");
+                throw new IllegalArgumentException("Invalid Gender parameter");
             }
         }
         return null;

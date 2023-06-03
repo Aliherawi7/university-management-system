@@ -108,7 +108,7 @@ public class FileStorageService {
                 .findFirst()
                 .orElse(null);
         if (image == null) {
-            throw new ResourceNotFoundException("File not found with provided username");
+            throw new ResourceNotFoundException("File not found with provided student id");
         }
         byte[] imageBytes = new byte[(int) image.length()];
 

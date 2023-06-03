@@ -1,12 +1,17 @@
 package com.mycompany.portalapi.dtos;
 
 import lombok.Builder;
+import lombok.NonNull;
 
 @Builder
 public record IdentificationDTO(
-         Long nationalId,
+        @NonNull
+        Long nationalId,
+        @NonNull
          Long caseNumber,
+        @NonNull
          Long pageNumber,
+        @NonNull
          Long registrationNumber
 ) {
 }

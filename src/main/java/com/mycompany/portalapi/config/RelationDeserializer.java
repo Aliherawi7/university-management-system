@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.mycompany.portalapi.constants.MaritalStatus;
 import com.mycompany.portalapi.constants.Relation;
+import com.mycompany.portalapi.exceptions.IllegalArgumentException;
 
 import java.io.IOException;
 
@@ -22,7 +23,7 @@ public class RelationDeserializer extends JsonDeserializer<Relation> {
             try {
                 return Relation.valueOf(value.toUpperCase());
             }catch (IllegalArgumentException ex){
-                throw new JsonParseException("Invalid Gender parameter");
+                throw new IllegalArgumentException("Invalid Gender parameter");
             }
         }
         return null;

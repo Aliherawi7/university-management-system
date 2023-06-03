@@ -10,7 +10,9 @@
     "highSchool": "jami",
     "schoolGraduationDate": "2017-10-03",
     "fieldOfStudy": "IT and technology",
-    "department": "Software Engineering"
+    "department": "Software Engineering",
+    "email": "aliherawi7@gmail.com",
+    "password":"12345"
   },
   "relatives": [
     {
@@ -48,6 +50,5 @@
       "current": false
     }
   },
-  "studentImage": null
-
+  "role": "admin"
 }

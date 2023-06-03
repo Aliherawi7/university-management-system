@@ -16,5 +16,8 @@ public class IdentificationService {
     public Identification getIdentificationByStudentId(Long studentId){
         return identificationRepository.findByStudentId(studentId);
     }
+    public boolean isNationalIdAlreadyExist(Long nationalId) {
+        return identificationRepository.existsById(nationalId);
+    }
 
 }

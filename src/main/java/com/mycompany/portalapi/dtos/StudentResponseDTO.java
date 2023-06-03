@@ -5,7 +5,7 @@ import lombok.Builder;
 import java.util.List;
 
 @Builder
-public record StudentResponseDTO(StudentPersonalInfo studentPersonalInfo,
+public record StudentResponseDTO(StudentResponsePersonalInfo studentPersonalInfo,
                                  String imageUrl,
                                  List<Relative> relatives,
                                  Locations locations,

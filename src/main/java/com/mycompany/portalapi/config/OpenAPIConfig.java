@@ -29,11 +29,11 @@ import io.swagger.v3.oas.annotations.servers.Server;
         servers = {
                 @Server(
                         description = "Local ENV",
-                        url = "https://locahost:1000"
+                        url = "http://locahost:1000"
                 ),
                 @Server(
                         description = "Prod ENV",
-                        url = "https://locahost:1000"
+                        url = "http://locahost:1000"
                 )
         }
 )

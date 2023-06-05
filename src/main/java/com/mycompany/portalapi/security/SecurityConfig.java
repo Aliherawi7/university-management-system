@@ -43,6 +43,15 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.PUT, "api/v1/files/student-profiles/*").hasAuthority(RoleName.ADMIN.getValue());
                     auth.requestMatchers(HttpMethod.POST, "api/v1/students").hasAuthority(RoleName.ADMIN.getValue());
                     auth.requestMatchers(HttpMethod.PUT, "api/v1/students/*").hasAuthority(RoleName.ADMIN.getValue());
+                    auth.requestMatchers(HttpMethod.GET, "api/v1/students/*").hasAuthority(RoleName.ADMIN.getValue());
+                    auth.requestMatchers(HttpMethod.PUT, "api/v1/auth/lock/**").hasAuthority(RoleName.ADMIN.getValue());
+                    auth.requestMatchers(HttpMethod.PUT, "api/v1/auth/unlock/**").hasAuthority(RoleName.ADMIN.getValue());
+                    auth.requestMatchers(HttpMethod.POST, "api/v1/posts").hasAnyAuthority(RoleName.ADMIN.getValue(),RoleName.TEACHER.getValue());
+                    auth.requestMatchers(HttpMethod.POST, "api/v1/files/post-files/*").hasAnyAuthority(RoleName.ADMIN.getValue(),RoleName.TEACHER.getValue());
+               //     auth.requestMatchers(HttpMethod.GET, "api/v1/files/post-files/**").hasAnyAuthority(RoleName.ADMIN.getValue(),RoleName.TEACHER.getValue(),RoleName.STUDENT.getValue());
+                    auth.requestMatchers(HttpMethod.GET, "api/v1/files/post-files/*/*").hasAnyAuthority(RoleName.ADMIN.getValue(),RoleName.TEACHER.getValue(),RoleName.STUDENT.getValue());
+                    auth.requestMatchers(HttpMethod.GET, "api/v1/posts/pagination/*/*").hasAnyAuthority(RoleName.STUDENT.getValue(),RoleName.ADMIN.getValue(), RoleName.TEACHER.getValue());
+                    auth.requestMatchers(HttpMethod.GET, "api/v1/posts/**").permitAll();
                 }).addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

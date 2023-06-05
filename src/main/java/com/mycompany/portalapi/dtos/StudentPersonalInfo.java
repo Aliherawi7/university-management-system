@@ -35,6 +35,8 @@ public record StudentPersonalInfo(
         @NonNull
         String password,
         @NonNull
-        String email
+        String email,
+        String phoneNumber,
+        Integer semester
 ) {
 }

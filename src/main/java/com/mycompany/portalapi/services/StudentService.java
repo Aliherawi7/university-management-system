@@ -10,6 +10,7 @@ import com.mycompany.portalapi.models.*;
 import com.mycompany.portalapi.repositories.RoleRepository;
 import com.mycompany.portalapi.repositories.StudentRepository;
 import com.mycompany.portalapi.utils.BaseURI;
+import com.mycompany.portalapi.utils.StudentUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -59,7 +60,10 @@ public class StudentService {
                 .schoolGraduationDate(LocalDate.parse(studentPersonalInfo.schoolGraduationDate()))
                 .maritalStatus(studentPersonalInfo.maritalStatus())
                 .email(studentPersonalInfo.email())
-                .password(studentPersonalInfo.password()).build();
+                .password(studentPersonalInfo.password())
+                .semester(studentPersonalInfo.semester())
+                .phoneNumber(studentPersonalInfo.phoneNumber())
+                .build();
         student = studentRepository.save(student);
         Long studentId = student.getId();
         /* save the student current and previous locations in db */
@@ -103,6 +107,25 @@ public class StudentService {
         return studentResponseDTOMapper.apply(student.get());
     }
 
+    public StudentResponsePersonalInfo getStudentProfile(Long id){
+        Student student = studentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("student not found with provided id: "+id));
+        // نام، تخلص، نام پدر، شماره تماس، ایمیل، سال شمولیت به موسسه، کدام پوهنحی، کدام سمستر، سال چند
+        return StudentResponsePersonalInfo
+                .builder()
+                .name(student.getName())
+                .lastName(student.getLastName())
+                .fatherName(student.getFatherName())
+                .grandFatherName(student.getGrandFatherName())
+                .maritalStatus(student.getMaritalStatus())
+                .department(student.getDepartment())
+                .fieldOfStudy(student.getFieldOfStudy())
+                .motherTongue(student.getMotherTongue())
+                .semester(student.getSemester())
+                .year(StudentUtils.getYear(student.getSemester()))
+                .phoneNumber(student.getPhoneNumber())
+                .build();
+    }
+
     public PageContainerDTO<StudentShortInfo> getAllStudents(int offset, int pageSize) {
         Page<Student> studentPage = studentRepository.findAll(PageRequest.of(offset, pageSize));
         if (studentPage.getSize() == 0) {
@@ -113,7 +136,13 @@ public class StudentService {
 
     public List<StudentShortInfo> mapStudentToStudentShortInfo(List<Student> students) {
         return students.stream().map(student -> {
-            return StudentShortInfo.builder().name(student.getName()).lastname(student.getLastName()).fieldStudy(student.getFieldOfStudy()).department(student.getDepartment()).imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId()).build();
+            return StudentShortInfo.builder()
+                    .name(student.getName())
+                    .lastname(student.getLastName())
+                    .fieldStudy(student.getFieldOfStudy())
+                    .department(student.getDepartment())
+                    .id(student.getId())
+                    .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId()).build();
         }).toList();
     }
 

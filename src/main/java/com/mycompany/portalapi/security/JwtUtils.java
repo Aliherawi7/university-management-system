@@ -6,9 +6,10 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.mycompany.portalapi.constants.RoleName;
+import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
 import com.mycompany.portalapi.models.Role;
-import com.mycompany.portalapi.repositories.StudentRepository;
+import com.mycompany.portalapi.models.User;
+import com.mycompany.portalapi.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +26,7 @@ import java.util.*;
 @Slf4j
 public class JwtUtils {
     private final HttpServletRequest httpServletRequest;
-    private final StudentRepository studentRepository;
+    private final UserRepository userRepository;
     private static final String SECRET_KEY = "Bearer";
 
     public boolean testJWTOfUser(HttpServletRequest request, String userEmail) {
@@ -46,7 +47,6 @@ public class JwtUtils {
                 e.printStackTrace();
                 return false;
             }
-
         } else {
             return false;
         }
@@ -62,8 +62,7 @@ public class JwtUtils {
     }
 
     public String getUserEmailByJWT(String token) {
-        log.info("token :{}",token);
-        System.err.println("token :"+token);
+        log.info("get user toke token :{}",token);
         if (token == null) {
             throw new JWTVerificationException("token shouldn't be null or empty");
         }
@@ -82,7 +81,8 @@ public class JwtUtils {
     }
 
     public boolean validateToken(String token) {
-        return isTokenExpired(token) && studentRepository.existsByEmail(getUserEmailByJWT(token));
+        String email = getUserEmailByJWT(token);
+        return isTokenExpired(token) && userRepository.existsByEmail(email) && isNotLock(email);
     }
 
     public Algorithm getSignInKey() {
@@ -95,11 +95,17 @@ public class JwtUtils {
         return decodedJWT.getExpiresAt().after(new Date());
     }
 
+    public boolean isNotLock(String email){
+       User user =  userRepository.findByEmail(email)
+               .orElseThrow(() -> new ResourceNotFoundException("invalid token! user not found with provided token"));
+       return user.isEnabled();
+    }
+
+
     public Claim getClaim(String token){
         JWTVerifier jwtVerifier = JWT.require(getSignInKey()).build();
         DecodedJWT decodedJWT = jwtVerifier.verify(token);
         return decodedJWT.getClaim("roles");
     }
-
 
 }

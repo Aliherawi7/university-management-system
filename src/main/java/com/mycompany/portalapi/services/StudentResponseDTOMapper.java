@@ -5,6 +5,7 @@ import com.mycompany.portalapi.dtos.StudentResponseDTO;
 import com.mycompany.portalapi.dtos.StudentResponsePersonalInfo;
 import com.mycompany.portalapi.models.Student;
 import com.mycompany.portalapi.utils.BaseURI;
+import com.mycompany.portalapi.utils.StudentUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -18,13 +19,11 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
     private final IdentificationService identificationService;
     private final LocationService locationService;
     private final RelativeService relativeService;
-    private final DepartmentService departmentService;
-    private final FieldOfStudyService fieldOfStudyService;
     private final IdentificationDTOMapper identificationDTOMapper;
 
     @Override
     public StudentResponseDTO apply(Student student) {
-        StudentResponsePersonalInfo studentPersonalInfo = StudentResponsePersonalInfo
+                StudentResponsePersonalInfo studentPersonalInfo = StudentResponsePersonalInfo
                 .builder()
                 .name(student.getName())
                 .dob(student.getDob().toString())
@@ -37,6 +36,9 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
                 .department(student.getDepartment())
                 .fieldOfStudy(student.getFieldOfStudy())
                 .highSchool(student.getHighSchool())
+                .phoneNumber(student.getPhoneNumber())
+                .semester(student.getSemester())
+                .year(StudentUtils.getYear(student.getSemester()))
                 .build();
         return StudentResponseDTO
                 .builder()
@@ -48,6 +50,8 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
                         .apply(identificationService.getIdentificationByStudentId(student.getId())))
                 .build();
     }
+
+
 
 
 }

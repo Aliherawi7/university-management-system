@@ -5,24 +5,27 @@ import com.mycompany.portalapi.dtos.LoginResponse;
 import com.mycompany.portalapi.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    private final AuthenticationService authenticate;
+    private final AuthenticationService authenticationService;
 
     @PostMapping("authenticate")
-    public ResponseEntity<LoginResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest){
-        return ResponseEntity.ok(authenticate.authenticate(authenticationRequest));
+    public ResponseEntity<LoginResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+        return ResponseEntity.ok(authenticationService.authenticate(authenticationRequest));
     }
-    @PostMapping("login")
-    public ResponseEntity<LoginResponse> login(AuthenticationRequest authenticationRequest){
-        System.err.println("in login path");
-        return ResponseEntity.ok(authenticate.authenticate(authenticationRequest));
+
+    @PutMapping("lock/{userId}")
+    public ResponseEntity<?> lockUserById(@PathVariable Long userId) {
+        authenticationService.lockUserById(userId);
+        return ResponseEntity.ok("user account with id: {" + userId + "} has been locked successfully");
+    }
+    @PutMapping("unLock/{userId}")
+    public ResponseEntity<?> unLockUserById(@PathVariable Long userId) {
+        authenticationService.unLockUserById(userId);
+        return ResponseEntity.ok("user account with id: {" + userId + "}has been unlocked successfully");
     }
 }

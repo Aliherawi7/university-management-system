@@ -1,5 +1,6 @@
 package com.mycompany.portalapi.models;
 
+import com.mycompany.portalapi.constants.Gender;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -29,6 +30,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private Boolean isEnabled;
+    private Gender gender;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles = new ArrayList<>();

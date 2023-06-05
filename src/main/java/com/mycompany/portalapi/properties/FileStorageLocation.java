@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 public class FileStorageLocation {
 
     private String studentProfileImageUploadDir;
-    private String userProfileImageUploadDir;
+    private String postFiles;
 
 
     public FileStorageLocation(
             @Value("${file.user.profile.upload.dir}") String studentProfileImageUploadDir,
-            @Value("${file.product.upload.dir}") String userProfileImageUploadDir) {
+            @Value("${file.post.upload.dir}") String postFiles) {
         this.studentProfileImageUploadDir = studentProfileImageUploadDir;
-        this.userProfileImageUploadDir = userProfileImageUploadDir;
+        this.postFiles = postFiles;
     }
 
     public String getStudentProfileImageUploadDir() {
@@ -25,12 +25,11 @@ public class FileStorageLocation {
         this.studentProfileImageUploadDir = studentProfileImageUploadDir;
     }
 
-    public String getUserProfileUploadDir() {
-        return userProfileImageUploadDir;
+    public String getPostFiles() {
+        return postFiles;
     }
 
-    public void setUserProfileImageUploadDir(String userProfileImageUploadDir) {
-        this.userProfileImageUploadDir = userProfileImageUploadDir;
+    public void setPostFiles(String postFiles) {
+        this.postFiles = postFiles;
     }
-
 }

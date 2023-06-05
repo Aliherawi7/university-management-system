@@ -15,7 +15,8 @@ public record StudentRegistrationDTO(
         Locations locations,
         @NonNull
         List<RelativeRegistrationDTO> relatives,
-        String role
+        String role,
+        Integer semester
 ) {
 }
 

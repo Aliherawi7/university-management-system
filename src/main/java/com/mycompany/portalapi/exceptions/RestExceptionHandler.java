@@ -15,7 +15,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException resourceNotFoundException, WebRequest webRequest) {
-        String errorDetails = resourceNotFoundException.getMessage();
         ErrorResponse errorResponse = ErrorResponse
                 .builder()
                 .message(resourceNotFoundException.getMessage())
@@ -28,7 +27,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException illegalArgumentException, WebRequest webRequest) {
-        String errorDetails = illegalArgumentException.getMessage();
         ErrorResponse errorResponse = ErrorResponse
                 .builder()
                 .message(illegalArgumentException.getMessage())
@@ -37,6 +35,29 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 .httpStatus(HttpStatus.BAD_REQUEST)
                 .build();
 
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(AccountLockException.class)
+    public ResponseEntity<Object> handleAccountLockException(AccountLockException accountLockException, WebRequest webRequest) {
+        ErrorResponse errorResponse = ErrorResponse
+                .builder()
+                .message(accountLockException.getMessage())
+                .statusCode(HttpStatus.LOCKED.value())
+                .zonedDateTime(ZonedDateTime.now(ZoneId.of("Z")))
+                .httpStatus(HttpStatus.LOCKED)
+                .build();
+        return new ResponseEntity<>(errorResponse, HttpStatus.LOCKED);
+    }
+
+    @ExceptionHandler(InvalidFileException.class)
+    public ResponseEntity<Object> handleAccountLockException(InvalidFileException invalidFileException, WebRequest webRequest) {
+        ErrorResponse errorResponse = ErrorResponse
+                .builder()
+                .message(invalidFileException.getMessage())
+                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .zonedDateTime(ZonedDateTime.now(ZoneId.of("UTC")))
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .build();
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 

@@ -39,5 +39,7 @@ public class Student {
     private Long previousLocation;
     private String email;
     private String password;
+    private Integer semester;
+    private String phoneNumber;
 
 }

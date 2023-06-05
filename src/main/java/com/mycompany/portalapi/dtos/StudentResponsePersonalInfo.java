@@ -29,5 +29,11 @@ public record StudentResponsePersonalInfo(@NonNull
                                           @NonNull
                                          String fieldOfStudy,
                                           @NonNull
-                                         String department) {
+                                         String department,
+                                          @NonNull
+                                          String phoneNumber,
+                                          @NonNull
+                                          Integer semester,
+                                          @NonNull
+                                          Integer year) {
 }

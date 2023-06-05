@@ -12,7 +12,9 @@
     "fieldOfStudy": "IT and technology",
     "department": "Software Engineering",
     "email": "aliherawi7@gmail.com",
-    "password":"12345"
+    "password":"12345",
+    "phoneNumber": "0774764565",
+    "semester": 1
   },
   "relatives": [
     {

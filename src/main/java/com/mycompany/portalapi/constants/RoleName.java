@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 public enum RoleName {
     SUPER_ADMIN("SUPER_ADMIN"),
     ADMIN("ADMIN"),
+    TEACHER("TEACHER"),
     STUDENT("STUDENT");
 
     private final String value;

@@ -1,10 +1,7 @@
 package com.mycompany.portalapi.models;
 
-import com.mycompany.portalapi.constants.Gender;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import com.mycompany.portalapi.constants.GenderName;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,7 +27,9 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private Boolean isEnabled;
-    private Gender gender;
+    @ManyToOne
+    @JoinColumn(name = "gender_id")
+    private Gender genderName;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles = new ArrayList<>();

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.Length;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Data
@@ -24,7 +25,8 @@ public class Post {
     private String department;
     @Column(columnDefinition = "TEXT",  length = Length.LONG)
     private String message;
-    private LocalDateTime localDateTime;
+    private ZonedDateTime dateTime;
     private Long authorId;
     private Integer semester;
+    private boolean isPublic;
 }

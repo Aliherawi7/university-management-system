@@ -16,10 +16,12 @@ public class Location {
     @SequenceGenerator(name = "location_sequence", sequenceName = "location_sequence"  , initialValue = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location_sequence")
     private Long id;
-    private Long studentId;
     private String villageOrQuarter;
     private String district;
     private String city;
     private boolean current;
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 
 }

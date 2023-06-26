@@ -17,9 +17,12 @@ public class Identification {
 
     @Id
     private Long nationalId;
-    private Long studentId;
     private Long caseNumber;
     private Long pageNumber;
     private Long registrationNumber;
+    @OneToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
+
 
 }

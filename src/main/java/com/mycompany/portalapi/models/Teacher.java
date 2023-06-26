@@ -1,6 +1,6 @@
 package com.mycompany.portalapi.models;
 
-import com.mycompany.portalapi.constants.Gender;
+import com.mycompany.portalapi.constants.GenderName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +21,7 @@ public class Teacher {
     private String name;
     private String lastname;
     private String phoneNumber;
-    private Gender gender;
+    private GenderName genderName;
     private int experience;
     private String email;
     private String password;

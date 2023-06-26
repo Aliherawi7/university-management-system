@@ -2,7 +2,7 @@ package com.mycompany.portalapi.models;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.mycompany.portalapi.config.RelationDeserializer;
-import com.mycompany.portalapi.constants.Relation;
+import com.mycompany.portalapi.constants.RelationName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,11 +21,14 @@ public class Relative {
     @SequenceGenerator(name = "relation_sequence", sequenceName = "relation_sequence", initialValue = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "relation_sequence")
     private Long id;
-    private Long studentId;
     private String name;
     private String job;
     private String phoneNumber;
     private String jobLocation;
-    @JsonDeserialize(using = RelationDeserializer.class)
-    private Relation relation;
+    @ManyToOne
+    @JoinColumn(name = "relationship")
+    private Relationship relationship;
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 }

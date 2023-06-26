@@ -36,7 +36,7 @@ public class PostResponseDTOMapper implements Function<Post, PostResponseDTO> {
                 .author(authorDTO)
                 .department(post.getDepartment())
                 .fieldOfStudy(post.getFieldOfStudy())
-                .date(post.getLocalDateTime())
+                .dateTime(post.getDateTime())
                 .images(files.stream()
                         .filter(file -> file.endsWith("png") || file.endsWith("jpeg") || file.endsWith("jpg"))
                         .map(file -> BaseURI.getBaseURI(httpServletRequest)+APIEndpoints.POST.getValue()+post.getId()+"/"+file)

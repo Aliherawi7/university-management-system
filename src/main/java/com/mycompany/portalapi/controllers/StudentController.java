@@ -19,7 +19,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @PostMapping
-    public ResponseEntity<?> addStudent(@RequestBody @Validated StudentRegistrationDTO studentRegistrationDTO){
+    public ResponseEntity<?> addStudent(@RequestBody StudentRegistrationDTO studentRegistrationDTO){
         return new ResponseEntity<>(studentService.addStudentForController(studentRegistrationDTO), HttpStatus.CREATED);
     }
 

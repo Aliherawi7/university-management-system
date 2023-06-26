@@ -1,29 +1,28 @@
 package com.mycompany.portalapi.services;
 
 import com.mycompany.portalapi.constants.APIEndpoints;
+import com.mycompany.portalapi.dtos.IdentificationDTO;
 import com.mycompany.portalapi.dtos.StudentResponseDTO;
 import com.mycompany.portalapi.dtos.StudentResponsePersonalInfo;
 import com.mycompany.portalapi.models.Student;
 import com.mycompany.portalapi.utils.BaseURI;
 import com.mycompany.portalapi.utils.StudentUtils;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
-@AllArgsConstructor
 @Component
+@RequiredArgsConstructor
 public class StudentResponseDTOMapper implements Function<Student, StudentResponseDTO> {
     private final HttpServletRequest httpServletRequest;
-    private final IdentificationService identificationService;
-    private final LocationService locationService;
-    private final RelativeService relativeService;
-    private final IdentificationDTOMapper identificationDTOMapper;
+    private final RelativeRegistrationDTOMapper relativeRegistrationDTOMapper;
+    private final LocationDTOMapper locationDTOMapper;
 
     @Override
     public StudentResponseDTO apply(Student student) {
-                StudentResponsePersonalInfo studentPersonalInfo = StudentResponsePersonalInfo
+        StudentResponsePersonalInfo studentPersonalInfo = StudentResponsePersonalInfo
                 .builder()
                 .name(student.getName())
                 .dob(student.getDob().toString())
@@ -31,7 +30,8 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
                 .lastName(student.getLastName())
                 .grandFatherName(student.getGrandFatherName())
                 .motherTongue(student.getMotherTongue())
-                .maritalStatus(student.getMaritalStatus())
+                .gender(student.getGender().getName())
+                .maritalStatus(student.getMaritalStatus().getName())
                 .schoolGraduationDate(student.getSchoolGraduationDate().toString())
                 .department(student.getDepartment())
                 .fieldOfStudy(student.getFieldOfStudy())
@@ -40,18 +40,22 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
                 .semester(student.getSemester())
                 .year(StudentUtils.getYear(student.getSemester()))
                 .build();
+        IdentificationDTO identificationDTO = IdentificationDTO
+                .builder()
+                .nationalId(student.getIdentification().getNationalId())
+                .pageNumber(student.getIdentification().getPageNumber())
+                .registrationNumber(student.getIdentification().getRegistrationNumber())
+                .caseNumber(student.getIdentification().getCaseNumber())
+                .build();
         return StudentResponseDTO
                 .builder()
                 .studentPersonalInfo(studentPersonalInfo)
                 .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId())
-                .locations(locationService.getCurrentAndPreviousLocationsOfStudent(student.getId()))
-                .relatives(relativeService.getAllStudentRelativesById(student.getId()))
-                .identification(identificationDTOMapper
-                        .apply(identificationService.getIdentificationByStudentId(student.getId())))
+                .locations(student.getLocations().stream().map(locationDTOMapper).toList())
+                .relatives(student.getRelatives().stream().map(relativeRegistrationDTOMapper).toList())
+                .identification(identificationDTO)
                 .build();
     }
-
-
 
 
 }

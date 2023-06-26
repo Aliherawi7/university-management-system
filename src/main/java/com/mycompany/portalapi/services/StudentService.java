@@ -7,8 +7,7 @@ import com.mycompany.portalapi.dtos.*;
 import com.mycompany.portalapi.exceptions.IllegalArgumentException;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
 import com.mycompany.portalapi.models.*;
-import com.mycompany.portalapi.repositories.RoleRepository;
-import com.mycompany.portalapi.repositories.StudentRepository;
+import com.mycompany.portalapi.repositories.*;
 import com.mycompany.portalapi.utils.BaseURI;
 import com.mycompany.portalapi.utils.StudentUtils;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,6 +34,10 @@ public class StudentService {
     private final HttpServletRequest httpServletRequest;
     private final AuthenticationService authenticationService;
     private final RoleRepository roleRepository;
+    private final GenderRepository genderRepository;
+    private final MaritalStatusRepository maritalStatusRepository;
+    private final RelationshipRepository relationshipRepository;
+    private final RequestObjectValidatorService<StudentRegistrationDTO> studentRegistrationDTORequestValidatorService;
 
     public StudentSuccessfulRegistrationResponse addStudentForController(StudentRegistrationDTO studentRegistrationDTO) {
         Long studentId = addStudent(studentRegistrationDTO);
@@ -42,9 +45,11 @@ public class StudentService {
     }
 
     public Long addStudent(StudentRegistrationDTO studentRegistrationDTO) {
+        studentRegistrationDTORequestValidatorService.validate(studentRegistrationDTO);
         validateTheRegistrationRequest(studentRegistrationDTO);
         /* save the student in db */
         StudentPersonalInfo studentPersonalInfo = studentRegistrationDTO.studentPersonalInfo();
+        MaritalStatus maritalStatus = maritalStatusRepository.findByName(studentPersonalInfo.maritalStatus()).orElseThrow(() -> new IllegalArgumentException("invalid maritalStatus type!"));
         Student student = Student.builder()
                 .name(studentPersonalInfo.name())
                 .lastName(studentPersonalInfo.lastName())
@@ -52,13 +57,12 @@ public class StudentService {
                 .grandFatherName(studentPersonalInfo.grandFatherName())
                 .dob(LocalDate.parse(studentPersonalInfo.dob()))
                 .joinedDate(LocalDate.now())
-                .nationalId(studentRegistrationDTO.identification().nationalId())
                 .motherTongue(studentPersonalInfo.motherTongue())
                 .fieldOfStudy(studentPersonalInfo.fieldOfStudy())
                 .department(studentPersonalInfo.department())
                 .highSchool(studentPersonalInfo.highSchool())
                 .schoolGraduationDate(LocalDate.parse(studentPersonalInfo.schoolGraduationDate()))
-                .maritalStatus(studentPersonalInfo.maritalStatus())
+                .maritalStatus(maritalStatus)
                 .email(studentPersonalInfo.email())
                 .password(studentPersonalInfo.password())
                 .semester(studentPersonalInfo.semester())
@@ -67,25 +71,32 @@ public class StudentService {
         student = studentRepository.save(student);
         Long studentId = student.getId();
         /* save the student current and previous locations in db */
-        locationService.addLocation(Location.builder().studentId(studentId).city(studentRegistrationDTO.locations().current().city()).district(studentRegistrationDTO.locations().current().district()).villageOrQuarter(studentRegistrationDTO.locations().current().villageOrQuarter()).current(studentRegistrationDTO.locations().current().current()).build());
-        locationService.addLocation(Location.builder().studentId(studentId).city(studentRegistrationDTO.locations().previous().city()).district(studentRegistrationDTO.locations().previous().district()).villageOrQuarter(studentRegistrationDTO.locations().previous().villageOrQuarter()).current(studentRegistrationDTO.locations().previous().current()).build());
+        locationService.addLocation(Location.builder().student(student).city(studentRegistrationDTO.locations().current().city()).district(studentRegistrationDTO.locations().current().district()).villageOrQuarter(studentRegistrationDTO.locations().current().villageOrQuarter()).current(studentRegistrationDTO.locations().current().current()).build());
+        locationService.addLocation(Location.builder().student(student).city(studentRegistrationDTO.locations().previous().city()).district(studentRegistrationDTO.locations().previous().district()).villageOrQuarter(studentRegistrationDTO.locations().previous().villageOrQuarter()).current(studentRegistrationDTO.locations().previous().current()).build());
 
         /* save the student relatives in db */
 
+        Student finalStudent = student;
         studentRegistrationDTO.relatives().forEach(item -> {
-            System.out.println(item.name());
-            Relative relative = Relative.builder().job(item.job()).studentId(studentId).jobLocation(item.jobLocation()).phoneNumber(item.phoneNumber()).relation(item.relation()).name(item.name()).build();
+            Relationship relationship = relationshipRepository.findByName(item.relationship()).orElseThrow(() -> new IllegalArgumentException("Invalid relationship type"));
+            Relative relative = Relative.builder().job(item.job()).student(finalStudent).jobLocation(item.jobLocation()).phoneNumber(item.phoneNumber())
+                    .relationship(relationship).name(item.name()).build();
             relativeService.addRelative(relative);
         });
 
         /* save the identification of the student */
         ;
-        Identification identification = Identification.builder().studentId(studentId).pageNumber(studentRegistrationDTO.identification().pageNumber()).caseNumber(studentRegistrationDTO.identification().caseNumber()).nationalId(studentRegistrationDTO.identification().nationalId()).registrationNumber(studentRegistrationDTO.identification().registrationNumber()).build();
+        Identification identification = Identification.builder().student(student).pageNumber(studentRegistrationDTO.identification().pageNumber()).caseNumber(studentRegistrationDTO.identification().caseNumber()).nationalId(studentRegistrationDTO.identification().nationalId()).registrationNumber(studentRegistrationDTO.identification().registrationNumber()).build();
         identificationService.addIdentification(identification);
-        System.err.println(student);
+        student.setIdentification(identification);
+        /* prepare the student gender to save */
+        Optional<Gender> gender = genderRepository.findByName(studentRegistrationDTO.studentPersonalInfo().gender());
+
+        student.setGender(gender.orElseThrow(() -> new IllegalArgumentException("Invalid Gender Type: ")));
+        studentRepository.save(student);
         RoleName roleName = RoleName.valueOf(studentRegistrationDTO.role().toUpperCase());
-        System.err.println(roleName);
         Optional<Role> role = roleRepository.findByRoleName(roleName);
+
         authenticationService.registerUser(User
                 .builder()
                 .id(studentId)
@@ -107,8 +118,8 @@ public class StudentService {
         return studentResponseDTOMapper.apply(student.get());
     }
 
-    public StudentResponsePersonalInfo getStudentProfile(Long id){
-        Student student = studentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("student not found with provided id: "+id));
+    public StudentResponsePersonalInfo getStudentProfile(Long id) {
+        Student student = studentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("student not found with provided id: " + id));
         // نام، تخلص، نام پدر، شماره تماس، ایمیل، سال شمولیت به موسسه، کدام پوهنحی، کدام سمستر، سال چند
         return StudentResponsePersonalInfo
                 .builder()
@@ -116,7 +127,7 @@ public class StudentService {
                 .lastName(student.getLastName())
                 .fatherName(student.getFatherName())
                 .grandFatherName(student.getGrandFatherName())
-                .maritalStatus(student.getMaritalStatus())
+                .maritalStatus(student.getMaritalStatus().getName())
                 .department(student.getDepartment())
                 .fieldOfStudy(student.getFieldOfStudy())
                 .motherTongue(student.getMotherTongue())
@@ -162,6 +173,10 @@ public class StudentService {
             throw new IllegalArgumentException("the national id is already exist");
         }
         /* check if email is already taken */
+        if(studentRepository.existsByEmail(studentRegistrationDTO.studentPersonalInfo().email())) {
+            throw new IllegalArgumentException("the email: { "+studentRegistrationDTO.studentPersonalInfo().email()+" } is already exist");
+        }
+
     }
 
 

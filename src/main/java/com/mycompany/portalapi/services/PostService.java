@@ -24,6 +24,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -39,7 +43,7 @@ public class PostService {
 
     public PostSuccessfulRegistrationDTO addPost(Post post) {
         post.setId(null);
-        post.setLocalDateTime(LocalDateTime.now());
+        post.setDateTime(ZonedDateTime.now(ZoneId.of("UTC")));
         Post savedPost = postRepository.save(post);
         return PostSuccessfulRegistrationDTO.builder()
                 .message("post successfully saved")
@@ -74,7 +78,7 @@ public class PostService {
         List<PostResponseDTO> posts = new java.util.ArrayList<>(postRepository.findAllByFieldOfStudyAndDepartment(student.getFieldOfStudy(), student.getDepartment())
                 .stream().map(postResponseDTOMapper).toList());
         log.info("list {}", posts);
-        posts.sort((o1, o2) -> o1.date().compareTo(o2.date()));
+        posts.sort(Comparator.comparing(PostResponseDTO::dateTime));
         return new PageContainerDTO<>(
                 posts.size(),
                 posts

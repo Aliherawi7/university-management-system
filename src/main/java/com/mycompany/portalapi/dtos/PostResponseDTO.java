@@ -5,6 +5,7 @@ import lombok.Builder;
 import org.hibernate.Length;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Builder
@@ -13,7 +14,7 @@ public record PostResponseDTO(
         String message,
         String department,
         String fieldOfStudy,
-        LocalDateTime date,
+        ZonedDateTime dateTime,
         AuthorDTO author,
         List<String> images,
         List<String> docs

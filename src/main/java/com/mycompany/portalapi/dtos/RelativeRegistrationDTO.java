@@ -1,23 +1,26 @@
 package com.mycompany.portalapi.dtos;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.mycompany.portalapi.config.RelationDeserializer;
-import com.mycompany.portalapi.constants.Relation;
+import com.mycompany.portalapi.constants.RelationName;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
-import lombok.NonNull;
 
 @Builder
 public record RelativeRegistrationDTO(
-        @NonNull
+        @NotNull(message = "the relation's name must not be null")
+        @NotBlank(message = "the relation's name must not be empty")
         String name,
-        @NonNull
+        @NotNull(message = "the relation's job must not be null")
+        @NotBlank(message = "the relation's job must not be empty")
         String job,
-        @NonNull
+        @NotNull(message = "the relation's phoneNumber must not be null")
+        @NotBlank(message = "the relation's phoneNumber must not be empty")
         String phoneNumber,
-        @NonNull
+        @NotNull(message = "the relation's jobLocation must not be null")
+        @NotBlank(message = "the relation's jobLocation must not be empty")
         String jobLocation,
-        @NonNull
-        @JsonDeserialize(using = RelationDeserializer.class)
-        Relation relation
+        @NotNull(message = "relationship must not be null")
+        @NotBlank(message = "relationship must not be empty")
+        String relationship
 ) {
 }

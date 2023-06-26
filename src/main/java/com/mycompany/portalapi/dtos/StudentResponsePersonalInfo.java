@@ -1,35 +1,32 @@
 package com.mycompany.portalapi.dtos;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.mycompany.portalapi.config.MaritalStatusDeserializer;
-import com.mycompany.portalapi.constants.MaritalStatus;
 import lombok.Builder;
 import lombok.NonNull;
 
 @Builder
 public record StudentResponsePersonalInfo(@NonNull
-                                         String name,
+                                          String name,
                                           @NonNull
-                                         String lastName,
+                                          String lastName,
                                           @NonNull
-                                         String fatherName,
+                                          String fatherName,
                                           @NonNull
-                                         String grandFatherName,
+                                          String grandFatherName,
                                           @NonNull
-                                         String dob,
+                                          String dob,
                                           @NonNull
-                                         String motherTongue,
+                                          String motherTongue,
+                                          String gender,
                                           @NonNull
-                                         @JsonDeserialize(using = MaritalStatusDeserializer.class)
-                                         MaritalStatus maritalStatus,
+                                          String maritalStatus,
                                           @NonNull
-                                         String highSchool,
+                                          String highSchool,
                                           @NonNull
-                                         String schoolGraduationDate,
+                                          String schoolGraduationDate,
                                           @NonNull
-                                         String fieldOfStudy,
+                                          String fieldOfStudy,
                                           @NonNull
-                                         String department,
+                                          String department,
                                           @NonNull
                                           String phoneNumber,
                                           @NonNull

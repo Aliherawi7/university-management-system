@@ -1,22 +1,22 @@
 package com.mycompany.portalapi.dtos;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
-import lombok.NonNull;
 
 import java.util.List;
 
 @Builder
 public record StudentRegistrationDTO(
-        @NonNull
+        @Valid
         StudentPersonalInfo studentPersonalInfo,
-        @NonNull
+        @Valid
         IdentificationDTO identification,
-        @NonNull
+        @Valid
         Locations locations,
-        @NonNull
+        @Valid
         List<RelativeRegistrationDTO> relatives,
-        String role,
-        Integer semester
+        String role
 ) {
 }
 

@@ -1,11 +1,20 @@
 package com.mycompany.portalapi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mycompany.portalapi.constants.GenderName;
+import com.mycompany.portalapi.constants.MaritalStatusName;
+import com.mycompany.portalapi.constants.RelationName;
 import com.mycompany.portalapi.constants.RoleName;
 import com.mycompany.portalapi.dtos.DepartmentDTO;
 import com.mycompany.portalapi.dtos.FieldOfStudyDTO;
 import com.mycompany.portalapi.dtos.StudentRegistrationDTO;
+import com.mycompany.portalapi.models.Gender;
+import com.mycompany.portalapi.models.MaritalStatus;
+import com.mycompany.portalapi.models.Relationship;
 import com.mycompany.portalapi.models.Role;
+import com.mycompany.portalapi.repositories.GenderRepository;
+import com.mycompany.portalapi.repositories.MaritalStatusRepository;
+import com.mycompany.portalapi.repositories.RelationshipRepository;
 import com.mycompany.portalapi.repositories.RoleRepository;
 import com.mycompany.portalapi.services.DepartmentService;
 import com.mycompany.portalapi.services.FieldOfStudyService;
@@ -31,13 +40,39 @@ public class PortalApiApplication {
     CommandLineRunner run(StudentService studentService,
                           DepartmentService departmentService,
                           FieldOfStudyService fieldOfStudyService,
-                          RoleRepository roleRepository) {
+                          RoleRepository roleRepository,
+                          GenderRepository genderRepository,
+                          MaritalStatusRepository maritalStatusRepository,
+                          RelationshipRepository relationshipRepository) {
         return args -> {
             ObjectMapper objectMapper = new ObjectMapper();
             Role adminRole = Role.builder().id(1).roleName(RoleName.ADMIN).build();
             Role studentRole = Role.builder().id(2).roleName(RoleName.STUDENT).build();
             roleRepository.save(adminRole);
             roleRepository.save(studentRole);
+            Gender gender1 = Gender.builder().id(1).name(GenderName.MALE.getValue()).build();
+            Gender gender2 = Gender.builder().id(2).name(GenderName.FEMALE.getValue()).build();
+            Gender gender3 = Gender.builder().id(3).name(GenderName.OTHER.getValue()).build();
+            genderRepository.save(gender1);
+            genderRepository.save(gender2);
+            genderRepository.save(gender3);
+            /* marital status */
+            MaritalStatus maritalStatus1 = MaritalStatus.builder().id(1).name(MaritalStatusName.MARRIED.getValue()).build();
+            MaritalStatus maritalStatus2 = MaritalStatus.builder().id(2).name(MaritalStatusName.SINGLE.getValue()).build();
+            maritalStatusRepository.save(maritalStatus1);
+            maritalStatusRepository.save(maritalStatus2);
+
+            /* relationships */
+            Relationship father = Relationship.builder().id(1).name(RelationName.FATHER.getValue()).build();
+            relationshipRepository.save(father);
+            Relationship brother = Relationship.builder().id(2).name(RelationName.BROTHER.getValue()).build();
+            relationshipRepository.save(brother);
+            Relationship husband = Relationship.builder().id(3).name(RelationName.HUSBAND.getValue()).build();
+            relationshipRepository.save(husband);
+            Relationship uncle = Relationship.builder().id(4).name(RelationName.UNCLE.getValue()).build();
+            relationshipRepository.save(uncle);
+            Relationship aunt = Relationship.builder().id(5).name(RelationName.AUNT.getValue()).build();
+            relationshipRepository.save(aunt);
 
             URL jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json\\student.json");
             StudentRegistrationDTO student = null;

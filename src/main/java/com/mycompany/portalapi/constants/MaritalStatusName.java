@@ -7,11 +7,9 @@ import com.mycompany.portalapi.config.MaritalStatusDeserializer;
 
 import java.util.stream.Stream;
 
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-@JsonDeserialize(using = MaritalStatusDeserializer.class)
 public enum MaritalStatus {
-    MARRIED("MARRIED"),
-    SINGLE("SINGLE");
+    MARRIED("متاهل"),
+    SINGLE("مجرد");
 
     private final String value;
 
@@ -23,9 +21,5 @@ public enum MaritalStatus {
         return this.value;
     }
 
-    @JsonCreator
-    public static MaritalStatus decode(final String value){
-        return Stream.of(MaritalStatus.values()).filter(targetEnum -> targetEnum.getValue().equals(value.toUpperCase())).findFirst().orElse(null);
-    }
 
 }

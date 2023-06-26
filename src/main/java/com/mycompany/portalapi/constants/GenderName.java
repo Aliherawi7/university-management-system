@@ -6,12 +6,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.mycompany.portalapi.config.GenderDeserializer;
 
 import java.util.stream.Stream;
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 @JsonDeserialize(using = GenderDeserializer.class)
 public enum Gender {
-    MALE("MALE"),
-    FEMALE("FEMALE"),
-    OTHER("OTHER");
+    MALE("مرد"),
+    FEMALE("زن"),
+    OTHER("دیگر");
 
     private final String value;
 
@@ -25,6 +25,6 @@ public enum Gender {
 
     @JsonCreator
     public static Gender decode(final String value){
-        return Stream.of(Gender.values()).filter(targetEnum -> targetEnum.value.equals(value.toUpperCase())).findFirst().orElse(null);
+        return Stream.of(Gender.values()).filter(targetEnum -> targetEnum.value.equals(value)).findFirst().orElse(null);
     }
 }

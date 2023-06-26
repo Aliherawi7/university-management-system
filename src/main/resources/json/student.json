@@ -6,30 +6,31 @@
     "grandFatherName": "Mohammad",
     "dob": "2000-03-10",
     "motherTongue": "Dari",
-    "maritalStatus": "Single",
+    "maritalStatus": "مجرد",
     "highSchool": "jami",
     "schoolGraduationDate": "2017-10-03",
     "fieldOfStudy": "IT and technology",
     "department": "Software Engineering",
     "email": "aliherawi7@gmail.com",
     "password":"12345",
+    "gender": "مرد",
     "phoneNumber": "0774764565",
     "semester": 1
   },
   "relatives": [
     {
-      "name": "ahmad",
-      "job": "engineer",
+      "name": "احمد",
+      "job": "انجنییر",
       "phoneNumber": "798798798",
-      "jobLocation": "kabul",
-      "relation": "brother"
+      "jobLocation": "هرات",
+      "relationship": "برادر"
     },
     {
-      "name": "falani",
-      "job": "engineer",
+      "name": "فهیم",
+      "job": "مهندس",
       "phoneNumber": "89998798",
-      "jobLocation": "Herat",
-      "relation": "uncle"
+      "jobLocation": "هرات",
+      "relationship": "کاکا"
     }
   ],
   "identification": {
@@ -40,15 +41,15 @@
   },
   "locations": {
     "current": {
-      "villageOrQuarter": "urdokhan",
-      "district": "injil",
-      "city": "herat",
+      "villageOrQuarter": "اردوخان",
+      "district": "انحیل",
+      "city": "هرات",
       "current": true
     },
     "previous": {
-      "villageOrQuarter": "urdokhan",
-      "district": "injil",
-      "city": "herat",
+      "villageOrQuarter": "اردوخان",
+      "district": "انجیل",
+      "city": "هرات",
       "current": false
     }
   },

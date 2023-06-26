@@ -55,7 +55,7 @@ public class JwtUtils {
     public String generateToken(String email, List<Role> roleNames, long day) {
         return JWT.create()
                 .withSubject(email)
-                .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * day)) // 30 days
+                .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * day)) //default period time 30 days
                 .withIssuer(httpServletRequest.getRequestURL().toString())
                 .withClaim("roles", roleNames.stream().map(role -> role.getRoleName().getValue()).toList())
                 .sign(getSignInKey());

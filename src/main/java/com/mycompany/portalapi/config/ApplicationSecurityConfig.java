@@ -42,6 +42,7 @@ public class ApplicationSecurityConfig {
             @Override
             public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
                 Optional<User> account = userRepository.findByEmail(email);
+                System.out.println("email: "+email);
                 if (account.isEmpty()) {
                     throw new ResourceNotFoundException("account not found with provided email: "+email);
                 }

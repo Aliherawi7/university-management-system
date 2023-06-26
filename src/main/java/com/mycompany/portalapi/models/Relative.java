@@ -1,13 +1,10 @@
 package com.mycompany.portalapi.models;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.mycompany.portalapi.config.RelationDeserializer;
-import com.mycompany.portalapi.constants.RelationName;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.*;
 
 
 @Entity

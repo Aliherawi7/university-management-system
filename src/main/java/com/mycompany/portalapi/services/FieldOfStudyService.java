@@ -6,11 +6,12 @@ import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
 import com.mycompany.portalapi.models.FieldOfStudy;
 import com.mycompany.portalapi.repositories.FieldOfStudyRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class FieldOfStudyService {
     private final FieldOfStudyRepository fieldOfStudyRepository;

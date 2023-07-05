@@ -1,4 +1,4 @@
-package com.mycompany.portalapi.services;
+package com.mycompany.portalapi.services.mappers;
 
 import com.mycompany.portalapi.dtos.LocationDTO;
 import com.mycompany.portalapi.models.Location;

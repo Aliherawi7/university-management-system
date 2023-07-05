@@ -3,13 +3,14 @@ package com.mycompany.portalapi.services;
 import com.mycompany.portalapi.models.Relative;
 import com.mycompany.portalapi.repositories.RelativeRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class RelativeService {
     private final RelativeRepository relativeRepository;

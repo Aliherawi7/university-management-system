@@ -3,12 +3,13 @@ package com.mycompany.portalapi.services;
 import com.mycompany.portalapi.models.Identification;
 import com.mycompany.portalapi.repositories.IdentificationRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class IdentificationService {
-    private IdentificationRepository identificationRepository;
+    private final IdentificationRepository identificationRepository;
 
     public void addIdentification(Identification identification){
         identificationRepository.save(identification);
@@ -17,7 +18,7 @@ public class IdentificationService {
         return identificationRepository.findByStudentId(studentId);
     }
     public boolean isNationalIdAlreadyExist(Long nationalId) {
-        return identificationRepository.existsById(nationalId);
+        return identificationRepository.existsByNationalId(nationalId);
     }
 
 }

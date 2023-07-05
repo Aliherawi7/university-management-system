@@ -5,12 +5,13 @@ import com.mycompany.portalapi.dtos.Locations;
 import com.mycompany.portalapi.models.Location;
 import com.mycompany.portalapi.repositories.LocationRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class LocationService {
     private final LocationRepository locationRepository;
 

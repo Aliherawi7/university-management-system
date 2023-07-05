@@ -8,12 +8,16 @@ import com.mycompany.portalapi.exceptions.IllegalArgumentException;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
 import com.mycompany.portalapi.models.*;
 import com.mycompany.portalapi.repositories.*;
+import com.mycompany.portalapi.services.mappers.StudentResponseDTOMapper;
+import com.mycompany.portalapi.services.mappers.StudentShortInfoMapper;
 import com.mycompany.portalapi.utils.BaseURI;
 import com.mycompany.portalapi.utils.StudentUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +25,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class StudentService {
     private final StudentRepository studentRepository;
     private final IdentificationService identificationService;
@@ -38,7 +43,7 @@ public class StudentService {
     private final MaritalStatusRepository maritalStatusRepository;
     private final RelationshipRepository relationshipRepository;
     private final RequestObjectValidatorService<StudentRegistrationDTO> studentRegistrationDTORequestValidatorService;
-
+    private final StudentShortInfoMapper studentShortInfoMapper;
     public StudentSuccessfulRegistrationResponse addStudentForController(StudentRegistrationDTO studentRegistrationDTO) {
         Long studentId = addStudent(studentRegistrationDTO);
         return StudentSuccessfulRegistrationResponse.builder().message("student successfully saved in db").statusCode(HttpStatus.CREATED.value()).studentId(studentId).imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + studentId).build();
@@ -85,7 +90,6 @@ public class StudentService {
         });
 
         /* save the identification of the student */
-        ;
         Identification identification = Identification.builder().student(student).pageNumber(studentRegistrationDTO.identification().pageNumber()).caseNumber(studentRegistrationDTO.identification().caseNumber()).nationalId(studentRegistrationDTO.identification().nationalId()).registrationNumber(studentRegistrationDTO.identification().registrationNumber()).build();
         identificationService.addIdentification(identification);
         student.setIdentification(identification);
@@ -176,8 +180,16 @@ public class StudentService {
         if(studentRepository.existsByEmail(studentRegistrationDTO.studentPersonalInfo().email())) {
             throw new IllegalArgumentException("the email: { "+studentRegistrationDTO.studentPersonalInfo().email()+" } is already exist");
         }
-
+        studentRegistrationDTO.relatives().forEach(item -> {
+            Relationship relationship = relationshipRepository
+                    .findByName(item.relationship()).orElseThrow(() -> new IllegalArgumentException("Invalid relationship type"));
+        });
     }
 
-
+    /* search methods */
+    public Page<StudentShortInfo> getAllStudentsByName(String name, int offset, int pageSize) {
+        Pageable pageable = PageRequest.of(offset, pageSize);
+        Page<Student> students = studentRepository.findAllByNameContainingIgnoreCase(name, pageable);
+        return students.map(studentShortInfoMapper);
+    }
 }

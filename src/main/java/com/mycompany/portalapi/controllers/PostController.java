@@ -1,6 +1,8 @@
 package com.mycompany.portalapi.controllers;
 
 
+import com.mycompany.portalapi.dtos.PostRequestDTO;
+import com.mycompany.portalapi.dtos.PostResponseDTO;
 import com.mycompany.portalapi.models.Post;
 import com.mycompany.portalapi.services.PostService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,11 +22,11 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping
-    public ResponseEntity<?> addPost(@RequestBody Post post){
-        return new ResponseEntity<>(postService.addPost(post), HttpStatus.CREATED);
+    public ResponseEntity<?> addPost(@RequestBody PostRequestDTO postRequestDTO){
+        return new ResponseEntity<>(postService.addPost(postRequestDTO), HttpStatus.CREATED);
     }
-    @GetMapping("/pagination/{offset}/{pageSize}")
-    public ResponseEntity<?> getAllPosts(@PathVariable int offset, @PathVariable int pageSize, HttpServletRequest httpServletRequest){
+    @GetMapping(value = "/", params = {"offset","pageSize"})
+    public ResponseEntity<?> getAllPosts(@RequestParam int offset, @RequestParam int pageSize, HttpServletRequest httpServletRequest){
         return ResponseEntity.ok(postService.getPostAllPostByPagination(offset, pageSize, httpServletRequest));
     }
 

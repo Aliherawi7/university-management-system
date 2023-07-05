@@ -1,4 +1,4 @@
-package com.mycompany.portalapi.services;
+package com.mycompany.portalapi.services.mappers;
 
 import com.mycompany.portalapi.constants.APIEndpoints;
 import com.mycompany.portalapi.dtos.AuthorDTO;
@@ -6,6 +6,7 @@ import com.mycompany.portalapi.dtos.PostResponseDTO;
 import com.mycompany.portalapi.models.Post;
 import com.mycompany.portalapi.models.User;
 import com.mycompany.portalapi.repositories.UserRepository;
+import com.mycompany.portalapi.services.FileStorageService;
 import com.mycompany.portalapi.utils.BaseURI;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

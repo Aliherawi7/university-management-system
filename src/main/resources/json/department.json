@@ -1,37 +1,37 @@
 [
   {
     "fieldOfStudyId": 1,
-    "departmentName": "Criminal law",
+    "departmentName": "حقوق جنایی",
     "description": "test"
   },
   {
     "fieldOfStudyId": 1,
-    "departmentName": "society law",
+    "departmentName": "حقوق اجتماعی",
     "description": "test"
   },
   {
     "fieldOfStudyId": 2,
-    "departmentName": "Civil",
+    "departmentName": "عمران",
     "description": "test"
   },
   {
     "fieldOfStudyId": 2,
-    "departmentName": "Architecture",
+    "departmentName": "معماری",
     "description": "test"
   },
   {
     "fieldOfStudyId": 3,
-    "departmentName": "Software Engineering",
+    "departmentName": "مهندسی نرم افزار",
     "description": "test"
   },
   {
     "fieldOfStudyId": 4,
-    "departmentName": "nursing",
+    "departmentName": "نرسینگ",
     "description": "test"
   },
   {
     "fieldOfStudyId": 4,
-    "departmentName": "dentist",
+    "departmentName": "جلدی و زیبایی",
     "description": "test"
   }
 ]

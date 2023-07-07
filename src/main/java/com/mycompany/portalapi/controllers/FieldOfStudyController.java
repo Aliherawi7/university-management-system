@@ -3,9 +3,11 @@ package com.mycompany.portalapi.controllers;
 
 import com.mycompany.portalapi.dtos.DepartmentDTO;
 import com.mycompany.portalapi.dtos.FieldOfStudyDTO;
+import com.mycompany.portalapi.dtos.FieldOfStudyResponseDTO;
 import com.mycompany.portalapi.services.DepartmentService;
 import com.mycompany.portalapi.services.FieldOfStudyService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,11 @@ public class FieldOfStudyController {
     @GetMapping("{id}")
     public ResponseEntity<?> getFieldOfStudy(@PathVariable Long id) {
         return ResponseEntity.ok(fieldOfStudyService.getById(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<FieldOfStudyResponseDTO>> getAllFieldOfStudies(){
+        return ResponseEntity.ok(fieldOfStudyService.getAllFieldOfStudies());
     }
 
     @PostMapping
@@ -39,7 +46,6 @@ public class FieldOfStudyController {
     public ResponseEntity<?> getAllDepartmentByFieldStudyId(@PathVariable Long fieldStudyId){
         return ResponseEntity.ok(departmentService.getAllDepartmentByFieldStudyId(fieldStudyId));
     }
-
     @GetMapping("{fieldOfStudyId}/departments/{departmentId}")
     public ResponseEntity<?> getFieldOfStudy(@PathVariable Long fieldOfStudyId, @PathVariable Long departmentId) {
         return ResponseEntity.ok(departmentService.getDepartmentByDepartmentIdAndFieldStudyId(departmentId, fieldOfStudyId));

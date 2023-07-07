@@ -7,18 +7,14 @@ import com.mycompany.portalapi.constants.RelationName;
 import com.mycompany.portalapi.constants.RoleName;
 import com.mycompany.portalapi.dtos.DepartmentDTO;
 import com.mycompany.portalapi.dtos.FieldOfStudyDTO;
+import com.mycompany.portalapi.dtos.PostRequestDTO;
 import com.mycompany.portalapi.dtos.StudentRegistrationDTO;
-import com.mycompany.portalapi.models.Gender;
-import com.mycompany.portalapi.models.MaritalStatus;
-import com.mycompany.portalapi.models.Relationship;
-import com.mycompany.portalapi.models.Role;
+import com.mycompany.portalapi.models.*;
 import com.mycompany.portalapi.repositories.GenderRepository;
 import com.mycompany.portalapi.repositories.MaritalStatusRepository;
 import com.mycompany.portalapi.repositories.RelationshipRepository;
 import com.mycompany.portalapi.repositories.RoleRepository;
-import com.mycompany.portalapi.services.DepartmentService;
-import com.mycompany.portalapi.services.FieldOfStudyService;
-import com.mycompany.portalapi.services.StudentService;
+import com.mycompany.portalapi.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -43,13 +39,23 @@ public class PortalApiApplication {
                           RoleRepository roleRepository,
                           GenderRepository genderRepository,
                           MaritalStatusRepository maritalStatusRepository,
-                          RelationshipRepository relationshipRepository) {
+                          RelationshipRepository relationshipRepository,
+                          AuthenticationService authenticationService,
+                          PostService postService) {
         return args -> {
+
+
+
             ObjectMapper objectMapper = new ObjectMapper();
             Role adminRole = Role.builder().id(1).roleName(RoleName.ADMIN).build();
             Role studentRole = Role.builder().id(2).roleName(RoleName.STUDENT).build();
             roleRepository.save(adminRole);
             roleRepository.save(studentRole);
+
+
+
+
+
             Gender gender1 = Gender.builder().id(1).name(GenderName.MALE.getValue()).build();
             Gender gender2 = Gender.builder().id(2).name(GenderName.FEMALE.getValue()).build();
             Gender gender3 = Gender.builder().id(3).name(GenderName.OTHER.getValue()).build();
@@ -61,6 +67,20 @@ public class PortalApiApplication {
             MaritalStatus maritalStatus2 = MaritalStatus.builder().id(2).name(MaritalStatusName.SINGLE.getValue()).build();
             maritalStatusRepository.save(maritalStatus1);
             maritalStatusRepository.save(maritalStatus2);
+
+
+            /*adding the admin user to the db*/
+            User user = User.builder()
+                    .name("مدیر")
+                    .id(0L)
+                    .email("admin@gmail.com")
+                    .lastname("عمومی")
+                    .roles(List.of(adminRole))
+                    .genderName(gender1)
+                    .isEnabled(true)
+                    .password("12345")
+                    .build();
+            authenticationService.registerUser(user);
 
             /* relationships */
             Relationship father = Relationship.builder().id(1).name(RelationName.FATHER.getValue()).build();
@@ -102,6 +122,17 @@ public class PortalApiApplication {
                 departmentDTOs = objectMapper.readValue(jsonUrl, DepartmentDTO[].class);
                 ArrayList<DepartmentDTO> dList = new ArrayList<>(Arrays.asList(departmentDTOs));
                 dList.forEach(departmentService::addDepartment);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            /* add all posts from the json file */
+            jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json\\posts.json");
+            PostRequestDTO[] postRequestDTOS = null;
+            try {
+                postRequestDTOS = objectMapper.readValue(jsonUrl, PostRequestDTO[].class);
+                ArrayList<PostRequestDTO> dList = new ArrayList<>(Arrays.asList(postRequestDTOS));
+                dList.forEach(postService::addRawPost);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

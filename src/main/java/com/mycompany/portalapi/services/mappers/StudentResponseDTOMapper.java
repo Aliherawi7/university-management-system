@@ -37,6 +37,9 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
                 .fieldOfStudy(student.getFieldOfStudy())
                 .highSchool(student.getHighSchool())
                 .phoneNumber(student.getPhoneNumber())
+                .email(student.getEmail())
+                .joinedDate(student.getJoinedDate())
+
                 .semester(student.getSemester())
                 .year(StudentUtils.getYear(student.getSemester()))
                 .build();

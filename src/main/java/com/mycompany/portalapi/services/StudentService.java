@@ -98,8 +98,8 @@ public class StudentService {
 
         student.setGender(gender.orElseThrow(() -> new IllegalArgumentException("Invalid Gender Type: ")));
         studentRepository.save(student);
-        RoleName roleName = RoleName.valueOf(studentRegistrationDTO.role().toUpperCase());
-        Optional<Role> role = roleRepository.findByRoleName(roleName);
+       // RoleName roleName = RoleName.valueOf(studentRegistrationDTO.role());
+        Optional<Role> role = roleRepository.findByRoleName(RoleName.STUDENT);
 
         authenticationService.registerUser(User
                 .builder()
@@ -141,12 +141,9 @@ public class StudentService {
                 .build();
     }
 
-    public PageContainerDTO<StudentShortInfo> getAllStudents(int offset, int pageSize) {
+    public Page<StudentShortInfo> getAllStudents(int offset, int pageSize) {
         Page<Student> studentPage = studentRepository.findAll(PageRequest.of(offset, pageSize));
-        if (studentPage.getSize() == 0) {
-            return new PageContainerDTO<StudentShortInfo>(0, new ArrayList<>());
-        }
-        return new PageContainerDTO<>(studentRepository.count(), mapStudentToStudentShortInfo(studentPage.toList()));
+        return studentPage.map(studentShortInfoMapper);
     }
 
     public List<StudentShortInfo> mapStudentToStudentShortInfo(List<Student> students) {

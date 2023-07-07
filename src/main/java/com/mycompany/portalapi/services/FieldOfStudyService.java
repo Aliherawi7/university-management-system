@@ -1,13 +1,15 @@
 package com.mycompany.portalapi.services;
 
 import com.mycompany.portalapi.dtos.FieldOfStudyDTO;
+import com.mycompany.portalapi.dtos.FieldOfStudyResponseDTO;
 import com.mycompany.portalapi.exceptions.IllegalArgumentException;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
 import com.mycompany.portalapi.models.FieldOfStudy;
 import com.mycompany.portalapi.repositories.FieldOfStudyRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,6 +27,11 @@ public class FieldOfStudyService {
                 .description(fieldOfStudyDTO.description())
                 .build();
         fieldOfStudyRepository.save(fieldOfStudy);
+    }
+
+    public Page<FieldOfStudyResponseDTO> getAllFieldOfStudies(){
+        return fieldOfStudyRepository.findAll(PageRequest.of(0,(int)fieldOfStudyRepository.count())).map(item ->
+                FieldOfStudyResponseDTO.builder().id(item.getId()).fieldName(item.getFieldName()).description(item.getDescription()).build());
     }
 
     public FieldOfStudy getById(long id) {

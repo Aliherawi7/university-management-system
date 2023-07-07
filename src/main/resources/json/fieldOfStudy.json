@@ -1,18 +1,18 @@
 [
   {
-    "fieldName": "Law",
+    "fieldName": "حقوق",
     "description": "test"
   },
   {
-    "fieldName": "Engineering",
+    "fieldName": "انجینیری",
     "description": "test"
   },
   {
-    "fieldName": "IT and technology",
+    "fieldName": "کامپیوتر ساینس",
     "description": "test"
   },
   {
-    "fieldName": "Health",
+    "fieldName": "طب",
     "description": "test"
   }
 ]

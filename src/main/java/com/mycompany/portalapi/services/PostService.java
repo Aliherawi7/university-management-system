@@ -41,16 +41,7 @@ public class PostService {
     private final JwtUtils jwtUtils;
 
     public PostSuccessfulRegistrationDTO addPost(PostRequestDTO postRequestDTO) {
-        Post post = Post.builder()
-                .authorId(postRequestDTO.authorId())
-                .dateTime(ZonedDateTime.now(ZoneId.of("UTC")))
-                .semester(postRequestDTO.semester())
-                .department(postRequestDTO.department())
-                .fieldOfStudy(postRequestDTO.fieldOfStudy())
-                .message(postRequestDTO.message())
-                .isPublic(postRequestDTO.isPublic())
-                .build();
-        Post savedPost = postRepository.save(post);
+        Post post = addRawPost(postRequestDTO);
         return PostSuccessfulRegistrationDTO.builder()
                 .message("post successfully saved")
                 .postId(post.getId())
@@ -59,11 +50,17 @@ public class PostService {
                 .build();
     }
 
-    public void addPost(PostRequestDTO post, List<MultipartFile> files) {
-        PostSuccessfulRegistrationDTO savedPost = addPost(post);
-        files.forEach(file -> {
-            log.info("file originalName:{} , file name:{}, file contentType: {}, file:{}", file.getOriginalFilename(), file.getName(), file.getContentType(), file);
-        });
+    public Post addRawPost(PostRequestDTO postRequestDTO) {
+        Post savedPost = Post.builder()
+                .authorId(postRequestDTO.authorId())
+                .dateTime(ZonedDateTime.now(ZoneId.of("UTC")))
+                .semester(postRequestDTO.semester())
+                .department(postRequestDTO.department())
+                .fieldOfStudy(postRequestDTO.fieldOfStudy())
+                .message(postRequestDTO.message())
+                .isPublic(postRequestDTO.isPublic())
+                .build();
+        return postRepository.save(savedPost);
     }
 
     public Post getPostById(Long postId) {

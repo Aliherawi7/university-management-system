@@ -3,6 +3,8 @@ package com.mycompany.portalapi.dtos;
 import lombok.Builder;
 import lombok.NonNull;
 
+import java.time.LocalDate;
+
 @Builder
 public record StudentResponsePersonalInfo(@NonNull
                                           String name,
@@ -14,6 +16,8 @@ public record StudentResponsePersonalInfo(@NonNull
                                           String grandFatherName,
                                           @NonNull
                                           String dob,
+                                          String email,
+                                          LocalDate joinedDate,
                                           @NonNull
                                           String motherTongue,
                                           String gender,

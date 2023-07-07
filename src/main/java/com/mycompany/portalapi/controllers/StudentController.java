@@ -29,8 +29,8 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getStudentById(studentId));
     }
 
-    @GetMapping("pagination/{offset}/{pageSize}")
-    public ResponseEntity<?> getAllProducts(@PathVariable int offset, @PathVariable int pageSize) {
+    @GetMapping(value="/", params = {"offset","pageSize"})
+    public ResponseEntity<?> getAllProducts(@RequestParam int offset, @RequestParam int pageSize) {
         return ResponseEntity.ok().body(studentService.getAllStudents(offset, pageSize));
     }
 

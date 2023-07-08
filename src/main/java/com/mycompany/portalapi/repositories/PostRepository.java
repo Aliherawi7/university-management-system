@@ -11,4 +11,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     Page<Post> findAllByFieldOfStudyAndDepartmentOrderByDateTimeDateTimeDesc(String fieldOfStudy, String department, Pageable pageable);
     Page<Post> findAllByFieldOfStudyAndDepartmentOrderByDateTimeDesc(String fieldOfStudy, String department, Pageable pageable);
+    Page<Post> findAllBySemesterOrderByDateTimeDesc(int semester, Pageable pageable);
+    Page<Post> findAllBySemesterAndFieldOfStudyOrderByDateTimeDesc(int semester,String fieldOfStudy, Pageable pageable);
 }

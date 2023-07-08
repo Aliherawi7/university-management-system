@@ -30,4 +30,13 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostAllPostByPagination(offset, pageSize, httpServletRequest));
     }
 
+
+    @GetMapping(value = "/", params = {"semester","offset","pageSize"})
+    public ResponseEntity<?> getAllPosts(@RequestParam int semester, @RequestParam int offset, @RequestParam int pageSize){
+        return ResponseEntity.ok(postService.getPostAllPostBySemesterWithPagination(semester, offset, pageSize));
+    }
+    @GetMapping(value = "/", params = {"semester", "fieldOfStudy","offset","pageSize"})
+    public ResponseEntity<?> getAllPosts(@RequestParam int semester,@RequestParam String fieldOfStudy, @RequestParam int offset, @RequestParam int pageSize){
+        return ResponseEntity.ok(postService.getPostAllPostBySemesterAndFieldOfStudyWithPagination(semester, fieldOfStudy, offset, pageSize));
+    }
 }

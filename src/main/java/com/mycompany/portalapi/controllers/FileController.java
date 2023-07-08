@@ -57,7 +57,7 @@ public class FileController {
     }
 
     @PostMapping("post-files/{postId}")
-    public ResponseEntity<?> addPostFiles(@PathVariable Long postId, @RequestBody List<MultipartFile> files){
+    public ResponseEntity<?> addPostFiles(@PathVariable Long postId, @RequestParam List<MultipartFile> files){
         postService.checkIfNotExist(postId);
         fileStorageService.storePostFiles(files, postId);
         return ResponseEntity.ok("files saved");

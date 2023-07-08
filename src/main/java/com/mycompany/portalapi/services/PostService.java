@@ -87,7 +87,25 @@ public class PostService {
         log.info("list {}", posts);
         return posts;
     }
-
+    public Page<PostResponseDTO> getPostAllPostBySemesterWithPagination(int semester, int offset, int pageSize) {
+        Page<PostResponseDTO> posts = postRepository
+                .findAllBySemesterOrderByDateTimeDesc(
+                        semester,
+                        PageRequest.of(offset, pageSize))
+                .map(postResponseDTOMapper);
+        log.info("list {}", posts);
+        return posts;
+    }
+    public Page<PostResponseDTO> getPostAllPostBySemesterAndFieldOfStudyWithPagination(int semester,String fieldOfStudy, int offset, int pageSize) {
+        Page<PostResponseDTO> posts = postRepository
+                .findAllBySemesterAndFieldOfStudyOrderByDateTimeDesc(
+                        semester,
+                        fieldOfStudy,
+                        PageRequest.of(offset, pageSize))
+                .map(postResponseDTOMapper);
+        log.info("list {}", posts);
+        return posts;
+    }
 
     public boolean isExistById(Long id) {
         return postRepository.existsById(id);

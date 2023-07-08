@@ -13,7 +13,6 @@ import com.mycompany.portalapi.services.mappers.StudentShortInfoMapper;
 import com.mycompany.portalapi.utils.BaseURI;
 import com.mycompany.portalapi.utils.StudentUtils;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,10 +21,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -101,7 +98,7 @@ public class StudentService {
        // RoleName roleName = RoleName.valueOf(studentRegistrationDTO.role());
         Optional<Role> role = roleRepository.findByRoleName(RoleName.STUDENT);
 
-        authenticationService.registerUser(User
+        authenticationService.registerUser(UserApp
                 .builder()
                 .id(studentId)
                 .email(student.getEmail())
@@ -134,6 +131,8 @@ public class StudentService {
                 .maritalStatus(student.getMaritalStatus().getName())
                 .department(student.getDepartment())
                 .fieldOfStudy(student.getFieldOfStudy())
+                .email(student.getEmail())
+                .joinedDate(student.getJoinedDate())
                 .motherTongue(student.getMotherTongue())
                 .semester(student.getSemester())
                 .year(StudentUtils.getYear(student.getSemester()))

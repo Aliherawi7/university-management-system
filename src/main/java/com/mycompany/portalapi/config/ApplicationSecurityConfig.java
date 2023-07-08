@@ -1,7 +1,7 @@
 package com.mycompany.portalapi.config;
 
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
-import com.mycompany.portalapi.models.User;
+import com.mycompany.portalapi.models.UserApp;
 import com.mycompany.portalapi.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -41,7 +41,7 @@ public class ApplicationSecurityConfig {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                Optional<User> account = userRepository.findByEmail(email);
+                Optional<UserApp> account = userRepository.findByEmail(email);
                 if (account.isEmpty()) {
                     throw new ResourceNotFoundException("account not found with provided email: "+email);
                 }

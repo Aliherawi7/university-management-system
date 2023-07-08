@@ -70,7 +70,7 @@ public class PortalApiApplication {
 
 
             /*adding the admin user to the db*/
-            User user = User.builder()
+            UserApp userApp = UserApp.builder()
                     .name("مدیر")
                     .id(0L)
                     .email("admin@gmail.com")
@@ -80,7 +80,7 @@ public class PortalApiApplication {
                     .isEnabled(true)
                     .password("12345")
                     .build();
-            authenticationService.registerUser(user);
+            authenticationService.registerUser(userApp);
 
             /* relationships */
             Relationship father = Relationship.builder().id(1).name(RelationName.FATHER.getValue()).build();
@@ -95,11 +95,13 @@ public class PortalApiApplication {
             relationshipRepository.save(aunt);
 
             URL jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json\\student.json");
-            StudentRegistrationDTO student = null;
+            StudentRegistrationDTO[] students = null;
             try {
-                student = objectMapper.readValue(jsonUrl, StudentRegistrationDTO.class);
+                students = objectMapper.readValue(jsonUrl, StudentRegistrationDTO[].class);
+                Arrays.asList(students).forEach(student -> {
+                    studentService.addStudent(student);
+                });
 
-                studentService.addStudent(student);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

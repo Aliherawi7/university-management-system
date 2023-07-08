@@ -8,7 +8,7 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
 import com.mycompany.portalapi.models.Role;
-import com.mycompany.portalapi.models.User;
+import com.mycompany.portalapi.models.UserApp;
 import com.mycompany.portalapi.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
@@ -96,9 +96,9 @@ public class JwtUtils {
     }
 
     public boolean isNotLock(String email){
-       User user =  userRepository.findByEmail(email)
+       UserApp userApp =  userRepository.findByEmail(email)
                .orElseThrow(() -> new ResourceNotFoundException("invalid token! user not found with provided token"));
-       return user.isEnabled();
+       return userApp.isEnabled();
     }
 
 

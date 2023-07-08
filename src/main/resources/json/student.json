@@ -12,7 +12,7 @@
       "schoolGraduationDate": "2017-10-03",
       "fieldOfStudy": "کامپیوتر ساینس",
       "department": "مهندسی نرم افزار",
-      "email": "aliherawi7@gmail.com",
+      "email": "ahmadHabib@gmail.com",
       "password": "12345",
       "gender": "مرد",
       "phoneNumber": "0774764565",
@@ -35,7 +35,7 @@
       }
     ],
     "identification": {
-      "nationalId": 8768769876,
+      "nationalId": 876879869876,
       "caseNumber": 6,
       "pageNumber": 87,
       "registrationNumber": 9756765
@@ -53,15 +53,14 @@
         "city": "هرات",
         "current": false
       }
-    },
-    "role": "admin"
+    }
   },
   {
     "studentPersonalInfo": {
-      "name": "احمدشاه",
+      "name": "فهیم",
       "lastName": "حبیب",
-      "fatherName": "داد محمد",
-      "grandFatherName": "محمد",
+      "fatherName": "محمد",
+      "grandFatherName": "احمد",
       "dob": "1992-03-10",
       "motherTongue": "دری",
       "maritalStatus": "مجرد",
@@ -69,7 +68,7 @@
       "schoolGraduationDate": "2017-10-03",
       "fieldOfStudy": "کامپیوتر ساینس",
       "department": "مهندسی نرم افزار",
-      "email": "aliherawi7@gmail.com",
+      "email": "ahmad@gmail.com",
       "password": "12345",
       "gender": "مرد",
       "phoneNumber": "0774764565",
@@ -92,7 +91,7 @@
       }
     ],
     "identification": {
-      "nationalId": 8768769876,
+      "nationalId": 7576569876,
       "caseNumber": 6,
       "pageNumber": 87,
       "registrationNumber": 9756765

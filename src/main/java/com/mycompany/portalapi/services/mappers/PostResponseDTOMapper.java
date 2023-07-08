@@ -4,7 +4,7 @@ import com.mycompany.portalapi.constants.APIEndpoints;
 import com.mycompany.portalapi.dtos.AuthorDTO;
 import com.mycompany.portalapi.dtos.PostResponseDTO;
 import com.mycompany.portalapi.models.Post;
-import com.mycompany.portalapi.models.User;
+import com.mycompany.portalapi.models.UserApp;
 import com.mycompany.portalapi.repositories.UserRepository;
 import com.mycompany.portalapi.services.FileStorageService;
 import com.mycompany.portalapi.utils.BaseURI;
@@ -23,12 +23,12 @@ public class PostResponseDTOMapper implements Function<Post, PostResponseDTO> {
     private final FileStorageService fileStorageService;
     @Override
     public PostResponseDTO apply(Post post) {
-        User user = userRepository.findById(post.getAuthorId()).get();
+        UserApp userApp = userRepository.findById(post.getAuthorId()).get();
         List<String> files = fileStorageService.getAllPostFileName(post.getId());
         AuthorDTO authorDTO = AuthorDTO.builder()
-                .name(user.getName())
-                .lastname(user.getLastname())
-                .imageUrl(BaseURI.getBaseURI(httpServletRequest)+ APIEndpoints.USER_PROFILE_IMAGE.getValue()+user.getId())
+                .name(userApp.getName())
+                .lastname(userApp.getLastname())
+                .imageUrl(BaseURI.getBaseURI(httpServletRequest)+ APIEndpoints.USER_PROFILE_IMAGE.getValue()+ userApp.getId())
                 .build();
         return PostResponseDTO
                 .builder()

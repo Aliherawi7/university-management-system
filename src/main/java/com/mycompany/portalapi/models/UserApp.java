@@ -1,6 +1,5 @@
 package com.mycompany.portalapi.models;
 
-import com.mycompany.portalapi.constants.GenderName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +18,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements UserDetails {
+public class UserApp implements UserDetails {
     @Id
     private Long id;
     private String name;

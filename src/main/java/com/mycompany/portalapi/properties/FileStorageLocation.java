@@ -11,7 +11,7 @@ public class FileStorageLocation {
 
 
     public FileStorageLocation(
-            @Value("${file.user.profile.upload.dir}") String studentProfileImageUploadDir,
+            @Value("${file.userApp.profile.upload.dir}") String studentProfileImageUploadDir,
             @Value("${file.post.upload.dir}") String postFiles) {
         this.studentProfileImageUploadDir = studentProfileImageUploadDir;
         this.postFiles = postFiles;

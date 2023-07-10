@@ -57,7 +57,7 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.PUT, "api/v1/files/student-profiles/*").hasAuthority(RoleName.ADMIN.getValue());
                     auth.requestMatchers(HttpMethod.POST, "api/v1/students").hasAuthority(RoleName.ADMIN.getValue());
                     auth.requestMatchers(HttpMethod.PUT, "api/v1/students/*").hasAuthority(RoleName.ADMIN.getValue());
-                    auth.requestMatchers(HttpMethod.GET, "api/v1/students/*").hasAuthority(RoleName.ADMIN.getValue());
+                    auth.requestMatchers(HttpMethod.GET, "api/v1/students/*").hasAnyAuthority(RoleName.ADMIN.getValue(),RoleName.STUDENT.getValue());
                     auth.requestMatchers(HttpMethod.GET, "api/v1/students/**").hasAuthority(RoleName.ADMIN.getValue());
                     auth.requestMatchers(HttpMethod.PUT, "api/v1/auth/lock/**").hasAuthority(RoleName.ADMIN.getValue());
                     auth.requestMatchers(HttpMethod.PUT, "api/v1/auth/unlock/**").hasAuthority(RoleName.ADMIN.getValue());

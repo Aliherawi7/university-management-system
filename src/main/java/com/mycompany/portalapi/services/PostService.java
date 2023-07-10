@@ -74,19 +74,44 @@ public class PostService {
         return postResponseDTOMapper.apply(post);
     }
 
+    /* this is method is for student client which is going to
+    return post by this student information*/
     public Page<PostResponseDTO> getPostAllPostByPagination(int offset, int pageSize, HttpServletRequest httpServletRequest) {
         String email = jwtUtils.getUserEmailByJWT(jwtUtils.getToken(httpServletRequest).substring(7));
         Student student = studentRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("Invalid token "));
-        Page<PostResponseDTO> posts = postRepository
-                .findAllByFieldOfStudyAndDepartmentOrderByDateTimeDesc(
-                        student.getFieldOfStudy(),
-                        student.getDepartment(),
-                        PageRequest.of(offset, pageSize))
-                        .map(postResponseDTOMapper);
-        log.info("list {}", posts);
+        return getPostAllPostBySemesterAndFieldOfStudyAndDepartmentWithPagination(student.getSemester(),
+                student.getFieldOfStudy(),
+                student.getDepartment(),
+                offset,
+                pageSize);
+    }
+
+    public Page<PostResponseDTO> getAllPostsByRequestParams(Integer semester,
+                                                            String fieldOfStudy,
+                                                            String department,
+                                                            int offset,
+                                                            int pageSize) {
+        Page<PostResponseDTO> posts = null;
+        if (semester != null && fieldOfStudy != null && department != null) {
+            posts = getPostAllPostBySemesterAndFieldOfStudyAndDepartmentWithPagination(
+                    semester, fieldOfStudy, department, offset, pageSize
+            );
+        } else if (semester != null && fieldOfStudy != null) {
+            posts = getPostAllPostBySemesterAndFieldOfStudyWithPagination(
+                    semester, fieldOfStudy, offset, pageSize
+            );
+        } else if (fieldOfStudy != null && department != null) {
+            posts = getPostAllPostByFieldOfStudyAndDepartmentWithPagination(
+                    fieldOfStudy, department, offset, pageSize
+            );
+        } else if (semester != null) {
+           posts = getPostAllPostBySemesterWithPagination(semester, offset, pageSize);
+        }
         return posts;
     }
+
+    /* get all posts by [semester, pagination] */
     public Page<PostResponseDTO> getPostAllPostBySemesterWithPagination(int semester, int offset, int pageSize) {
         Page<PostResponseDTO> posts = postRepository
                 .findAllBySemesterOrderByDateTimeDesc(
@@ -96,11 +121,46 @@ public class PostService {
         log.info("list {}", posts);
         return posts;
     }
-    public Page<PostResponseDTO> getPostAllPostBySemesterAndFieldOfStudyWithPagination(int semester,String fieldOfStudy, int offset, int pageSize) {
+    /* get all posts by [fieldOfStudy, pagination] */
+    public Page<PostResponseDTO> getPostAllPostByFieldOfStudyWithPagination(String fieldOfStudy, int offset, int pageSize) {
+        Page<PostResponseDTO> posts = postRepository
+                .findAllByFieldOfStudyOrderByDateTimeDesc(
+                        fieldOfStudy,
+                        PageRequest.of(offset, pageSize))
+                .map(postResponseDTOMapper);
+        log.info("list {}", posts);
+        return posts;
+    }
+    /* get all posts by [fieldOfStudy, department pagination] */
+    public Page<PostResponseDTO> getPostAllPostByFieldOfStudyAndDepartmentWithPagination(String fieldOfStudy,String department, int offset, int pageSize) {
+        Page<PostResponseDTO> posts = postRepository
+                .findAllByFieldOfStudyAndDepartmentOrderByDateTimeDesc(
+                        fieldOfStudy,
+                        department,
+                        PageRequest.of(offset, pageSize))
+                .map(postResponseDTOMapper);
+        log.info("list {}", posts);
+        return posts;
+    }
+    /* get all posts by [semester , fieldOfStudy, pagination] */
+    public Page<PostResponseDTO> getPostAllPostBySemesterAndFieldOfStudyWithPagination(int semester, String fieldOfStudy, int offset, int pageSize) {
         Page<PostResponseDTO> posts = postRepository
                 .findAllBySemesterAndFieldOfStudyOrderByDateTimeDesc(
                         semester,
                         fieldOfStudy,
+                        PageRequest.of(offset, pageSize))
+                .map(postResponseDTOMapper);
+        log.info("list {}", posts);
+        return posts;
+    }
+
+    /* get all posts by [semester , department, fieldOfStudy, pagination] */
+    public Page<PostResponseDTO> getPostAllPostBySemesterAndFieldOfStudyAndDepartmentWithPagination(int semester, String fieldOfStudy, String department, int offset, int pageSize) {
+        Page<PostResponseDTO> posts = postRepository
+                .findAllBySemesterAndFieldOfStudyAndDepartmentOrderByDateTimeDesc(
+                        semester,
+                        fieldOfStudy,
+                        department,
                         PageRequest.of(offset, pageSize))
                 .map(postResponseDTOMapper);
         log.info("list {}", posts);

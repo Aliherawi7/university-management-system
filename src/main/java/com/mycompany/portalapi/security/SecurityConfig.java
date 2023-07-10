@@ -69,6 +69,7 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.GET, "api/v1/posts/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "api/v1/field-of-studies/**").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "api/v1/field-of-studies/**").hasAnyAuthority(RoleName.ADMIN.getValue());
+                    auth.anyRequest().authenticated();
                 }).addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults())
                 .build();

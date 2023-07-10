@@ -35,7 +35,7 @@ public class FileController {
     }
 
     @PostMapping("student-profiles/{studentId}")
-    public ResponseEntity<?> addStudentImage(@PathVariable Long studentId, @ModelAttribute MultipartFile file){
+    public ResponseEntity<?> addStudentImage(@PathVariable Long studentId, @RequestParam MultipartFile file){
         if(!studentService.isExistById(studentId)){
             throw new ResourceNotFoundException("student not found with provided id: "+studentId);
         }

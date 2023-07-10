@@ -34,9 +34,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain) throws ServletException, IOException {
 
        String token = jwtUtils.getToken(request);
-       log.info(token);
+
        if(token == null || !token.startsWith("Bearer ")){
-           log.info("Invalid token");
+           log.info("in null or invalid token condition {}", token);
            filterChain.doFilter(request, response);
            return;
        }

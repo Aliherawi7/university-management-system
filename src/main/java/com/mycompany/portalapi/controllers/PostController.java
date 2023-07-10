@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,18 +26,17 @@ public class PostController {
     public ResponseEntity<?> addPost(@RequestBody PostRequestDTO postRequestDTO){
         return new ResponseEntity<>(postService.addPost(postRequestDTO), HttpStatus.CREATED);
     }
-    @GetMapping(value = "/", params = {"offset","pageSize"})
-    public ResponseEntity<?> getAllPosts(@RequestParam int offset, @RequestParam int pageSize, HttpServletRequest httpServletRequest){
-        return ResponseEntity.ok(postService.getPostAllPostByPagination(offset, pageSize, httpServletRequest));
-    }
 
 
-    @GetMapping(value = "/", params = {"semester","offset","pageSize"})
-    public ResponseEntity<?> getAllPosts(@RequestParam int semester, @RequestParam int offset, @RequestParam int pageSize){
-        return ResponseEntity.ok(postService.getPostAllPostBySemesterWithPagination(semester, offset, pageSize));
-    }
-    @GetMapping(value = "/", params = {"semester", "fieldOfStudy","offset","pageSize"})
-    public ResponseEntity<?> getAllPosts(@RequestParam int semester,@RequestParam String fieldOfStudy, @RequestParam int offset, @RequestParam int pageSize){
-        return ResponseEntity.ok(postService.getPostAllPostBySemesterAndFieldOfStudyWithPagination(semester, fieldOfStudy, offset, pageSize));
+    @GetMapping( "/")
+    public ResponseEntity<?> getAllPosts(@RequestParam(name = "semester", required = false) Integer semester,
+                                         @RequestParam(name = "fieldOfStudy",required = false) String fieldOfStudy,
+                                         @RequestParam(name = "department",required = false) String department,
+                                         @RequestParam(name = "offset") int offset,
+                                         @RequestParam(name = "pageSize") int pageSize){
+        System.err.println("[ s :"+semester + " ->f: "+fieldOfStudy+ " ->d: "+department+" ]");
+        return ResponseEntity.ok(postService.getAllPostsByRequestParams(
+                semester,fieldOfStudy, department, offset, pageSize
+        ));
     }
 }

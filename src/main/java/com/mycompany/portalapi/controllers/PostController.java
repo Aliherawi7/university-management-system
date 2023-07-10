@@ -27,6 +27,12 @@ public class PostController {
         return new ResponseEntity<>(postService.addPost(postRequestDTO), HttpStatus.CREATED);
     }
 
+    @GetMapping("/student")
+    public ResponseEntity<?> getAllPosts(@RequestParam(name = "offset") int offset,
+                                         @RequestParam(name = "pageSize") int pageSize,
+                                         HttpServletRequest httpServletRequest){
+        return ResponseEntity.ok(postService.getPostAllPostByPagination(offset, pageSize, httpServletRequest));
+    }
 
     @GetMapping( "/")
     public ResponseEntity<?> getAllPosts(@RequestParam(name = "semester", required = false) Integer semester,

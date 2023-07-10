@@ -5,55 +5,40 @@ import lombok.Builder;
 
 @Builder
 public record StudentPersonalInfo(
-        @NotNull(message = "name must not be null")
-        @NotBlank(message = "name must not be empty")
+        @NotNull(message = "نام نباید خالی باشد")
         String name,
-        @NotNull(message = "lastName must not be null")
-        @NotBlank(message = "lastName must not be empty")
+        @NotNull(message = "تخلص نباید خالی باشد")
         String lastName,
-        @NotNull(message = "fatherName must not be null")
-        @NotBlank(message = "fatherName must not be empty")
+        @NotNull(message = "نام پدر نباید خالی باشد")
         String fatherName,
-        @NotNull(message = "grandFatherName must not be null")
-        @NotBlank(message = "grandFatherName must not be empty")
+        @NotNull(message = "نام پدرپزرک نباید خالی باشد")
         String grandFatherName,
-        @NotNull(message = "dob must not be null")
-        @NotBlank(message = "dob must not be empty")
+        @NotNull(message = "تاریخ تولد نباید خالی باشد")
         String dob,
-        @NotNull(message = "motherTongue must not be null")
-        @NotBlank(message = "motherTongue must not be empty")
+        @NotNull(message = "زبان مادری نباید خالی باشد")
         String motherTongue,
-        @NotNull(message = "maritalStatus must not be null")
-        @NotEmpty(message = "maritalStatus must not be empty")
+        @NotNull(message = "حالت مدنی نباید خالی باشد")
         String maritalStatus,
-        @NotNull(message = "gender must not be null")
-        @NotEmpty(message = "gender must not be empty")
+        @NotNull(message = "جنسیت نباید خالی باشد")
         String gender,
-        @NotNull(message = "name must not be null")
-        @NotBlank(message = "highSchool must not be empty")
+        @NotNull(message = "نام مکتب نباید خالی باشد")
         String highSchool,
-        @NotNull(message = "schoolGraduationDate must not be null")
-        @NotBlank(message = "schoolGraduationDate must not be empty")
+        @NotNull(message = "تاریخ فراغت  نباید خالی باشد")
         String schoolGraduationDate,
-        @NotNull(message = "fieldOfStudy must not be null")
-        @NotBlank(message = "fieldOfStudy must not be empty")
+        @NotNull(message = "پوهنحی نباید خالی باشد")
         String fieldOfStudy,
-        @NotNull(message = "department must not be null")
-        @NotBlank(message = "department must not be empty")
+        @NotNull(message = "دیپارتمنت نباید خالی باشد")
         String department,
-        @NotNull(message = "password must not be null")
-        @NotBlank(message = "password must not be empty")
+        @NotNull(message = "رمز حساب کاربری نباید خالی باشد")
         String password,
-        @NotNull(message = "email must not be null")
-        @NotBlank(message = "email must not be empty")
-        @Email(message = "invalid email")
+        @NotNull(message = "ایمیل نباید خالی باشد")
+        @Email(message = "ایمیل نامعنبر")
         String email,
-        @NotNull(message = "phoneNumber must not be null")
-        @NotEmpty(message = "phoneNumber must not be empty")
+        @NotNull(message = "شماره تماس نباید خالی باشد")
         String phoneNumber,
-        @NotNull(message = "semester must not be null")
-        @Max(value = 8, message = "semester value must not be greater than 8")
-        @Min(value = 1, message = "semester value must not be lower than 1")
+        @NotNull(message = "سمستر نباید خالی باشد")
+        @Max(value = 8, message = "سمستر نباید بزرگتر از 8 باشد")
+        @Min(value = 1, message = "سمستر نباید کوچکتر از 1 باشد")
         Integer semester
 ) {
 }

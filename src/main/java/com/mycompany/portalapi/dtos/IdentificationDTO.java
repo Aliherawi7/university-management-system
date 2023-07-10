@@ -10,17 +10,17 @@ import lombok.NonNull;
 @Builder
 public record IdentificationDTO(
 
-        @NotNull(message = "nationalId not be null")
-        @Positive(message = "nationalId must be greater than zero")
+        @NotNull(message = "نمبر عمومی نباید خالی باشد")
+        @Positive(message = "نمبر عمومی نباید کوچکتر از صفر باشد")
         Long nationalId,
-        @NotNull(message = "caseNumber not be null")
-        @Positive(message = "caseNumber must be greater than zero")
+        @NotNull(message = "جلد نباید خالی باشد")
+        @Positive(message = "جلد نباید کوچکتر از صفر باشد")
         Long caseNumber,
-        @NotNull(message = "pageNumber not be null")
-        @Positive(message = "pageNumber must be greater than zero")
+        @NotNull(message = "جلد نباید خالی باشد")
+        @Positive(message = "شماره صفحه نباید کوچکتر از صفر باشد")
         Long pageNumber,
-        @NotNull(message = "registrationNumber not be null")
-        @Positive(message = "registrationNumber must be greater than zero")
+        @NotNull(message = "شماره ثبت نباید خالی باشد")
+        @Positive(message = "شماره ثبت نباید کوچکتر از صفر باشد")
         Long registrationNumber
 ) {
 }

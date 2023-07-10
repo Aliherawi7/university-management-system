@@ -7,20 +7,15 @@ import lombok.Builder;
 
 @Builder
 public record RelativeRegistrationDTO(
-        @NotNull(message = "the relation's name must not be null")
-        @NotBlank(message = "the relation's name must not be empty")
+        @NotNull(message = "نام اقارب محصل نباید خالی باشد")
         String name,
-        @NotNull(message = "the relation's job must not be null")
-        @NotBlank(message = "the relation's job must not be empty")
+        @NotNull(message = "وظیفه اقارب محصل نباید خالی باشد")
         String job,
-        @NotNull(message = "the relation's phoneNumber must not be null")
-        @NotBlank(message = "the relation's phoneNumber must not be empty")
+        @NotNull(message = "شماره تماس اقارب محصل نباید خالی باشد")
         String phoneNumber,
-        @NotNull(message = "the relation's jobLocation must not be null")
-        @NotBlank(message = "the relation's jobLocation must not be empty")
+        @NotNull(message = "موقیعت وطیفه اقارب محصل نباید خالی باشد")
         String jobLocation,
-        @NotNull(message = "relationship must not be null")
-        @NotBlank(message = "relationship must not be empty")
+        @NotNull(message = "نسبت اقارب محصل نباید خالی باشد")
         String relationship
 ) {
 }

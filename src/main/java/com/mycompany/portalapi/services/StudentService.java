@@ -65,7 +65,7 @@ public class StudentService {
                 .highSchool(studentPersonalInfo.highSchool())
                 .schoolGraduationDate(LocalDate.parse(studentPersonalInfo.schoolGraduationDate()))
                 .maritalStatus(maritalStatus)
-                .email(studentPersonalInfo.email())
+                .email(studentPersonalInfo.email().toLowerCase())
                 .password(studentPersonalInfo.password())
                 .semester(studentPersonalInfo.semester())
                 .phoneNumber(studentPersonalInfo.phoneNumber())
@@ -101,7 +101,7 @@ public class StudentService {
         authenticationService.registerUser(UserApp
                 .builder()
                 .id(studentId)
-                .email(student.getEmail())
+                .email(student.getEmail().toLowerCase())
                 .roles(List.of(role.orElse(roleRepository.findByRoleName(RoleName.STUDENT).get())))
                 .password(student.getPassword())
                 .isEnabled(true)
@@ -117,6 +117,11 @@ public class StudentService {
             throw new ResourceNotFoundException("student not found with provided id:" + studentId);
         }
         return studentResponseDTOMapper.apply(student.get());
+    }
+    public Student getStudentByEmail(String email) {
+        return studentRepository.
+                findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("student not found with provided email:" + email));
     }
 
     public StudentResponsePersonalInfo getStudentProfile(Long id) {

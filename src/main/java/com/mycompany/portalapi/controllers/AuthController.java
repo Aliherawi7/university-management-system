@@ -2,7 +2,9 @@ package com.mycompany.portalapi.controllers;
 
 import com.mycompany.portalapi.dtos.AuthenticationRequest;
 import com.mycompany.portalapi.dtos.LoginResponse;
+import com.mycompany.portalapi.dtos.UpdateUserDTO;
 import com.mycompany.portalapi.services.AuthenticationService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,5 +30,10 @@ public class AuthController {
     public ResponseEntity<?> unLockUserById(@PathVariable Long userId) {
         authenticationService.unLockUserById(userId);
         return ResponseEntity.ok("user account with id: {" + userId + "}has been unlocked successfully");
+    }
+
+    @PutMapping("/update-user")
+    public ResponseEntity<?> updateUser(@RequestBody UpdateUserDTO updateUserDTO, HttpServletRequest httpServletRequest){
+        return ResponseEntity.ok(authenticationService.updateUser(updateUserDTO, httpServletRequest));
     }
 }

@@ -40,7 +40,6 @@ public class PostController {
                                          @RequestParam(name = "department",required = false) String department,
                                          @RequestParam(name = "offset") int offset,
                                          @RequestParam(name = "pageSize") int pageSize){
-        System.err.println("[ s :"+semester + " ->f: "+fieldOfStudy+ " ->d: "+department+" ]");
         return ResponseEntity.ok(postService.getAllPostsByRequestParams(
                 semester,fieldOfStudy, department, offset, pageSize
         ));

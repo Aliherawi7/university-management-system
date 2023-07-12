@@ -1,6 +1,118 @@
 [
   {
     "studentPersonalInfo": {
+      "name": "معروف شاه",
+      "lastName": "ابراهیمی",
+      "fatherName": "گلاب شاه",
+      "grandFatherName": "حاجی نصرالدین",
+      "dob": "2000-06-14",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "لیسه مولانا واعظ کاشفی",
+      "schoolGraduationDate": "2018-10-03",
+      "fieldOfStudy": "کامپیوتر ساینس",
+      "department": "مهندسی نرم افزار",
+      "email": "maroufibrahimi7264@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0799503350",
+      "semester": 8
+    },
+    "relatives": [
+      {
+        "name": "محبوب شاه",
+        "job": "مفتش",
+        "phoneNumber": "0799503350",
+        "jobLocation": "کابل",
+        "relationship": "برادر"
+      },
+      {
+        "name": "احمد",
+        "job": "کار شخصی",
+        "phoneNumber": "0799503350",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      }
+    ],
+    "identification": {
+      "nationalId": 766987214,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 9756765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "شیندند",
+        "district": "نصر آباد",
+        "city": "هرات",
+        "current": false
+      }
+    }
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "حفیظ الله",
+      "lastName": "هاشمی",
+      "fatherName": "احمد",
+      "grandFatherName": "محمود",
+      "dob": "2000-06-14",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "لیسه سلطان",
+      "schoolGraduationDate": "2018-10-03",
+      "fieldOfStudy": "کامپیوتر ساینس",
+      "department": "مهندسی نرم افزار",
+      "email": "hafizullah@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0799617279",
+      "semester": 8
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "کار شخصی",
+        "phoneNumber": "0799617279",
+        "jobLocation": "کابل",
+        "relationship": "برادر"
+      },
+      {
+        "name": "احمد",
+        "job": "کار شخصی",
+        "phoneNumber": "0799617279",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      }
+    ],
+    "identification": {
+      "nationalId": 127664567,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 9756765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "ناحیه 15",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "گذزه",
+        "district": "دانش آباد",
+        "city": "هرات",
+        "current": false
+      }
+    }
+  },
+  {
+    "studentPersonalInfo": {
       "name": "احمدشاه",
       "lastName": "حبیب",
       "fatherName": "داد محمد",
@@ -35,7 +147,7 @@
       }
     ],
     "identification": {
-      "nationalId": 876879869876,
+      "nationalId": 8779869876,
       "caseNumber": 6,
       "pageNumber": 87,
       "registrationNumber": 9756765
@@ -68,7 +180,7 @@
       "schoolGraduationDate": "2017-10-03",
       "fieldOfStudy": "کامپیوتر ساینس",
       "department": "مهندسی نرم افزار",
-      "email": "ahmad@gmail.com",
+      "email": "faeim123@gmail.com",
       "password": "12345",
       "gender": "مرد",
       "phoneNumber": "0774764565",
@@ -91,7 +203,7 @@
       }
     ],
     "identification": {
-      "nationalId": 7576569876,
+      "nationalId": 75099099876,
       "caseNumber": 6,
       "pageNumber": 87,
       "registrationNumber": 9756765
@@ -106,6 +218,519 @@
       "previous": {
         "villageOrQuarter": "اردوخان",
         "district": "انجیل",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "فیصل",
+      "lastName": "بارکزی",
+      "fatherName": "محمد عارف",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "fieldOfStudy": "کامپیوتر ساینس",
+      "department": "مهندسی نرم افزار",
+      "email": "fasal@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0796428826",
+      "semester": 1
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      }
+    ],
+    "identification": {
+      "nationalId": 40066456876,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 9756765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "شیر احمد",
+      "lastName": "رسولی",
+      "fatherName": "محمد آغا",
+      "grandFatherName": "نبی خان",
+      "dob": "2001-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "fieldOfStudy": "کامپیوتر ساینس",
+      "department": "مهندسی نرم افزار",
+      "email": "shirahmad@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0799123456",
+      "semester": 3
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      }
+    ],
+    "identification": {
+      "nationalId": 13357489876,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 9756765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "نبی",
+      "lastName": "نبی زاده",
+      "fatherName": "بصیر احمد",
+      "grandFatherName": "احمد",
+      "dob": "2000-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "لیسه سلطان",
+      "schoolGraduationDate": "2017-07-12",
+      "fieldOfStudy": "کامپیوتر ساینس",
+      "department": "مهندسی نرم افزار",
+      "email": "nabi8090@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0799123456",
+      "semester": 6
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      }
+    ],
+    "identification": {
+      "nationalId": 15553322876,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 9756765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "جاوید",
+      "lastName": "جمالی",
+      "fatherName": "نوروز خان",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "fieldOfStudy": "کامپیوتر ساینس",
+      "department": "مهندسی نرم افزار",
+      "email": "javid123@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0799123456",
+      "semester": 1
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      }
+    ],
+    "identification": {
+      "nationalId": 12123458790,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 9756765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "ثریا",
+      "lastName": "سهرابی",
+      "fatherName": "سرور",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "متاهل",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "fieldOfStudy": "کامپیوتر ساینس",
+      "department": "مهندسی نرم افزار",
+      "email": "soria@gmail.com",
+      "password": "12345",
+      "gender": "زن",
+      "phoneNumber": "0799123456",
+      "semester": 1
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      }
+    ],
+    "identification": {
+      "nationalId": 757658707,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 9756765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "سونیتا",
+      "lastName": "سروری",
+      "fatherName": "سلیمان",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "fieldOfStudy": "کامپیوتر ساینس",
+      "department": "مهندسی نرم افزار",
+      "email": "sonita0222@gmail.com",
+      "password": "12345",
+      "gender": "زن",
+      "phoneNumber": "0799123456",
+      "semester": 3
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      }
+    ],
+    "identification": {
+      "nationalId": 7571232131,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 9756765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "سلیمان",
+      "lastName": "بارکزی",
+      "fatherName": "محمد عارف",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "متاهل",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "fieldOfStudy": "کامپیوتر ساینس",
+      "department": "مهندسی نرم افزار",
+      "email": "solaman@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0799123456",
+      "semester": 7
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      }
+    ],
+    "identification": {
+      "nationalId": 73214342876,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 9756765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "سهراب",
+      "lastName": "احمدی",
+      "fatherName": "زمان الدیم",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "fieldOfStudy": "کامپیوتر ساینس",
+      "department": "مهندسی نرم افزار",
+      "email": "sorab232@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0799123456",
+      "semester": 6
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      }
+    ],
+    "identification": {
+      "nationalId": 423132119876,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 9756765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "نعمت الله",
+      "lastName": "نوابی",
+      "fatherName": "محمد عارف",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "fieldOfStudy": "کامپیوتر ساینس",
+      "department": "مهندسی نرم افزار",
+      "email": "nematullah23@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0799123456",
+      "semester": 1
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0799123456",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      }
+    ],
+    "identification": {
+      "nationalId": 13211122876,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 9756765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
         "city": "هرات",
         "current": false
       }

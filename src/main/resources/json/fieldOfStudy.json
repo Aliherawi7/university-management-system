@@ -1,18 +1,14 @@
 [
   {
     "fieldName": "حقوق",
-    "description": "test"
-  },
-  {
-    "fieldName": "انجینیری",
-    "description": "test"
+    "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
   },
   {
     "fieldName": "کامپیوتر ساینس",
-    "description": "test"
+    "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
   },
   {
-    "fieldName": "طب",
-    "description": "test"
+    "fieldName": "طب دندان",
+    "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
   }
 ]

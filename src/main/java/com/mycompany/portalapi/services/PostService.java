@@ -20,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -107,6 +108,8 @@ public class PostService {
             );
         } else if (semester != null) {
            posts = getPostAllPostBySemesterWithPagination(semester, offset, pageSize);
+        }else {
+           posts = getPostAllPostOrderByDateTimeDescWithPagination(offset, pageSize);
         }
         return posts;
     }
@@ -166,7 +169,14 @@ public class PostService {
         log.info("list {}", posts);
         return posts;
     }
-
+    /* get all posts if no request param is provided */
+    public Page<PostResponseDTO> getPostAllPostOrderByDateTimeDescWithPagination(int offset, int pageSize) {
+        Sort sort = Sort.by("dateTime").descending();
+        Page<PostResponseDTO> posts =postRepository
+                .findAll(PageRequest.of(offset, pageSize, sort)).map(postResponseDTOMapper);
+        log.info("posts: {}",posts);
+        return posts;
+    }
     public boolean isExistById(Long id) {
         return postRepository.existsById(id);
     }

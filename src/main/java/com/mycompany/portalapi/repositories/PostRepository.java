@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
-
     Page<Post> findAllByFieldOfStudyAndDepartmentOrderByDateTimeDesc(String fieldOfStudy, String department, Pageable pageable);
     Page<Post> findAllBySemesterOrderByDateTimeDesc(int semester, Pageable pageable);
     Page<Post> findAllByFieldOfStudyOrderByDateTimeDesc(String fieldOfStudy, Pageable pageable);

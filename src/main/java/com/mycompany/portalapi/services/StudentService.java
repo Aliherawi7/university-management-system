@@ -14,10 +14,12 @@ import com.mycompany.portalapi.utils.BaseURI;
 import com.mycompany.portalapi.utils.StudentUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -26,6 +28,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class StudentService {
     private final StudentRepository studentRepository;
     private final IdentificationService identificationService;
@@ -188,9 +191,38 @@ public class StudentService {
     }
 
     /* search methods */
-    public Page<StudentShortInfo> getAllStudentsByName(String name, int offset, int pageSize) {
-        Pageable pageable = PageRequest.of(offset, pageSize);
-        Page<Student> students = studentRepository.findAllByNameContainingIgnoreCase(name, pageable);
+
+    public Page<StudentShortInfo> getAllPostsByRequestParams(
+            String keyword,
+            String fieldOfStudy,
+            String department,
+            Integer semester,
+            int offset,
+            int pageSize
+    ){
+        Page<Student> students = null;
+        PageRequest pageRequest = PageRequest.of(offset, pageSize);
+        if(keyword != null && fieldOfStudy != null && department != null && semester != null){
+            students = studentRepository.fetchAllStudentByKeywordAndFieldOfStudyAndDepartmentAndSemester(
+                    keyword, fieldOfStudy, department, semester, pageRequest
+            );
+        } else if (keyword != null && fieldOfStudy != null && semester != null) {
+            students = studentRepository.fetchAllStudentByKeywordAndFieldOfStudyAndSemester(
+                    keyword, fieldOfStudy, semester, pageRequest
+            );
+        } else if (keyword != null && fieldOfStudy != null) {
+            students = studentRepository.fetchAllStudentByKeywordAndFieldOfStudy(
+                    keyword, fieldOfStudy, pageRequest
+            );
+        } else if (keyword != null && semester != null) {
+            students = studentRepository.fetchAllStudentByKeywordAndSemester(
+                    keyword, semester, pageRequest
+            );
+        }else if(keyword != null){
+            students = studentRepository.fetchAllStudentByKeyword(keyword, PageRequest.of(offset, pageSize));
+        }else {
+            students = studentRepository.findAll(PageRequest.of(offset, pageSize));
+        }
         return students.map(studentShortInfoMapper);
     }
 }

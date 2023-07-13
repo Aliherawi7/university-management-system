@@ -26,6 +26,10 @@ public class PostController {
     public ResponseEntity<?> addPost(@RequestBody PostRequestDTO postRequestDTO){
         return new ResponseEntity<>(postService.addPost(postRequestDTO), HttpStatus.CREATED);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAllPosts(@PathVariable Long id){
+        return ResponseEntity.ok(postService.getPost(id));
+    }
 
     @GetMapping("/student")
     public ResponseEntity<?> getAllPosts(@RequestParam(name = "offset") int offset,
@@ -33,6 +37,8 @@ public class PostController {
                                          HttpServletRequest httpServletRequest){
         return ResponseEntity.ok(postService.getPostAllPostByPagination(offset, pageSize, httpServletRequest));
     }
+
+
 
     @GetMapping( "/")
     public ResponseEntity<?> getAllPosts(@RequestParam(name = "semester", required = false) Integer semester,

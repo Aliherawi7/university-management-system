@@ -2,24 +2,8 @@
   {
     "fieldOfStudy": "کامپیوتر ساینس",
     "department": "مهندسی نرم افزار",
-    "message": "",
-    "authorId": 1,
-    "semester": 1,
-    "isPublic": false
-  },
-  {
-    "fieldOfStudy": "کامپیوتر ساینس",
-    "department": "مهندسی نرم افزار",
     "message": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!",
-    "authorId": 1,
-    "semester": 1,
-    "isPublic": false
-  },
-  {
-    "fieldOfStudy": "کامپیوتر ساینس",
-    "department": "مهندسی نرم افزار",
-    "message": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!",
-    "authorId": 1,
+    "authorId": 0,
     "semester": 1,
     "isPublic": false
   },
@@ -27,7 +11,7 @@
     "fieldOfStudy": "کامپیوتر ساینس",
     "department": "مهندسی نرم افزار",
     "message": "تعریف: stack نوعی از ساختار داتا (data structure) می باشد که داتا را به شکل LIFO(last in first out) یا هم FILO(First in Last Out) ذخیره می کند. ",
-    "authorId": 1,
+    "authorId": 0,
     "semester": 1,
     "isPublic": false
   },
@@ -35,7 +19,7 @@
     "fieldOfStudy": "کامپیوتر ساینس",
     "department": "مهندسی نرم افزار",
     "message": "متن آزمایشی برای پوست دیپارتمنت کامپیوتر ساینس",
-    "authorId": 1,
+    "authorId": 0,
     "semester": 1,
     "isPublic": false
   },
@@ -43,7 +27,7 @@
     "fieldOfStudy": "کامپیوتر ساینس",
     "department": "مهندسی نرم افزار",
     "message": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!",
-    "authorId": 1,
+    "authorId": 0,
     "semester": 1,
     "isPublic": false
   },
@@ -51,7 +35,7 @@
     "fieldOfStudy": "کامپیوتر ساینس",
     "department": "مهندسی نرم افزار",
     "message": "تعریف: stack نوعی از ساختار داتا (data structure) می باشد که داتا را به شکل LIFO(last in first out) یا هم FILO(First in Last Out) ذخیره می کند. ",
-    "authorId": 1,
+    "authorId": 0,
     "semester": 1,
     "isPublic": false
   },
@@ -59,7 +43,7 @@
     "fieldOfStudy": "کامپیوتر ساینس",
     "department": "مهندسی نرم افزار",
     "message": "متن آزمایشی برای پوست دیپارتمنت کامپیوتر ساینس",
-    "authorId": 1,
+    "authorId": 0,
     "semester": 1,
     "isPublic": false
   },
@@ -67,7 +51,7 @@
     "fieldOfStudy": "کامپیوتر ساینس",
     "department": "مهندسی نرم افزار",
     "message": "در جاوا کلاسهائی تعریف شده که داتا را در خود نگاه می دارند و هر کدام دارای ساختارهای (Data Structures) متفاوتی اند. که در اصطلاح به هر کدام از این کلاس ها یک (Data Structures) می گویند. هر شی (object)  این کلاس ها قادر هستند تا داتا و یا آبجکتهای دیگر کلاس ها را در خود نگهداری کنند و به نام کانتینر (container) یاد می شوند.",
-    "authorId": 1,
+    "authorId": 0,
     "semester": 1,
     "isPublic": false
   }

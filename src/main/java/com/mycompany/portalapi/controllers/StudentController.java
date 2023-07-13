@@ -29,21 +29,20 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getStudentById(studentId));
     }
 
-    @GetMapping(value="/", params = {"offset","pageSize"})
-    public ResponseEntity<?> getAllProducts(@RequestParam int offset, @RequestParam int pageSize) {
-        return ResponseEntity.ok().body(studentService.getAllStudents(offset, pageSize));
-    }
 
     /* ************************ search section *************************** */
 
     /* search by name */
-    @GetMapping(value = "/find", params = {"name", "offset", "pageSize"})
-    public ResponseEntity<?> getStudentsByName(@RequestParam Map<String, String> params) {
-        int offset = Integer.parseInt(params.get("offset"));
-        int pageSize = Integer.parseInt(params.get("pageSize"));
-        String name = params.get("name");
-        System.out.println("find method mapper");
-        return ResponseEntity.ok().body(studentService.getAllStudentsByName(name, offset, pageSize));
+    @GetMapping(value = "/")
+    public ResponseEntity<?> getStudentsByName(
+            @RequestParam(name = "keyword", required = false) String keyword,
+            @RequestParam(name = "fieldOfStudy", required = false) String fieldOfStudy,
+            @RequestParam(name = "department", required = false) String department,
+            @RequestParam(name = "semester", required = false) Integer semester,
+            @RequestParam(name = "offset") Integer offset,
+            @RequestParam(name = "pageSize") Integer pageSize
+    ) {
+        return ResponseEntity.ok().body(studentService.getAllPostsByRequestParams(keyword,fieldOfStudy, department, semester, offset, pageSize));
     }
 
 

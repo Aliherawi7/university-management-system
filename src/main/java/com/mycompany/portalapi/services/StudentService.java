@@ -44,6 +44,7 @@ public class StudentService {
     private final RelationshipRepository relationshipRepository;
     private final RequestObjectValidatorService<StudentRegistrationDTO> studentRegistrationDTORequestValidatorService;
     private final StudentShortInfoMapper studentShortInfoMapper;
+
     public StudentSuccessfulRegistrationResponse addStudentForController(StudentRegistrationDTO studentRegistrationDTO) {
         Long studentId = addStudent(studentRegistrationDTO);
         return StudentSuccessfulRegistrationResponse.builder().message("student successfully saved in db").statusCode(HttpStatus.CREATED.value()).studentId(studentId).imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + studentId).build();
@@ -98,7 +99,7 @@ public class StudentService {
 
         student.setGender(gender.orElseThrow(() -> new IllegalArgumentException("Invalid Gender Type: ")));
         studentRepository.save(student);
-       // RoleName roleName = RoleName.valueOf(studentRegistrationDTO.role());
+        // RoleName roleName = RoleName.valueOf(studentRegistrationDTO.role());
         Optional<Role> role = roleRepository.findByRoleName(RoleName.STUDENT);
 
         authenticationService.registerUser(UserApp
@@ -121,6 +122,7 @@ public class StudentService {
         }
         return studentResponseDTOMapper.apply(student.get());
     }
+
     public Student getStudentByEmail(String email) {
         return studentRepository.
                 findByEmail(email)
@@ -181,8 +183,8 @@ public class StudentService {
             throw new IllegalArgumentException("the national id is already exist");
         }
         /* check if email is already taken */
-        if(studentRepository.existsByEmail(studentRegistrationDTO.studentPersonalInfo().email())) {
-            throw new IllegalArgumentException("the email: { "+studentRegistrationDTO.studentPersonalInfo().email()+" } is already exist");
+        if (studentRepository.existsByEmail(studentRegistrationDTO.studentPersonalInfo().email())) {
+            throw new IllegalArgumentException("the email: { " + studentRegistrationDTO.studentPersonalInfo().email() + " } is already exist");
         }
         studentRegistrationDTO.relatives().forEach(item -> {
             Relationship relationship = relationshipRepository
@@ -199,29 +201,17 @@ public class StudentService {
             Integer semester,
             int offset,
             int pageSize
-    ){
+    ) {
         Page<Student> students = null;
         PageRequest pageRequest = PageRequest.of(offset, pageSize);
-        if(keyword != null && fieldOfStudy != null && department != null && semester != null){
+        if (semester != null) {
             students = studentRepository.fetchAllStudentByKeywordAndFieldOfStudyAndDepartmentAndSemester(
                     keyword, fieldOfStudy, department, semester, pageRequest
             );
-        } else if (keyword != null && fieldOfStudy != null && semester != null) {
-            students = studentRepository.fetchAllStudentByKeywordAndFieldOfStudyAndSemester(
-                    keyword, fieldOfStudy, semester, pageRequest
+        } else {
+            students = studentRepository.fetchAllStudentByKeywordAndFieldOfStudyAndDepartment(
+                    keyword, fieldOfStudy, department, pageRequest
             );
-        } else if (keyword != null && fieldOfStudy != null) {
-            students = studentRepository.fetchAllStudentByKeywordAndFieldOfStudy(
-                    keyword, fieldOfStudy, pageRequest
-            );
-        } else if (keyword != null && semester != null) {
-            students = studentRepository.fetchAllStudentByKeywordAndSemester(
-                    keyword, semester, pageRequest
-            );
-        }else if(keyword != null){
-            students = studentRepository.fetchAllStudentByKeyword(keyword, PageRequest.of(offset, pageSize));
-        }else {
-            students = studentRepository.findAll(PageRequest.of(offset, pageSize));
         }
         return students.map(studentShortInfoMapper);
     }

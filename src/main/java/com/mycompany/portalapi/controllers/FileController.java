@@ -22,7 +22,6 @@ import java.util.List;
 @RequestMapping("api/v1/files")
 @AllArgsConstructor
 public class FileController {
-
     private final FileStorageService fileStorageService;
     private final  StudentService studentService;
     private final HttpServletRequest httpServletRequest;
@@ -37,14 +36,14 @@ public class FileController {
     @PostMapping("student-profiles/{studentId}")
     public ResponseEntity<?> addStudentImage(@PathVariable Long studentId, @RequestParam MultipartFile file){
         if(!studentService.isExistById(studentId)){
-            throw new ResourceNotFoundException("student not found with provided id: "+studentId);
+            throw new ResourceNotFoundException("محصل با آی دی مورد نظر یافت نشد!");
         }
         fileStorageService.storeStudentProfileImage(file, studentId);
         return new ResponseEntity<>(StudentSuccessfulRegistrationResponse
                 .builder()
                 .imageUrl(BaseURI.getBaseURI(httpServletRequest)+ APIEndpoints.STUDENT_PROFILE_IMAGE.getValue()+studentId)
                 .statusCode(HttpStatus.CREATED.value())
-                .message("image successfully saved")
+                .message("محصل با موفقیت ذخیره شد.")
                 .studentId(studentId)
                 .build(),
                 HttpStatus.CREATED
@@ -60,7 +59,7 @@ public class FileController {
     public ResponseEntity<?> addPostFiles(@PathVariable Long postId, @RequestParam List<MultipartFile> files){
         postService.checkIfNotExist(postId);
         fileStorageService.storePostFiles(files, postId);
-        return ResponseEntity.ok("files saved");
+        return ResponseEntity.ok("پوسست همراه با فایل ها  موفقانه ذخیره شد");
     }
 
     @GetMapping("post-files/{postId}/{fileName}")
@@ -72,7 +71,7 @@ public class FileController {
             return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(fileStorageService.getPostFile(fileName, postId));
         }else if(fileName.endsWith("jpg") || fileName.endsWith("jpeg"))
             return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(fileStorageService.getPostFile(fileName, postId));
-        return new ResponseEntity<>("unsupported file format", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("فایل نامعتبر: این نوع فایل پشتیبانی نمیشود!", HttpStatus.BAD_REQUEST);
     }
 
 

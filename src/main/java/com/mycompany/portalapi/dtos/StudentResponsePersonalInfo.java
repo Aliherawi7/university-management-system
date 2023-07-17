@@ -6,7 +6,7 @@ import lombok.NonNull;
 import java.time.LocalDate;
 
 @Builder
-public record StudentResponsePersonalInfo(@NonNull
+public record  StudentResponsePersonalInfo(@NonNull
                                           String name,
                                           @NonNull
                                           String lastName,

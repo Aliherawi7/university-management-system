@@ -39,7 +39,7 @@ public class AuthenticationService {
         UserApp userApp = userRepository
                 .findByEmail(authenticationRequest.email()
                         .toLowerCase())
-                .orElseThrow(() -> new ResourceNotFoundException("user not found with provided email"));
+                .orElseThrow(() -> new ResourceNotFoundException("حساب کاربری باایمیل ارائه شده یافت نشد!"));
         if (!userApp.isEnabled()) {
             throw new AccountLockException("حساب کاربری شما قفل است. لطفا تا باز شدن آن توسط مدیر صبورا باشید");
         }
@@ -48,6 +48,7 @@ public class AuthenticationService {
                 .name(userApp.getName())
                 .lastname(userApp.getLastname())
                 .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + userApp.getId())
+                .email(userApp.getEmail())
                 .roles(userApp.getRoles().stream().map(item -> item.getRoleName().getValue()).toList())
                 .token(jwtUtils.generateToken(userApp.getEmail(), userApp.getRoles(), 30))
                 .build();
@@ -66,7 +67,7 @@ public class AuthenticationService {
                 userApp.getLastname() == null ||
                 userApp.getRoles() == null ||
                 userApp.getPassword() == null)
-            throw new IllegalArgumentException("invalid user info");
+            throw new IllegalArgumentException("معلومات نامعتبر کاربر");
     }
 
     public void lockUserById(Long userId) {
@@ -78,25 +79,28 @@ public class AuthenticationService {
 
     public void unLockUserById(Long userId) {
         UserApp userApp = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("user not found with provided id: " + userId));
+                .orElseThrow(() -> new ResourceNotFoundException("کاربر با آی دی ارایه شده یافت نشد!: " + userId));
         userApp.setIsEnabled(true);
         userRepository.save(userApp);
     }
 
     public LoginResponse updateUser(UpdateUserDTO updateUserDTO, HttpServletRequest httpServletRequest) {
-        String previousEmail = jwtUtils.getUserEmailByJWT(jwtUtils.getToken(httpServletRequest));
+        String previousEmail = jwtUtils.getUserEmailByJWT(jwtUtils.getToken(httpServletRequest).substring(7));
         UserApp userApp = userRepository.findByEmail(previousEmail).orElseThrow(() -> new ResourceNotFoundException(previousEmail + "کاربری با ایمیل ارائه شده یافت نشد: "));
         if (!userApp.isEnabled()) {
             throw new AccountLockException("حساب کاربری شما قفل است. لطفا تا باز شدن آن توسط مدیر صبورا باشید");
         }
-        if (userRepository.existsByEmail(updateUserDTO.email())) {
+        if (userRepository.existsByEmail(updateUserDTO.email()) && !previousEmail.equalsIgnoreCase(updateUserDTO.email())) {
             throw new IllegalArgumentException("ایمیل قبلا توسط کابری دیگری استفاده شده است");
         }
-        userApp.setEmail(updateUserDTO.email());
+        if (!previousEmail.equalsIgnoreCase(updateUserDTO.email()))
+            userApp.setEmail(updateUserDTO.email());
+
         userApp.setPassword(passwordEncoder.encode(updateUserDTO.newPassword()));
+        userRepository.save(userApp);
         if (userApp.getRoles().stream().anyMatch(role -> role.getRoleName().equals(RoleName.STUDENT.getValue()))) {
             Student studentByEmail = studentRepository.findByEmail(previousEmail)
-                    .orElseThrow(() -> new ResourceNotFoundException("student not found with provided email:" + previousEmail));
+                    .orElseThrow(() -> new ResourceNotFoundException("کاربر با ایمیل مورد نظر یافت نشد!"));
             studentByEmail.setEmail(updateUserDTO.email());
             studentRepository.save(studentByEmail);
         }
@@ -106,6 +110,7 @@ public class AuthenticationService {
                 .lastname(userApp.getLastname())
                 .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + userApp.getId())
                 .roles(userApp.getRoles().stream().map(item -> item.getRoleName().getValue()).toList())
+                .email(userApp.getEmail())
                 .token(jwtUtils.generateToken(userApp.getEmail(), userApp.getRoles(), 30))
                 .build();
 

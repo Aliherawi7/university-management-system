@@ -11,6 +11,7 @@ public record LoginResponse(
         String token,
         String name,
         String lastname,
+        String email,
         String imageUrl,
         Long userId,
         List<String> roles

@@ -81,11 +81,12 @@ public class PostService {
         String email = jwtUtils.getUserEmailByJWT(jwtUtils.getToken(httpServletRequest).substring(7));
         Student student = studentRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("Invalid token "));
-        return getPostAllPostBySemesterAndFieldOfStudyAndDepartmentWithPagination(student.getSemester(),
+        return postRepository.fetchAllPostByKeywordAndFieldOfStudyAndDepartmentAndSemester(
                 student.getFieldOfStudy(),
                 student.getDepartment(),
-                offset,
-                pageSize);
+                student.getSemester(),
+                PageRequest.of(offset, pageSize)
+        ).map(postResponseDTOMapper);
     }
 
     public Page<PostResponseDTO> getAllPostsByRequestParams(Integer semester,
@@ -93,97 +94,23 @@ public class PostService {
                                                             String department,
                                                             int offset,
                                                             int pageSize) {
-        Page<PostResponseDTO> posts = null;
-        if (semester != null && fieldOfStudy != null && department != null) {
-            posts = getPostAllPostBySemesterAndFieldOfStudyAndDepartmentWithPagination(
-                    semester, fieldOfStudy, department, offset, pageSize
-            );
-        } else if (semester != null && fieldOfStudy != null) {
-            posts = getPostAllPostBySemesterAndFieldOfStudyWithPagination(
-                    semester, fieldOfStudy, offset, pageSize
-            );
-        } else if (fieldOfStudy != null && department != null) {
-            posts = getPostAllPostByFieldOfStudyAndDepartmentWithPagination(
-                    fieldOfStudy, department, offset, pageSize
-            );
-        } else if (semester != null) {
-           posts = getPostAllPostBySemesterWithPagination(semester, offset, pageSize);
+        Page<Post> posts = null;
+        PageRequest pageRequest = PageRequest.of(offset, pageSize);
+        if (semester != null) {
+            posts = postRepository.fetchAllPostByKeywordAndFieldOfStudyAndDepartmentAndSemester(fieldOfStudy, department, semester, pageRequest);
         }else {
-           posts = getPostAllPostOrderByDateTimeDescWithPagination(offset, pageSize);
+            posts = postRepository.fetchAllPostByKeywordAndFieldOfStudyAndDepartment(fieldOfStudy, department, pageRequest);
         }
-        return posts;
+        return posts.map(postResponseDTOMapper);
     }
 
-    /* get all posts by [semester, pagination] */
-    public Page<PostResponseDTO> getPostAllPostBySemesterWithPagination(int semester, int offset, int pageSize) {
-        Page<PostResponseDTO> posts = postRepository
-                .findAllBySemesterOrderByDateTimeDesc(
-                        semester,
-                        PageRequest.of(offset, pageSize))
-                .map(postResponseDTOMapper);
-        log.info("list {}", posts);
-        return posts;
-    }
-    /* get all posts by [fieldOfStudy, pagination] */
-    public Page<PostResponseDTO> getPostAllPostByFieldOfStudyWithPagination(String fieldOfStudy, int offset, int pageSize) {
-        Page<PostResponseDTO> posts = postRepository
-                .findAllByFieldOfStudyOrderByDateTimeDesc(
-                        fieldOfStudy,
-                        PageRequest.of(offset, pageSize))
-                .map(postResponseDTOMapper);
-        log.info("list {}", posts);
-        return posts;
-    }
-    /* get all posts by [fieldOfStudy, department pagination] */
-    public Page<PostResponseDTO> getPostAllPostByFieldOfStudyAndDepartmentWithPagination(String fieldOfStudy,String department, int offset, int pageSize) {
-        Page<PostResponseDTO> posts = postRepository
-                .findAllByFieldOfStudyAndDepartmentOrderByDateTimeDesc(
-                        fieldOfStudy,
-                        department,
-                        PageRequest.of(offset, pageSize))
-                .map(postResponseDTOMapper);
-        log.info("list {}", posts);
-        return posts;
-    }
-    /* get all posts by [semester , fieldOfStudy, pagination] */
-    public Page<PostResponseDTO> getPostAllPostBySemesterAndFieldOfStudyWithPagination(int semester, String fieldOfStudy, int offset, int pageSize) {
-        Page<PostResponseDTO> posts = postRepository
-                .findAllBySemesterAndFieldOfStudyOrderByDateTimeDesc(
-                        semester,
-                        fieldOfStudy,
-                        PageRequest.of(offset, pageSize))
-                .map(postResponseDTOMapper);
-        log.info("list {}", posts);
-        return posts;
-    }
-
-    /* get all posts by [semester , department, fieldOfStudy, pagination] */
-    public Page<PostResponseDTO> getPostAllPostBySemesterAndFieldOfStudyAndDepartmentWithPagination(int semester, String fieldOfStudy, String department, int offset, int pageSize) {
-        Page<PostResponseDTO> posts = postRepository
-                .findAllBySemesterAndFieldOfStudyAndDepartmentOrderByDateTimeDesc(
-                        semester,
-                        fieldOfStudy,
-                        department,
-                        PageRequest.of(offset, pageSize))
-                .map(postResponseDTOMapper);
-        log.info("list {}", posts);
-        return posts;
-    }
-    /* get all posts if no request param is provided */
-    public Page<PostResponseDTO> getPostAllPostOrderByDateTimeDescWithPagination(int offset, int pageSize) {
-        Sort sort = Sort.by("dateTime").descending();
-        Page<PostResponseDTO> posts =postRepository
-                .findAll(PageRequest.of(offset, pageSize, sort)).map(postResponseDTOMapper);
-        log.info("posts: {}",posts);
-        return posts;
-    }
     public boolean isExistById(Long id) {
         return postRepository.existsById(id);
     }
 
     public void checkIfNotExist(Long id) {
         if (!isExistById(id)) {
-            throw new ResourceNotFoundException("post not found with provided id: " + id);
+            throw new ResourceNotFoundException("پست مورد نظر یافت نشد!");
         }
     }
 
@@ -192,6 +119,11 @@ public class PostService {
                 .stream().map(name -> {
                     return BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.POST + name;
                 }).toList();
+    }
+
+    /* update post */
+    public void updatePost(PostRequestDTO postRequestDTO){
+
     }
 
 

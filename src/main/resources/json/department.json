@@ -1,47 +1,28 @@
 [
   {
-    "fieldOfStudyId": 2,
+    "fieldOfStudyId": 1,
     "departmentName": "مهندسی نرم افزار",
     "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
   },
   {
     "fieldOfStudyId": 1,
-    "departmentName": "حقوق اجتماعی",
-    "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
-  },
-  {
-    "fieldOfStudyId": 2,
-    "departmentName": "شبکه و ارتباطات",
-    "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
-  },
-  {
-    "fieldOfStudyId": 2,
     "departmentName": "دیتابیس",
     "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
   },
   {
-    "fieldOfStudyId": 1,
-    "departmentName": "حقوق جزا",
+    "fieldOfStudyId": 2,
+    "departmentName": "قضایی - څارنوالی",
+    "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
+  },
+
+  {
+    "fieldOfStudyId": 2,
+    "departmentName": "اداری - دیپلماسی",
     "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
   },
   {
     "fieldOfStudyId": 3,
-    "departmentName": "زیبا سازی دندان",
-    "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
-  },
-  {
-    "fieldOfStudyId": 3,
-    "departmentName": "زیبایی چشم",
-    "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
-  },
-  {
-    "fieldOfStudyId": 3,
-    "departmentName": "زیبایی بینی",
-    "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
-  },
-  {
-    "fieldOfStudyId": 3,
-    "departmentName": "جلدی و زیبایی",
+    "departmentName": "دیپارتمنت عمومی",
     "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!"
   }
 ]

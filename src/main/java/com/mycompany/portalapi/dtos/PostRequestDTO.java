@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull;
 public record PostRequestDTO(
 
         String fieldOfStudy,
-
         String department,
         @NotNull(message = "fieldOfStudy must not be null")
         String message,

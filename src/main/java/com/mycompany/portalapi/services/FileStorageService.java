@@ -1,4 +1,5 @@
 package com.mycompany.portalapi.services;
+
 import com.mycompany.portalapi.exceptions.InvalidFileException;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
 import com.mycompany.portalapi.properties.FileStorageLocation;
@@ -7,10 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,15 +24,11 @@ public class FileStorageService {
     private final Path studentProfileImageLocation;
     private final Path post;
     private final FileStorageLocation fileStorageLocation;
+
     public FileStorageService(FileStorageLocation fileStorageLocation) {
         this.fileStorageLocation = fileStorageLocation;
-        this.studentProfileImageLocation = Paths
-                .get(fileStorageLocation.getStudentProfileImageUploadDir())
-                .toAbsolutePath()
-                .normalize();
-        this.post = Paths.get(fileStorageLocation.getPostFiles())
-                .toAbsolutePath()
-                .normalize();
+        this.studentProfileImageLocation = Paths.get(fileStorageLocation.getStudentProfileImageUploadDir()).toAbsolutePath().normalize();
+        this.post = Paths.get(fileStorageLocation.getPostFiles()).toAbsolutePath().normalize();
         try {
             Files.createDirectories(studentProfileImageLocation);
             Files.createDirectories(post);
@@ -42,10 +37,8 @@ public class FileStorageService {
         }
     }
 
-    public Path createDirectoryForPost(String path, Long postId){
-        Path dir = Paths.get(path +"/"+postId)
-                .toAbsolutePath()
-                .normalize();
+    public Path createDirectoryForPost(String path, Long postId) {
+        Path dir = Paths.get(path + "/" + postId).toAbsolutePath().normalize();
         try {
             Files.createDirectories(dir);
             return dir;
@@ -54,6 +47,7 @@ public class FileStorageService {
         }
         return null;
     }
+
     /*
      * store the student profile image
      * */
@@ -80,7 +74,7 @@ public class FileStorageService {
      * store the product images
      * */
     public void storeUserProfileImage(MultipartFile file, Long userId) throws IOException {
-        log.info("storing for student image with id {}",userId);
+        log.info("storing for student image with id {}", userId);
         storeTheFile(file, String.valueOf(userId), post);
     }
 
@@ -116,12 +110,8 @@ public class FileStorageService {
      * get the image by file name and file location
      * */
     public byte[] getFile(String fileName, Path path) {
-        log.info("looking for file  with name {}",fileName);
-        File image = Stream
-                .of(Objects.requireNonNull(new File(path.toUri()).listFiles()))
-                .filter(item -> item.getName().split("\\.")[0].equalsIgnoreCase(fileName.split("\\.")[0]))
-                .findFirst()
-                .orElse(null);
+        log.info("looking for file  with name {}", fileName);
+        File image = Stream.of(Objects.requireNonNull(new File(path.toUri()).listFiles())).filter(item -> item.getName().split("\\.")[0].equalsIgnoreCase(fileName.split("\\.")[0])).findFirst().orElse(null);
         if (image == null) {
             throw new ResourceNotFoundException("File not found with provided name");
         }
@@ -140,7 +130,7 @@ public class FileStorageService {
      * */
 
     public byte[] getUserImage(String userId) {
-        log.info("looking for user image with id {}",userId);
+        log.info("looking for user image with id {}", userId);
         return getFile(userId, post);
     }
 
@@ -148,7 +138,7 @@ public class FileStorageService {
      * get the student profile image
      * */
     public byte[] getStudentImage(String studentId) {
-        log.info("looking for student image with id {}",studentId);
+        log.info("looking for student image with id {}", studentId);
         return getFile(studentId, studentProfileImageLocation);
     }
 
@@ -156,7 +146,7 @@ public class FileStorageService {
     public void storePostFiles(List<MultipartFile> files, Long postId) {
         final Path newPath = createDirectoryForPost(fileStorageLocation.getPostFiles(), postId);
         files.forEach(file -> {
-            if(file == null ||file.isEmpty()){
+            if (file == null || file.isEmpty()) {
                 throw new InvalidFileException("invalid file");
             }
             String originalFileName = StringUtils.getFilename(file.getOriginalFilename());
@@ -164,8 +154,8 @@ public class FileStorageService {
                 throw new InvalidFileException("Sorry! File name which contains invalid path sequence " + originalFileName);
             }
             String extension = originalFileName.split("\\.")[1];
-            log.info("origin name:{}",originalFileName);
-            log.info("extension:{}",extension);
+            log.info("origin name:{}", originalFileName);
+            log.info("extension:{}", extension);
             Path storingDir = newPath.resolve(originalFileName.split("\\.")[0] + "." + extension);
             try {
                 Files.copy(file.getInputStream(), storingDir, StandardCopyOption.REPLACE_EXISTING);
@@ -175,22 +165,35 @@ public class FileStorageService {
         });
     }
 
-    public List<String> getAllPostFileName(Long postId){
-        Path postDir = Path.of(fileStorageLocation.getPostFiles()+"/"+postId);
+    public List<String> getAllPostFileName(Long postId) {
+        Path postDir = Path.of(fileStorageLocation.getPostFiles() + "/" + postId);
         File directory = new File(postDir.toUri());
         File[] files = directory.listFiles();
 //        for test
-        if(files == null){
+        if (files == null) {
             files = new File[0];
         }
-        return Stream
-                .of(files)
-                .map(file -> {
-                    return StringUtils.getFilename(file.getName());
-                }).toList();
+        return Stream.of(files).map(file -> {
+            return StringUtils.getFilename(file.getName());
+        }).toList();
     }
-    public byte[] getPostFile(String fileName, Long postId){
-        Path path = Path.of(fileStorageLocation.getPostFiles()+"/"+postId);
+
+    public byte[] getPostFile(String fileName, Long postId) {
+        Path path = Path.of(fileStorageLocation.getPostFiles() + "/" + postId);
         return getFile(fileName, path);
+    }
+
+    public void deletePostFile(String fileName, Long postId) {
+        Path path = Path.of(fileStorageLocation.getPostFiles() + "/" + postId);
+        deleteFile(fileName, path);
+    }
+
+
+    /* remove the file */
+    public void deleteFile(String fileName, Path path) {
+        File file = Stream.of(Objects.requireNonNull(new File(path.toUri()).listFiles())).filter(item -> item.getName().split("\\.")[0].equalsIgnoreCase(fileName.split("\\.")[0])).findFirst().orElse(null);
+        if (file == null || !file.delete()) {
+            throw new ResourceNotFoundException("فایل مورد نظر یافت نشد!");
+        }
     }
 }

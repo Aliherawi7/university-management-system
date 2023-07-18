@@ -1,6 +1,8 @@
 package com.mycompany.portalapi.controllers;
+
 import com.mycompany.portalapi.constants.APIEndpoints;
 import com.mycompany.portalapi.dtos.StudentSuccessfulRegistrationResponse;
+import com.mycompany.portalapi.exceptions.ErrorResponse;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
 import com.mycompany.portalapi.services.FileStorageService;
 import com.mycompany.portalapi.services.PostService;
@@ -15,6 +17,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 
@@ -23,7 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 public class FileController {
     private final FileStorageService fileStorageService;
-    private final  StudentService studentService;
+    private final StudentService studentService;
     private final HttpServletRequest httpServletRequest;
     private final PostService postService;
 
@@ -34,14 +37,14 @@ public class FileController {
     }
 
     @PostMapping("student-profiles/{studentId}")
-    public ResponseEntity<?> addStudentImage(@PathVariable Long studentId, @RequestParam MultipartFile file){
-        if(!studentService.isExistById(studentId)){
+    public ResponseEntity<?> addStudentImage(@PathVariable Long studentId, @RequestParam MultipartFile file) {
+        if (!studentService.isExistById(studentId)) {
             throw new ResourceNotFoundException("محصل با آی دی مورد نظر یافت نشد!");
         }
         fileStorageService.storeStudentProfileImage(file, studentId);
         return new ResponseEntity<>(StudentSuccessfulRegistrationResponse
                 .builder()
-                .imageUrl(BaseURI.getBaseURI(httpServletRequest)+ APIEndpoints.STUDENT_PROFILE_IMAGE.getValue()+studentId)
+                .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + studentId)
                 .statusCode(HttpStatus.CREATED.value())
                 .message("محصل با موفقیت ذخیره شد.")
                 .studentId(studentId)
@@ -49,6 +52,7 @@ public class FileController {
                 HttpStatus.CREATED
         );
     }
+
     @GetMapping("student-profiles/{studentId}")
     public ResponseEntity<byte[]> getStudentProfilePicture(@PathVariable String studentId) {
         byte[] image = fileStorageService.getStudentImage(studentId);
@@ -56,24 +60,34 @@ public class FileController {
     }
 
     @PostMapping("post-files/{postId}")
-    public ResponseEntity<?> addPostFiles(@PathVariable Long postId, @RequestParam List<MultipartFile> files){
+    public ResponseEntity<?> addPostFiles(@PathVariable Long postId, @RequestParam List<MultipartFile> files) {
         postService.checkIfNotExist(postId);
         fileStorageService.storePostFiles(files, postId);
         return ResponseEntity.ok("پوسست همراه با فایل ها  موفقانه ذخیره شد");
     }
 
     @GetMapping("post-files/{postId}/{fileName}")
-    public ResponseEntity<?> getPostFile(@PathVariable Long postId, @PathVariable String fileName){
-        System.err.println("post id: "+postId + " filename: "+fileName);
-        if(fileName.endsWith("pdf")){
+    public ResponseEntity<?> getPostFile(@PathVariable Long postId, @PathVariable String fileName) {
+        System.err.println("post id: " + postId + " filename: " + fileName);
+        if (fileName.endsWith("pdf")) {
             return ResponseEntity.ok().contentType(MediaType.APPLICATION_PDF).body(fileStorageService.getPostFile(fileName, postId));
-        }else if(fileName.endsWith("png")){
+        } else if (fileName.endsWith("png")) {
             return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(fileStorageService.getPostFile(fileName, postId));
-        }else if(fileName.endsWith("jpg") || fileName.endsWith("jpeg"))
+        } else if (fileName.endsWith("jpg") || fileName.endsWith("jpeg"))
             return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(fileStorageService.getPostFile(fileName, postId));
         return new ResponseEntity<>("فایل نامعتبر: این نوع فایل پشتیبانی نمیشود!", HttpStatus.BAD_REQUEST);
     }
 
+    @DeleteMapping("post-files/{postId}/{fileName}")
+    public ResponseEntity<?> deletePostFile(@PathVariable Long postId, @PathVariable String fileName) {
+        fileStorageService.deletePostFile(fileName, postId);
+        return ResponseEntity.ok(ErrorResponse.builder()
+                .message("فایل با موفقیت حذف شد!")
+                .httpStatus(HttpStatus.OK)
+                .statusCode(HttpStatus.OK.value())
+                .zonedDateTime(ZonedDateTime.now())
+                .build());
+    }
 
 
 }

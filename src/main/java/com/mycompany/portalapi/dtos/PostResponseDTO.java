@@ -19,7 +19,9 @@ public record PostResponseDTO(
         List<String> images,
         List<String> docs,
         Boolean isPublic,
-        Integer semester
+        Integer semester,
+        boolean isHidden,
+        boolean isUpdated
 
 
 ) {

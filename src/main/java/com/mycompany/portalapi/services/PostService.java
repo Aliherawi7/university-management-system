@@ -131,6 +131,8 @@ public class PostService {
         post.setFieldOfStudy(postRequestDTO.fieldOfStudy());
         post.setPublic(postRequestDTO.isPublic());
         post.setDepartment(postRequestDTO.department());
+        post.setDateTime(ZonedDateTime.now(ZoneId.of("UTC")));
+        post.setUpdated(true);
         postRepository.save(post);
         return PostSuccessfulRegistrationDTO.builder()
                 .message("پست موفقانه ذخیره شد")

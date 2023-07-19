@@ -48,6 +48,8 @@ public class PostResponseDTOMapper implements Function<Post, PostResponseDTO> {
                         .toList())
                 .isPublic(post.isPublic())
                 .semester(post.getSemester())
+                .isHidden(post.isHidden())
+                .isUpdated(post.isUpdated())
                 .build();
     }
 }

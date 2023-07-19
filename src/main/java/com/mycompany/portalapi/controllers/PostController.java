@@ -3,6 +3,8 @@ package com.mycompany.portalapi.controllers;
 
 import com.mycompany.portalapi.dtos.PostRequestDTO;
 import com.mycompany.portalapi.dtos.PostResponseDTO;
+import com.mycompany.portalapi.dtos.PostSuccessfulRegistrationDTO;
+import com.mycompany.portalapi.exceptions.ErrorResponse;
 import com.mycompany.portalapi.models.Post;
 import com.mycompany.portalapi.services.PostService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @RestController
@@ -29,6 +32,11 @@ public class PostController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getAllPosts(@PathVariable Long id){
         return ResponseEntity.ok(postService.getPost(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PostSuccessfulRegistrationDTO> updatePost(@PathVariable Long id, @RequestBody PostRequestDTO postRequestDTO){
+        return ResponseEntity.ok(postService.updatePost(id, postRequestDTO));
     }
 
     @GetMapping("/student")

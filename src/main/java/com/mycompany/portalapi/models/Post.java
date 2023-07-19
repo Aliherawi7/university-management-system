@@ -29,4 +29,5 @@ public class Post {
     private Long authorId;
     private Integer semester;
     private boolean isPublic;
+    private boolean hide;
 }

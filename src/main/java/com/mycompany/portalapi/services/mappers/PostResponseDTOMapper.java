@@ -28,7 +28,7 @@ public class PostResponseDTOMapper implements Function<Post, PostResponseDTO> {
         AuthorDTO authorDTO = AuthorDTO.builder()
                 .name(userApp.getName())
                 .lastname(userApp.getLastname())
-                .imageUrl(BaseURI.getBaseURI(httpServletRequest)+ APIEndpoints.USER_PROFILE_IMAGE.getValue()+ userApp.getId())
+                .imageUrl(BaseURI.getBaseURI(httpServletRequest)+ APIEndpoints.USER_PROFILE_IMAGE.getValue()+ userApp.getId()+".png")
                 .build();
         return PostResponseDTO
                 .builder()
@@ -46,6 +46,8 @@ public class PostResponseDTOMapper implements Function<Post, PostResponseDTO> {
                         .filter(file -> file.endsWith("pdf"))
                         .map(file -> BaseURI.getBaseURI(httpServletRequest)+APIEndpoints.POST.getValue()+post.getId()+"/"+file)
                         .toList())
+                .isPublic(post.isPublic())
+                .semester(post.getSemester())
                 .build();
     }
 }

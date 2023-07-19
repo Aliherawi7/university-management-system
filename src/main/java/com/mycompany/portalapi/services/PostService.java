@@ -29,6 +29,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -44,7 +45,7 @@ public class PostService {
     public PostSuccessfulRegistrationDTO addPost(PostRequestDTO postRequestDTO) {
         Post post = addRawPost(postRequestDTO);
         return PostSuccessfulRegistrationDTO.builder()
-                .message("post successfully saved")
+                .message("پست موفقانه ذخیره شد")
                 .postId(post.getId())
                 .statusCode(HttpStatus.CREATED.value())
                 .filesUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.POST.getValue() + post.getId())
@@ -122,7 +123,21 @@ public class PostService {
     }
 
     /* update post */
-    public void updatePost(PostRequestDTO postRequestDTO){
+    public PostSuccessfulRegistrationDTO updatePost(Long id, PostRequestDTO postRequestDTO){
+        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("پست مورد نظر یافت نشد!"));
+
+        post.setMessage(postRequestDTO.message());
+        post.setSemester(postRequestDTO.semester());
+        post.setFieldOfStudy(postRequestDTO.fieldOfStudy());
+        post.setPublic(postRequestDTO.isPublic());
+        post.setDepartment(postRequestDTO.department());
+        postRepository.save(post);
+        return PostSuccessfulRegistrationDTO.builder()
+                .message("پست موفقانه ذخیره شد")
+                .postId(post.getId())
+                .statusCode(HttpStatus.CREATED.value())
+                .filesUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.POST.getValue() + post.getId())
+                .build();
 
     }
 

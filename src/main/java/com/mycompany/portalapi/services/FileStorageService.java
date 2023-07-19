@@ -111,7 +111,7 @@ public class FileStorageService {
      * */
     public byte[] getFile(String fileName, Path path) {
         log.info("looking for file  with name {}", fileName);
-        File image = Stream.of(Objects.requireNonNull(new File(path.toUri()).listFiles())).filter(item -> item.getName().split("\\.")[0].equalsIgnoreCase(fileName.split("\\.")[0])).findFirst().orElse(null);
+        File image = Stream.of(Objects.requireNonNull(new File(path.toUri()).listFiles())).filter(item -> item.getName().equalsIgnoreCase(fileName)).findFirst().orElse(null);
         if (image == null) {
             throw new ResourceNotFoundException("File not found with provided name");
         }
@@ -131,7 +131,7 @@ public class FileStorageService {
 
     public byte[] getUserImage(String userId) {
         log.info("looking for user image with id {}", userId);
-        return getFile(userId, post);
+        return getFile(userId, studentProfileImageLocation);
     }
 
     /*
@@ -153,10 +153,8 @@ public class FileStorageService {
             if (originalFileName == null || originalFileName.contains("..")) {
                 throw new InvalidFileException("Sorry! File name which contains invalid path sequence " + originalFileName);
             }
-            String extension = originalFileName.split("\\.")[1];
-            log.info("origin name:{}", originalFileName);
-            log.info("extension:{}", extension);
-            Path storingDir = newPath.resolve(originalFileName.split("\\.")[0] + "." + extension);
+            Path storingDir = newPath.resolve(originalFileName);
+            log.info("file uri:{}",storingDir.toString());
             try {
                 Files.copy(file.getInputStream(), storingDir, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {

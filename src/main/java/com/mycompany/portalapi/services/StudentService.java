@@ -163,7 +163,7 @@ public class StudentService {
                     .fieldStudy(student.getFieldOfStudy())
                     .department(student.getDepartment())
                     .id(student.getId())
-                    .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId()).build();
+                    .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId()+".png").build();
         }).toList();
     }
 

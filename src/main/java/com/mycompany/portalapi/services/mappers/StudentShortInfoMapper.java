@@ -22,6 +22,6 @@ public class StudentShortInfoMapper implements Function<Student, StudentShortInf
                 .fieldStudy(student.getFieldOfStudy())
                 .department(student.getDepartment())
                 .id(student.getId())
-                .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId()).build();
+                .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId()+".png").build();
     }
 }

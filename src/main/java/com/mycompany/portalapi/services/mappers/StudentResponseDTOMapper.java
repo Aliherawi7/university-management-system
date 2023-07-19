@@ -53,7 +53,7 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
         return StudentResponseDTO
                 .builder()
                 .studentPersonalInfo(studentPersonalInfo)
-                .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId())
+                .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId()+".png")
                 .locations(student.getLocations().stream().map(locationDTOMapper).toList())
                 .relatives(student.getRelatives().stream().map(relativeRegistrationDTOMapper).toList())
                 .identification(identificationDTO)

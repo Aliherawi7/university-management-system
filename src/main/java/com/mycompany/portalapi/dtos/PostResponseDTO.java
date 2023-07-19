@@ -17,7 +17,10 @@ public record PostResponseDTO(
         ZonedDateTime dateTime,
         AuthorDTO author,
         List<String> images,
-        List<String> docs
+        List<String> docs,
+        Boolean isPublic,
+        Integer semester
+
 
 ) {
 }

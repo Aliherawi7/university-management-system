@@ -1,6 +1,7 @@
 package com.mycompany.portalapi.controllers;
 
 
+import com.mycompany.portalapi.dtos.APIResponse;
 import com.mycompany.portalapi.dtos.PostRequestDTO;
 import com.mycompany.portalapi.dtos.PostResponseDTO;
 import com.mycompany.portalapi.dtos.PostSuccessfulRegistrationDTO;
@@ -16,6 +17,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -64,4 +66,16 @@ public class PostController {
         postService.toggleHideShowPost(id);
         return ResponseEntity.ok("پست موفقانه بروزرسانی شد!");
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePost(@PathVariable Long id){
+        postService.deletePost(id);
+        return ResponseEntity.ok(APIResponse.builder()
+                        .message("پست با موفقیت حذف شد!")
+                        .httpStatus(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
+                        .zonedDateTime(ZonedDateTime.now(ZoneId.of("UTC")))
+                .build());
+    }
+
 }

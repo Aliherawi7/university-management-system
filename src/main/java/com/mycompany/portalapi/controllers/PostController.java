@@ -58,4 +58,10 @@ public class PostController {
                 semester,fieldOfStudy, department, offset, pageSize
         ));
     }
+
+    @GetMapping("/{id}/hide-show")
+    public ResponseEntity<?> toggleHideShowPost(@PathVariable Long id){
+        postService.toggleHideShowPost(id);
+        return ResponseEntity.ok("پست موفقانه بروزرسانی شد!");
+    }
 }

@@ -19,4 +19,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             " and p.semester = :semester order by p.dateTime desc ")
     Page<Post> fetchAllPostByKeywordAndFieldOfStudyAndDepartmentAndSemester(String fieldOfStudy, String department,Integer semester, Pageable pageable);
 
+    @Query("select p from Post p where " +
+            "p.fieldOfStudy like function('COALESCE', :fieldOfStudy, '%') and p.department like function('COALESCE', :department, '%')" +
+            " and p.semester = :semester and p.isHidden = false order by p.dateTime desc ")
+    Page<Post> fetchAllPostByKeywordAndFieldOfStudyAndDepartmentAndSemesterWhichAreNotHidden(String fieldOfStudy, String department,Integer semester, Pageable pageable);
+
 }

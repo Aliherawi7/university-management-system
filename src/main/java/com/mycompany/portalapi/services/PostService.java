@@ -82,7 +82,7 @@ public class PostService {
         String email = jwtUtils.getUserEmailByJWT(jwtUtils.getToken(httpServletRequest).substring(7));
         Student student = studentRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("Invalid token "));
-        return postRepository.fetchAllPostByKeywordAndFieldOfStudyAndDepartmentAndSemester(
+        return postRepository.fetchAllPostByKeywordAndFieldOfStudyAndDepartmentAndSemesterWhichAreNotHidden(
                 student.getFieldOfStudy(),
                 student.getDepartment(),
                 student.getSemester(),
@@ -141,6 +141,13 @@ public class PostService {
                 .filesUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.POST.getValue() + post.getId())
                 .build();
 
+    }
+
+
+    public void toggleHideShowPost(Long id){
+        Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("پست مورد نظر یافت نشد!"));
+        post.setHidden(!post.isHidden());
+        postRepository.save(post);
     }
 
 

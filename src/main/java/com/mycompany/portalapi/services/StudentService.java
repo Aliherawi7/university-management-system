@@ -55,7 +55,7 @@ public class StudentService {
         validateTheRegistrationRequest(studentRegistrationDTO);
         /* save the student in db */
         StudentPersonalInfo studentPersonalInfo = studentRegistrationDTO.studentPersonalInfo();
-        MaritalStatus maritalStatus = maritalStatusRepository.findByName(studentPersonalInfo.maritalStatus()).orElseThrow(() -> new IllegalArgumentException("invalid maritalStatus type!"));
+        MaritalStatus maritalStatus = maritalStatusRepository.findByName(studentPersonalInfo.maritalStatus()).orElseThrow(() -> new IllegalArgumentException("نوع حالت مدنی نامعتبر است!"));
         Student student = Student.builder()
                 .name(studentPersonalInfo.name())
                 .lastName(studentPersonalInfo.lastName())
@@ -84,7 +84,7 @@ public class StudentService {
 
         Student finalStudent = student;
         studentRegistrationDTO.relatives().forEach(item -> {
-            Relationship relationship = relationshipRepository.findByName(item.relationship()).orElseThrow(() -> new IllegalArgumentException("Invalid relationship type"));
+            Relationship relationship = relationshipRepository.findByName(item.relationship()).orElseThrow(() -> new IllegalArgumentException("نوعیت اقارب نامعتبر"));
             Relative relative = Relative.builder().job(item.job()).student(finalStudent).jobLocation(item.jobLocation()).phoneNumber(item.phoneNumber())
                     .relationship(relationship).name(item.name()).build();
             relativeService.addRelative(relative);
@@ -97,7 +97,7 @@ public class StudentService {
         /* prepare the student gender to save */
         Optional<Gender> gender = genderRepository.findByName(studentRegistrationDTO.studentPersonalInfo().gender());
 
-        student.setGender(gender.orElseThrow(() -> new IllegalArgumentException("Invalid Gender Type: ")));
+        student.setGender(gender.orElseThrow(() -> new IllegalArgumentException("نوع جنسیت نامعتبر")));
         studentRepository.save(student);
         // RoleName roleName = RoleName.valueOf(studentRegistrationDTO.role());
         Optional<Role> role = roleRepository.findByRoleName(RoleName.STUDENT);
@@ -118,7 +118,7 @@ public class StudentService {
     public StudentResponseDTO getStudentById(Long studentId) {
         Optional<Student> student = studentRepository.findById(studentId);
         if (student.isEmpty()) {
-            throw new ResourceNotFoundException("student not found with provided id:" + studentId);
+            throw new ResourceNotFoundException("محصل با آی دی مورد نظر یافت نشد!");
         }
         return studentResponseDTOMapper.apply(student.get());
     }
@@ -126,11 +126,11 @@ public class StudentService {
     public Student getStudentByEmail(String email) {
         return studentRepository.
                 findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("student not found with provided email:" + email));
+                .orElseThrow(() -> new ResourceNotFoundException("محصل با ایمیل مورد نظر یافت نشد!"));
     }
 
     public StudentResponsePersonalInfo getStudentProfile(Long id) {
-        Student student = studentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("student not found with provided id: " + id));
+        Student student = studentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("محصل با آی دی مورد نظر یافت نشد!"));
         // نام، تخلص، نام پدر، شماره تماس، ایمیل، سال شمولیت به موسسه، کدام پوهنحی، کدام سمستر، سال چند
         return StudentResponsePersonalInfo
                 .builder()
@@ -180,7 +180,7 @@ public class StudentService {
     public void validateTheRegistrationRequest(StudentRegistrationDTO studentRegistrationDTO) {
         /* check if national id is already taken */
         if (identificationService.isNationalIdAlreadyExist(studentRegistrationDTO.identification().nationalId())) {
-            throw new IllegalArgumentException("the national id is already exist");
+            throw new IllegalArgumentException("نمبر عمومی تذکره از قبل موجود است!");
         }
         /* check if email is already taken */
         if (studentRepository.existsByEmail(studentRegistrationDTO.studentPersonalInfo().email())) {
@@ -188,7 +188,7 @@ public class StudentService {
         }
         studentRegistrationDTO.relatives().forEach(item -> {
             Relationship relationship = relationshipRepository
-                    .findByName(item.relationship()).orElseThrow(() -> new IllegalArgumentException("Invalid relationship type"));
+                    .findByName(item.relationship()).orElseThrow(() -> new IllegalArgumentException("نوعیت اقارب نامعتبر"));
         });
     }
 

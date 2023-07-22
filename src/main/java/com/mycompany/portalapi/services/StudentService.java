@@ -45,7 +45,7 @@ public class StudentService {
 
     public StudentSuccessfulRegistrationResponse addStudentForController(StudentRegistrationDTO studentRegistrationDTO) {
         Long studentId = addStudent(studentRegistrationDTO);
-        return StudentSuccessfulRegistrationResponse.builder().message("student successfully saved in db").statusCode(HttpStatus.CREATED.value()).studentId(studentId).imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + studentId).build();
+        return StudentSuccessfulRegistrationResponse.builder().message("محصل موفقانه ثبت شد!").statusCode(HttpStatus.CREATED.value()).studentId(studentId).imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + studentId).build();
     }
 
     public Long addStudent(StudentRegistrationDTO studentRegistrationDTO) {
@@ -113,7 +113,7 @@ public class StudentService {
         return studentId;
     }
 
-    public void updateStudent(Long id, StudentRegistrationDTO studentRegistrationDTO) {
+    public StudentSuccessfulRegistrationResponse updateStudent(Long id, StudentRegistrationDTO studentRegistrationDTO) {
         /* we should consider to check the email and nationalId duplication in here */
         Student student = studentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("محصل با آی دی مورد نظر یافت نشد!"));
         StudentPersonalInfo studentPersonalInfo = studentRegistrationDTO.studentPersonalInfo();
@@ -173,6 +173,12 @@ public class StudentService {
             }
             locationService.addLocation(item);
         });
+        return StudentSuccessfulRegistrationResponse.builder()
+                .message("محصل موفقانه بروزرسانی شد!")
+                .statusCode(HttpStatus.CREATED.value())
+                .studentId(student.getId())
+                .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId())
+                .build();
     }
 
     public StudentResponseDTO getStudentById(Long studentId) {

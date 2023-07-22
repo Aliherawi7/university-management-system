@@ -1,6 +1,7 @@
 package com.mycompany.portalapi.controllers;
 
 
+import com.mycompany.portalapi.dtos.APIResponse;
 import com.mycompany.portalapi.dtos.StudentRegistrationDTO;
 import com.mycompany.portalapi.services.FileStorageService;
 import com.mycompany.portalapi.services.StudentService;
@@ -10,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -28,10 +31,10 @@ public class StudentController {
     public ResponseEntity<?> getStudent(@PathVariable Long studentId) {
         return ResponseEntity.ok(studentService.getStudentById(studentId));
     }
-    @PutMapping ("/{studentId}")
+
+    @PutMapping("/{studentId}")
     public ResponseEntity<?> updateStudent(@PathVariable Long studentId, @RequestBody StudentRegistrationDTO studentRegistrationDTO) {
-        studentService.updateStudent(studentId, studentRegistrationDTO);
-        return ResponseEntity.ok("محصل موفقانه بروزرسانی شد!");
+        return ResponseEntity.ok(studentService.updateStudent(studentId, studentRegistrationDTO));
     }
 
     /* ************************ search section *************************** */
@@ -46,7 +49,7 @@ public class StudentController {
             @RequestParam(name = "offset") Integer offset,
             @RequestParam(name = "pageSize") Integer pageSize
     ) {
-        return ResponseEntity.ok().body(studentService.getAllPostsByRequestParams(keyword,fieldOfStudy, department, semester, offset, pageSize));
+        return ResponseEntity.ok().body(studentService.getAllPostsByRequestParams(keyword, fieldOfStudy, department, semester, offset, pageSize));
     }
 
 

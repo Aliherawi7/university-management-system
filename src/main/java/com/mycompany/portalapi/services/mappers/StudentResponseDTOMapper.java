@@ -5,6 +5,7 @@ import com.mycompany.portalapi.dtos.IdentificationDTO;
 import com.mycompany.portalapi.dtos.StudentResponseDTO;
 import com.mycompany.portalapi.dtos.StudentResponsePersonalInfo;
 import com.mycompany.portalapi.models.Student;
+import com.mycompany.portalapi.services.AuthenticationService;
 import com.mycompany.portalapi.utils.BaseURI;
 import com.mycompany.portalapi.utils.StudentUtils;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
     private final HttpServletRequest httpServletRequest;
     private final RelativeRegistrationDTOMapper relativeRegistrationDTOMapper;
     private final LocationDTOMapper locationDTOMapper;
+    private final AuthenticationService authenticationService;
 
     @Override
     public StudentResponseDTO apply(Student student) {
@@ -39,7 +41,6 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
                 .phoneNumber(student.getPhoneNumber())
                 .email(student.getEmail())
                 .joinedDate(student.getJoinedDate())
-
                 .semester(student.getSemester())
                 .year(StudentUtils.getYear(student.getSemester()))
                 .build();
@@ -54,6 +55,7 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
                 .builder()
                 .studentPersonalInfo(studentPersonalInfo)
                 .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId()+".png")
+                .isLock(authenticationService.isLock(student.getEmail()))
                 .locations(student.getLocations().stream().map(locationDTOMapper).toList())
                 .relatives(student.getRelatives().stream().map(relativeRegistrationDTOMapper).toList())
                 .identification(identificationDTO)

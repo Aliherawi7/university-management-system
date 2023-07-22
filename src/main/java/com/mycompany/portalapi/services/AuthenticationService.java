@@ -84,6 +84,11 @@ public class AuthenticationService {
         userRepository.save(userApp);
     }
 
+    public boolean isLock(String email){
+        return userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("کاربر با ایمیل مورد نظر یافت نشد!"))
+                .isEnabled();
+    }
+
     public LoginResponse updateUser(UpdateUserDTO updateUserDTO, HttpServletRequest httpServletRequest) {
         String previousEmail = jwtUtils.getUserEmailByJWT(jwtUtils.getToken(httpServletRequest).substring(7));
         UserApp userApp = userRepository.findByEmail(previousEmail).orElseThrow(() -> new ResourceNotFoundException(previousEmail + "کاربری با ایمیل ارائه شده یافت نشد: "));

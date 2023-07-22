@@ -9,6 +9,7 @@ import java.util.List;
 @Builder
 public record StudentResponseDTO(StudentResponsePersonalInfo studentPersonalInfo,
                                  String imageUrl,
+                                 Boolean isLock,
                                  List<RelativeRegistrationDTO> relatives,
                                  List<LocationDTO> locations,
                                  IdentificationDTO identification

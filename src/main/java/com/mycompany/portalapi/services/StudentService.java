@@ -113,6 +113,68 @@ public class StudentService {
         return studentId;
     }
 
+    public void updateStudent(Long id, StudentRegistrationDTO studentRegistrationDTO) {
+        /* we should consider to check the email and nationalId duplication in here */
+        Student student = studentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("محصل با آی دی مورد نظر یافت نشد!"));
+        StudentPersonalInfo studentPersonalInfo = studentRegistrationDTO.studentPersonalInfo();
+        MaritalStatus maritalStatus = maritalStatusRepository.findByName(studentPersonalInfo.maritalStatus()).orElseThrow(() -> new IllegalArgumentException("نوع حالت مدنی نامعتبر است!"));
+        student.setName(studentPersonalInfo.name());
+        student.setLastName(studentPersonalInfo.lastName());
+        student.setFatherName(studentPersonalInfo.fatherName());
+        student.setGrandFatherName(studentPersonalInfo.grandFatherName());
+        student.setDob(LocalDate.parse(studentPersonalInfo.dob()));
+        student.setJoinedDate(LocalDate.now());
+        student.setMotherTongue(studentPersonalInfo.motherTongue());
+        student.setFieldOfStudy(studentPersonalInfo.fieldOfStudy());
+        student.setDepartment(studentPersonalInfo.department());
+        student.setHighSchool(studentPersonalInfo.highSchool());
+        student.setSchoolGraduationDate(LocalDate.parse(studentPersonalInfo.schoolGraduationDate()));
+        student.setMaritalStatus(maritalStatus);
+        student.setEmail(studentPersonalInfo.email().toLowerCase());
+        student.setPassword(studentPersonalInfo.password());
+        student.setSemester(studentPersonalInfo.semester());
+        student.setPhoneNumber(studentPersonalInfo.phoneNumber());
+
+        /* update the identification of the student */
+        Identification identification = identificationService.getIdentificationByStudentId(student.getId());
+        identification.setCaseNumber(studentRegistrationDTO.identification().caseNumber());
+        identification.setNationalId(studentRegistrationDTO.identification().nationalId());
+        identification.setPageNumber(studentRegistrationDTO.identification().pageNumber());
+        identification.setRegistrationNumber(studentRegistrationDTO.identification().registrationNumber());
+        identificationService.addIdentification(identification);
+
+        /* prepare the student gender to save */
+        Gender gender = genderRepository.findByName(studentRegistrationDTO.studentPersonalInfo().gender()).orElseThrow(() -> new ResourceNotFoundException("نوع جنسیت نامعتبر است"));
+        student.setGender(gender);
+
+        /* update the student relatives in db */
+        List<Relative> relativeList = relativeService.getAllStudentRelativesById(student.getId());
+        studentRegistrationDTO.relatives().forEach(item -> {
+            Relationship relationship = relationshipRepository.findByName(item.relationship()).orElseThrow(() -> new IllegalArgumentException("نوعیت اقارب نامعتبر"));
+            Relative relative =  relativeList.stream().filter(r -> r.getRelationship().equals(relationship)).findFirst().get();
+            relative.setName(item.name());
+            relative.setJob(item.job());
+            relative.setPhoneNumber(item.phoneNumber());
+            relative.setJobLocation(item.jobLocation());
+            relativeService.addRelative(relative);
+        });
+
+        /* save the student current and previous locations in db */
+        List<Location> locations = locationService.getAllLocationsByStudentId(student.getId());
+        locations.forEach(item -> {
+            if(item.isCurrent()){
+                item.setCity(studentRegistrationDTO.locations().current().city());
+                item.setDistrict(studentRegistrationDTO.locations().current().city());
+                item.setVillageOrQuarter(studentRegistrationDTO.locations().current().city());
+            }else {
+                item.setCity(studentRegistrationDTO.locations().previous().city());
+                item.setDistrict(studentRegistrationDTO.locations().previous().city());
+                item.setVillageOrQuarter(studentRegistrationDTO.locations().previous().city());
+            }
+            locationService.addLocation(item);
+        });
+    }
+
     public StudentResponseDTO getStudentById(Long studentId) {
         Optional<Student> student = studentRepository.findById(studentId);
         if (student.isEmpty()) {
@@ -161,7 +223,7 @@ public class StudentService {
                     .fieldStudy(student.getFieldOfStudy())
                     .department(student.getDepartment())
                     .id(student.getId())
-                    .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId()+".png").build();
+                    .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId() + ".png").build();
         }).toList();
     }
 

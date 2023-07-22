@@ -14,7 +14,7 @@ public record RelativeRegistrationDTO(
         String job,
         @NotBlank(message = "شماره تماس اقارب محصل نباید خالی باشد")
         String phoneNumber,
-        @NotBlank(message = "موقیعت وطیفه اقارب محصل نباید خالی باشد")
+        @NotBlank(message = "موقیعت وظیفه اقارب محصل نباید خالی باشد")
         String jobLocation,
         @NotBlank(message = "نسبت اقارب محصل نباید خالی باشد")
         String relationship

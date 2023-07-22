@@ -28,7 +28,11 @@ public class StudentController {
     public ResponseEntity<?> getStudent(@PathVariable Long studentId) {
         return ResponseEntity.ok(studentService.getStudentById(studentId));
     }
-
+    @PutMapping ("/{studentId}")
+    public ResponseEntity<?> updateStudent(@PathVariable Long studentId, @RequestBody StudentRegistrationDTO studentRegistrationDTO) {
+        studentService.updateStudent(studentId, studentRegistrationDTO);
+        return ResponseEntity.ok("محصل موفقانه بروزرسانی شد!");
+    }
 
     /* ************************ search section *************************** */
 

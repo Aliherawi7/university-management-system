@@ -5,5 +5,6 @@ import lombok.Builder;
 @Builder
 public record DepartmentDTO(Long fieldOfStudyId,
                             String departmentName,
-                            String description) {
+                            String description,
+                            Integer semesters) {
 }

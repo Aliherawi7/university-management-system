@@ -26,6 +26,7 @@ public class DepartmentService {
                 .departmentName(departmentDTO.departmentName())
                 .description(departmentDTO.description())
                 .fieldOfStudyId(departmentDTO.fieldOfStudyId())
+                .semesters(departmentDTO.semesters())
                 .build();
         departmentRepository.save(department);
     }

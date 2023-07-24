@@ -55,7 +55,7 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
                 .builder()
                 .studentPersonalInfo(studentPersonalInfo)
                 .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId()+".png")
-                .isLock(authenticationService.isLock(student.getEmail()))
+                .isEnable(authenticationService.isEnable(student.getEmail()))
                 .locations(student.getLocations().stream().map(locationDTOMapper).toList())
                 .relatives(student.getRelatives().stream().map(relativeRegistrationDTOMapper).toList())
                 .identification(identificationDTO)

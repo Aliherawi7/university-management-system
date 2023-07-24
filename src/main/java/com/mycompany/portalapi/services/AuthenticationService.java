@@ -47,7 +47,7 @@ public class AuthenticationService {
                 .userId(userApp.getId())
                 .name(userApp.getName())
                 .lastname(userApp.getLastname())
-                .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + userApp.getId()+".png")
+                .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + userApp.getId() + ".png")
                 .email(userApp.getEmail())
                 .roles(userApp.getRoles().stream().map(item -> item.getRoleName().getValue()).toList())
                 .token(jwtUtils.generateToken(userApp.getEmail(), userApp.getRoles(), 30))
@@ -84,41 +84,40 @@ public class AuthenticationService {
         userRepository.save(userApp);
     }
 
-    public boolean isLock(String email){
+    public boolean isEnable(String email) {
         return userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("کاربر با ایمیل مورد نظر یافت نشد!"))
                 .isEnabled();
     }
 
     public LoginResponse updateUser(UpdateUserDTO updateUserDTO, HttpServletRequest httpServletRequest) {
-        String previousEmail = jwtUtils.getUserEmailByJWT(jwtUtils.getToken(httpServletRequest).substring(7));
-        UserApp userApp = userRepository.findByEmail(previousEmail).orElseThrow(() -> new ResourceNotFoundException(previousEmail + "کاربری با ایمیل ارائه شده یافت نشد: "));
+
+        UserApp userApp = userRepository.findById(updateUserDTO.userId()).orElseThrow(() -> new ResourceNotFoundException(updateUserDTO.userId() + "کاربری با آی دی نمبر ارائه شده یافت نشد: "));
+        String previousEmail = userApp.getEmail();
         if (!userApp.isEnabled()) {
             throw new AccountLockException("حساب کاربری شما قفل است. لطفا تا باز شدن آن توسط مدیر صبورا باشید");
         }
         if (userRepository.existsByEmail(updateUserDTO.email()) && !previousEmail.equalsIgnoreCase(updateUserDTO.email())) {
             throw new IllegalArgumentException("ایمیل قبلا توسط کابری دیگری استفاده شده است");
         }
-        if (!previousEmail.equalsIgnoreCase(updateUserDTO.email()))
+        if (!previousEmail.equalsIgnoreCase(updateUserDTO.email())) {
             userApp.setEmail(updateUserDTO.email());
+        }
 
         userApp.setPassword(passwordEncoder.encode(updateUserDTO.newPassword()));
         userRepository.save(userApp);
-        if (userApp.getRoles().stream().anyMatch(role -> role.getRoleName().equals(RoleName.STUDENT.getValue()))) {
-            Student studentByEmail = studentRepository.findByEmail(previousEmail)
-                    .orElseThrow(() -> new ResourceNotFoundException("کاربر با ایمیل مورد نظر یافت نشد!"));
-            studentByEmail.setEmail(updateUserDTO.email());
-            studentRepository.save(studentByEmail);
-        }
+
+        Student studentByEmail = studentRepository.findByEmail(previousEmail)
+                .orElseThrow(() -> new ResourceNotFoundException("کاربر با ایمیل مورد نظر یافت نشد!"));
+        studentByEmail.setEmail(updateUserDTO.email());
+        studentRepository.save(studentByEmail);
+
         return LoginResponse.builder()
                 .userId(userApp.getId())
                 .name(userApp.getName())
                 .lastname(userApp.getLastname())
-                .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + userApp.getId()+".png")
-                .roles(userApp.getRoles().stream().map(item -> item.getRoleName().getValue()).toList())
-                .email(userApp.getEmail())
-                .token(jwtUtils.generateToken(userApp.getEmail(), userApp.getRoles(), 30))
+                .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + userApp.getId() + ".png")
+                .roles(userApp.getRoles().stream().map(item -> item.getRoleName().getValue()).toList()).email(userApp.getEmail()).token(jwtUtils.generateToken(userApp.getEmail(), userApp.getRoles(), 30))
                 .build();
-
     }
 
 }

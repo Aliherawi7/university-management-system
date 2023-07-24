@@ -18,5 +18,6 @@ public class Department {
     private Long fieldOfStudyId;
     private String departmentName;
     private String description;
+    private Integer semesters;
 
 }

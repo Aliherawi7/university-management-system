@@ -60,7 +60,7 @@ public class StudentService {
                 .fatherName(studentPersonalInfo.fatherName())
                 .grandFatherName(studentPersonalInfo.grandFatherName())
                 .dob(LocalDate.parse(studentPersonalInfo.dob()))
-                .joinedDate(LocalDate.now())
+                .joinedDate(LocalDate.parse(studentPersonalInfo.joinedDate()))
                 .motherTongue(studentPersonalInfo.motherTongue())
                 .fieldOfStudy(studentPersonalInfo.fieldOfStudy())
                 .department(studentPersonalInfo.department())

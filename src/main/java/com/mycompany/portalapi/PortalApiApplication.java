@@ -78,7 +78,7 @@ public class PortalApiApplication {
                     .roles(List.of(adminRole))
                     .genderName(gender1)
                     .isEnabled(true)
-                    .password("12345")
+                    .password("admin")
                     .build();
             authenticationService.registerUser(userApp);
 

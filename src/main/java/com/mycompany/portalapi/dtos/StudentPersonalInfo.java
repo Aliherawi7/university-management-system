@@ -25,6 +25,8 @@ public record StudentPersonalInfo(
         String highSchool,
         @NotBlank(message = "تاریخ فراغت  نباید خالی باشد")
         String schoolGraduationDate,
+        @NotBlank(message = "تاریخ شمولیت  نباید خالی باشد")
+        String joinedDate,
         @NotBlank(message = "پوهنحی نباید خالی باشد")
         String fieldOfStudy,
         @NotBlank(message = "دیپارتمنت نباید خالی باشد")

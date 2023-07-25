@@ -39,7 +39,7 @@ public record StudentPersonalInfo(
         @NotBlank(message = "شماره تماس نباید خالی باشد")
         String phoneNumber,
         @NotNull(message = "سمستر نباید خالی باشد")
-        @Max(value = 8, message = "سمستر نباید بزرگتر از 8 باشد")
+        @Max(value = 14, message = "سمستر نباید بزرگتر از 10 باشد")
         @Min(value = 1, message = "سمستر نباید کوچکتر از 1 باشد")
         Integer semester
 ) {

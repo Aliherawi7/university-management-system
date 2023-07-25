@@ -7,6 +7,7 @@ import com.mycompany.portalapi.dtos.LoginResponse;
 import com.mycompany.portalapi.dtos.StudentResponseDTO;
 import com.mycompany.portalapi.dtos.UpdateUserDTO;
 import com.mycompany.portalapi.exceptions.AccountLockException;
+import com.mycompany.portalapi.exceptions.ErrorResponse;
 import com.mycompany.portalapi.exceptions.IllegalArgumentException;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
 import com.mycompany.portalapi.models.Student;
@@ -102,7 +103,9 @@ public class AuthenticationService {
         if (!previousEmail.equalsIgnoreCase(updateUserDTO.email())) {
             userApp.setEmail(updateUserDTO.email());
         }
-
+        if(!passwordEncoder.matches(updateUserDTO.previousPassword(), userApp.getPassword())){
+            throw new IllegalArgumentException("رمز عبور قبلی اشتباه است!");
+        }
         userApp.setPassword(passwordEncoder.encode(updateUserDTO.newPassword()));
         userRepository.save(userApp);
 

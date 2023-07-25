@@ -1,6 +1,7 @@
 package com.mycompany.portalapi.services;
 
 import com.mycompany.portalapi.models.Identification;
+import com.mycompany.portalapi.models.Student;
 import com.mycompany.portalapi.repositories.IdentificationRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,11 @@ public class IdentificationService {
     }
     public boolean isNationalIdAlreadyExist(Long nationalId) {
         return identificationRepository.existsByNationalId(nationalId);
+    }
+
+    public void deleteIdentificationByStudent(Long studentId){
+        Identification identificationByStudentId = getIdentificationByStudentId(studentId);
+        identificationRepository.delete(identificationByStudentId);
     }
 
 }

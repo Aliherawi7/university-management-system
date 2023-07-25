@@ -52,5 +52,19 @@ public class StudentController {
         return ResponseEntity.ok().body(studentService.getAllPostsByRequestParams(keyword, fieldOfStudy, department, semester, offset, pageSize));
     }
 
+    @DeleteMapping("/{studentId}")
+    public ResponseEntity<?> deleteStudent(@PathVariable Long studentId){
+        System.out.println("studentId: "+studentId);
+        studentService.deleteStudentById(studentId);
+        return ResponseEntity.ok(
+                APIResponse.builder()
+                        .statusCode(HttpStatus.OK.value())
+                        .message("محصل مورد نظر با موفقیت حذف شد!")
+                        .httpStatus(HttpStatus.OK)
+                        .zonedDateTime(ZonedDateTime.now(ZoneId.of("UTC")))
+                        .build()
+        );
+    }
+
 
 }

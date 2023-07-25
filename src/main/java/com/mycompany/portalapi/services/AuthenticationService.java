@@ -120,4 +120,8 @@ public class AuthenticationService {
                 .build();
     }
 
+    public void deleteUser(String email){
+        userRepository.deleteUserAppByEmail(email);
+    }
+
 }

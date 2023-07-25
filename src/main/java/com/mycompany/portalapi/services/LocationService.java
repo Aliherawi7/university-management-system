@@ -45,4 +45,8 @@ public class LocationService {
                                 .build()
                 ).build();
     }
+
+    public void deleteLocationsByStudentId(Long studentId){
+        locationRepository.deleteAll(getAllLocationsByStudentId(studentId));
+    }
 }

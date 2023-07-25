@@ -1,6 +1,7 @@
 package com.mycompany.portalapi.services;
 
 import com.mycompany.portalapi.models.Relative;
+import com.mycompany.portalapi.models.Student;
 import com.mycompany.portalapi.repositories.RelativeRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,11 @@ public class RelativeService {
 
     public List<Relative> getAllStudentRelativesById(Long studentId){
         return relativeRepository.findAllByStudentId(studentId);
+    }
+
+    public void deleteAllRelativesByStudent(Long studentId){
+        getAllStudentRelativesById(studentId).forEach(relative -> {
+            relativeRepository.deleteById(relative.getId());
+        });
     }
 }

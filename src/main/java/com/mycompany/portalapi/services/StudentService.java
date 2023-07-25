@@ -12,7 +12,10 @@ import com.mycompany.portalapi.services.mappers.StudentResponseDTOMapper;
 import com.mycompany.portalapi.services.mappers.StudentShortInfoMapper;
 import com.mycompany.portalapi.utils.BaseURI;
 import com.mycompany.portalapi.utils.StudentUtils;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -42,6 +45,8 @@ public class StudentService {
     private final RelationshipRepository relationshipRepository;
     private final RequestObjectValidatorService<StudentRegistrationDTO> studentRegistrationDTORequestValidatorService;
     private final StudentShortInfoMapper studentShortInfoMapper;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public StudentSuccessfulRegistrationResponse addStudentForController(StudentRegistrationDTO studentRegistrationDTO) {
         Long studentId = addStudent(studentRegistrationDTO);
@@ -280,5 +285,18 @@ public class StudentService {
             );
         }
         return students.map(studentShortInfoMapper);
+    }
+
+    @Transactional
+    public void deleteStudentById(Long studentId) {
+        Student student = studentRepository.findById(studentId).orElseThrow(() -> new ResourceNotFoundException("محصل مورد نظر یافت نشد!"));
+        relativeService.deleteAllRelativesByStudent(studentId);
+        System.out.println(student.getEmail());
+        authenticationService.deleteUser(student.getEmail());
+        locationService.deleteLocationsByStudentId(studentId);
+        identificationService.deleteIdentificationByStudent(studentId);
+        studentRepository.deleteById(studentId);
+
+        //must remove the student image
     }
 }

@@ -52,7 +52,7 @@ public class AuthController {
     }
 
     @PutMapping("/update-user")
-    public ResponseEntity<?> updateUser(@RequestBody UpdateUserDTO updateUserDTO, HttpServletRequest httpServletRequest){
-        return ResponseEntity.ok(authenticationService.updateUser(updateUserDTO, httpServletRequest));
+    public ResponseEntity<?> updateUser(@RequestBody UpdateUserDTO updateUserDTO){
+        return ResponseEntity.ok(authenticationService.updateUser(updateUserDTO));
     }
 }

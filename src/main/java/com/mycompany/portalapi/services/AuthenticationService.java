@@ -90,7 +90,7 @@ public class AuthenticationService {
                 .isEnabled();
     }
 
-    public LoginResponse updateUser(UpdateUserDTO updateUserDTO, HttpServletRequest httpServletRequest) {
+    public LoginResponse updateUser(UpdateUserDTO updateUserDTO) {
 
         UserApp userApp = userRepository.findById(updateUserDTO.userId()).orElseThrow(() -> new ResourceNotFoundException(updateUserDTO.userId() + "کاربری با آی دی نمبر ارائه شده یافت نشد: "));
         String previousEmail = userApp.getEmail();
@@ -108,12 +108,12 @@ public class AuthenticationService {
         }
         userApp.setPassword(passwordEncoder.encode(updateUserDTO.newPassword()));
         userRepository.save(userApp);
-
-        Student studentByEmail = studentRepository.findByEmail(previousEmail)
-                .orElseThrow(() -> new ResourceNotFoundException("کاربر با ایمیل مورد نظر یافت نشد!"));
-        studentByEmail.setEmail(updateUserDTO.email());
-        studentRepository.save(studentByEmail);
-
+        if(userApp.getRoles().stream().noneMatch(item -> item.getRoleName().getValue().equals(RoleName.ADMIN.getValue()))){
+            Student studentByEmail = studentRepository.findByEmail(previousEmail)
+                    .orElseThrow(() -> new ResourceNotFoundException("کاربر با ایمیل مورد نظر یافت نشد!"));
+            studentByEmail.setEmail(updateUserDTO.email());
+            studentRepository.save(studentByEmail);
+        }
         return LoginResponse.builder()
                 .userId(userApp.getId())
                 .name(userApp.getName())

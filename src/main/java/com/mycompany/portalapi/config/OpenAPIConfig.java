@@ -34,7 +34,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 ),
                 @Server(
                         description = "Prod ENV",
-                        url = "http://localhost:1000"
+                        url = "http://localhost:5000"
                 )
         },
         security = {

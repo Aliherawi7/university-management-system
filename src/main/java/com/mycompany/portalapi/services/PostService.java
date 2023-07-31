@@ -99,7 +99,7 @@ public class PostService {
         PageRequest pageRequest = PageRequest.of(offset, pageSize);
         if (semester != null) {
             posts = postRepository.fetchAllPostByKeywordAndFieldOfStudyAndDepartmentAndSemester(fieldOfStudy, department, semester, pageRequest);
-        }else {
+        } else {
             posts = postRepository.fetchAllPostByKeywordAndFieldOfStudyAndDepartment(fieldOfStudy, department, pageRequest);
         }
         return posts.map(postResponseDTOMapper);
@@ -123,12 +123,13 @@ public class PostService {
     }
 
     /* update post */
-    public PostSuccessfulRegistrationDTO updatePost(Long id, PostRequestDTO postRequestDTO){
+    public PostSuccessfulRegistrationDTO updatePost(Long id, PostRequestDTO postRequestDTO) {
         Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("پست مورد نظر یافت نشد!"));
 
         post.setMessage(postRequestDTO.message());
         post.setSemester(postRequestDTO.semester());
         post.setFieldOfStudy(postRequestDTO.fieldOfStudy());
+        System.out.println(postRequestDTO.fieldOfStudy());
         post.setPublic(postRequestDTO.isPublic());
         post.setDepartment(postRequestDTO.department());
         post.setDateTime(ZonedDateTime.now(ZoneId.of("UTC")));
@@ -144,13 +145,13 @@ public class PostService {
     }
 
 
-    public void toggleHideShowPost(Long id){
+    public void toggleHideShowPost(Long id) {
         Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("پست مورد نظر یافت نشد!"));
         post.setHidden(!post.isHidden());
         postRepository.save(post);
     }
 
-    public void deletePost(Long id){
+    public void deletePost(Long id) {
         postRepository.deleteById(id);
     }
 

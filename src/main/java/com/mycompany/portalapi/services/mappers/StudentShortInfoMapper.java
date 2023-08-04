@@ -19,6 +19,7 @@ public class StudentShortInfoMapper implements Function<Student, StudentShortInf
         return StudentShortInfo.builder()
                 .name(student.getName())
                 .lastname(student.getLastName())
+                .fatherName(student.getFatherName())
                 .fieldStudy(student.getFieldOfStudy())
                 .department(student.getDepartment())
                 .id(student.getId())

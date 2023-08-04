@@ -65,8 +65,8 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.POST, "api/v1/files/post-files/*").hasAnyAuthority(RoleName.ADMIN.getValue(),RoleName.TEACHER.getValue());
                //     auth.requestMatchers(HttpMethod.GET, "api/v1/files/post-files/**").hasAnyAuthority(RoleName.ADMIN.getValue(),RoleName.TEACHER.getValue(),RoleName.STUDENT.getValue());
                     auth.requestMatchers(HttpMethod.GET, "api/v1/files/post-files/*/*").permitAll();
-                    auth.requestMatchers(HttpMethod.GET, "api/v1/posts/?**").hasAnyAuthority(RoleName.STUDENT.getValue(),RoleName.ADMIN.getValue(), RoleName.TEACHER.getValue());
-                    auth.requestMatchers(HttpMethod.GET, "api/v1/posts/**").permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "api/v1/posts/student/?**").hasAuthority(RoleName.STUDENT.getValue());
+                    auth.requestMatchers(HttpMethod.GET, "api/v1/posts/?**").hasAnyAuthority(RoleName.ADMIN.getValue(), RoleName.TEACHER.getValue());
                     auth.requestMatchers(HttpMethod.GET, "api/v1/field-of-studies/**").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "api/v1/field-of-studies/**").hasAnyAuthority(RoleName.ADMIN.getValue());
                     auth.anyRequest().authenticated();

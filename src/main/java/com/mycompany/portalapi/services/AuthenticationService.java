@@ -98,7 +98,7 @@ public class AuthenticationService {
             throw new AccountLockException("حساب کاربری شما قفل است. لطفا تا باز شدن آن توسط مدیر صبورا باشید");
         }
         if (userRepository.existsByEmail(updateUserDTO.email()) && !previousEmail.equalsIgnoreCase(updateUserDTO.email())) {
-            throw new IllegalArgumentException("ایمیل قبلا توسط کابری دیگری استفاده شده است");
+            throw new IllegalArgumentException("ایمیل قبلا توسط کاربری دیگری استفاده شده است");
         }
         if (!previousEmail.equalsIgnoreCase(updateUserDTO.email())) {
             userApp.setEmail(updateUserDTO.email());

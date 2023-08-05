@@ -42,6 +42,12 @@ public class SubjectController {
         return ResponseEntity.ok(new CollectionResponse<Subject>(subjects.size(), subjects));
     }
 
+    @GetMapping(value = "/search", params = {"field", "department", "semester"})
+    public ResponseEntity<?> getAllSubjectByFieldAndDepartmentAndSemester(@RequestParam Map<String, String> params) {
+        Collection<Subject> subjects = subjectService.search(params.get("field"), params.get("department"), params.get("semester"));
+        return ResponseEntity.ok(new CollectionResponse<Subject>(subjects.size(), subjects));
+    }
+
     @GetMapping(value = "/search", params = {"field"})
     public ResponseEntity<?> getAllSubjectByFieldAndDepartment(@RequestParam(value = "field") String field) {
         Collection<Subject> subjects = subjectService.searchByFieldName(field);

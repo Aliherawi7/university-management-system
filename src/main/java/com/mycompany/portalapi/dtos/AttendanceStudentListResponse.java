@@ -11,6 +11,7 @@ public record AttendanceStudentListResponse(
         String subject,
         List<StudentAttendanceResponse> students,
         int daysInMonth,
+        int daysWithoutHolidays,
         LocalDate localDate
 ) {
 }

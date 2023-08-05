@@ -25,6 +25,9 @@ public class SubjectService {
     public List<Subject> search(String field, String department){
         return subjectRepository.findAllByFieldOfStudyAndDepartment(field, department);
     }
+    public List<Subject> search(String field, String department, String semester){
+        return subjectRepository.findAllByFieldOfStudyAndDepartmentAndSemester(field, department, Integer.parseInt(semester));
+    }
     public List<Subject> searchByName(String name){
         return subjectRepository.findAllByName(name);
     }

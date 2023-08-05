@@ -41,7 +41,8 @@ public class PortalApiApplication {
                           MaritalStatusRepository maritalStatusRepository,
                           RelationshipRepository relationshipRepository,
                           AuthenticationService authenticationService,
-                          PostService postService) {
+                          PostService postService,
+                          SubjectService subjectService) {
         return args -> {
 
 
@@ -135,6 +136,21 @@ public class PortalApiApplication {
                 postRequestDTOS = objectMapper.readValue(jsonUrl, PostRequestDTO[].class);
                 ArrayList<PostRequestDTO> dList = new ArrayList<>(Arrays.asList(postRequestDTOS));
                 dList.forEach(postService::addRawPost);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+            // save all the subjects
+            jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json\\subject.json");
+            Subject[] subjects = null;
+            try {
+                subjects = objectMapper.readValue(jsonUrl, Subject[].class);
+                ArrayList<Subject> dList = new ArrayList<>(Arrays.asList(subjects));
+                dList.forEach(sub -> {
+                    sub.setId(null);
+                    subjectService.addSubject(sub);
+                });
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

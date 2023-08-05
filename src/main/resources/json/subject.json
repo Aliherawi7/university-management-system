@@ -1,10 +1,2647 @@
 [
   {
     "id": 1,
-    "name": "",
+    "name": "Programming 1",
+    "semester": 1,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Computer Engineering 1",
+    "semester": 1,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Math 1",
+    "semester": 1,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 1,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 3
+  },
+  {
+    "id": 1,
+    "name": "English",
+    "semester": 1,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "Computer Engineering 2",
+    "semester": 2,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Programming 2",
+    "semester": 2,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Math 2",
+    "semester": 2,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 2,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "English",
+    "semester": 2,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "Fundamental Database System",
     "semester": 3,
-    "department": "",
-    "fieldOfStudy": "",
-    "credit": 0
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "Analysis 1",
+    "semester": 3,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "Algorithm",
+    "semester": 3,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 3,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "English",
+    "semester": 3,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "Analysis 2",
+    "semester": 4,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "Computer Network",
+    "semester": 4,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 4,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 3
+  },
+  {
+    "id": 1,
+    "name": "System Programming",
+    "semester": 4,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "Data Structure",
+    "semester": 4,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "English",
+    "semester": 4,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "Software Engineering 1",
+    "semester": 5,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Web Engineering 1",
+    "semester": 5,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 5,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 1
+  },
+  {
+    "id": 1,
+    "name": "Probability and Discrete mathematics",
+    "semester": 5,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "IT Project Management",
+    "semester": 5,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "Scientific Writing 1",
+    "semester": 5,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 3
+  },
+
+  {
+    "id": 1,
+    "name": "Software Engineering 2",
+    "semester": 6,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Web Engineering 2",
+    "semester": 6,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 6,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "Advanced Java Programming",
+    "semester": 6,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Scientific Writing 2",
+    "semester": 6,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 3
+  },
+
+  {
+    "id": 1,
+    "name": "SDLC",
+    "semester": 7,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "HCI",
+    "semester": 7,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 7,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "System Architecture",
+    "semester": 7,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Information and Society",
+    "semester": 7,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 3
+  },
+
+  {
+    "id": 1,
+    "name": "Mobile Application",
+    "semester": 8,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Software Engineering 3",
+    "semester": 8,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 8,
+    "department": "مهندسی نرم افزار",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "Programming 1",
+    "semester": 1,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Computer Engineering 1",
+    "semester": 1,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Math 1",
+    "semester": 1,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 1,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 3
+  },
+  {
+    "id": 1,
+    "name": "English",
+    "semester": 1,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "Computer Engineering 2",
+    "semester": 2,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Programming 2",
+    "semester": 2,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Math 2",
+    "semester": 2,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 2,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "English",
+    "semester": 2,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "Fundamental Database System",
+    "semester": 3,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "Analysis 1",
+    "semester": 3,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "Algorithm",
+    "semester": 3,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 3,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "English",
+    "semester": 3,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "Analysis 2",
+    "semester": 4,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "Computer Network",
+    "semester": 4,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 4,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 3
+  },
+  {
+    "id": 1,
+    "name": "System Programming",
+    "semester": 4,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "Data Structure",
+    "semester": 4,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 4
+  },
+  {
+    "id": 1,
+    "name": "English",
+    "semester": 4,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 5,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 1
+  },
+  {
+    "id": 1,
+    "name": "Network Programming 1",
+    "semester": 5,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Computer Network and Distributed System",
+    "semester": 5,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Probability and Discrete Mathematics",
+    "semester": 5,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Scientific Writing 1",
+    "semester": 5,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 3
+  },
+  {
+    "id": 1,
+    "name": "IT Project Management",
+    "semester": 5,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "Network and Wirelesscommunication",
+    "semester": 6,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Scientific Writing 2",
+    "semester": 6,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 3
+  },
+  {
+    "id": 1,
+    "name": "Computer and Network security",
+    "semester": 6,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Network Protocols and Architecture",
+    "semester": 6,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 6,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "Network Programming 2",
+    "semester": 7,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Computer Network Security 2",
+    "semester": 7,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Resource Management",
+    "semester": 7,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Information and Society",
+    "semester": 7,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 3
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 7,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "Routing",
+    "semester": 8,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Virtualization",
+    "semester": 8,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 5
+  },
+  {
+    "id": 1,
+    "name": "Islamic",
+    "semester": 8,
+    "department": "دیتابیس",
+    "fieldOfStudy": "کامپیوتر ساینس",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "مبانی علم سیاست 1",
+    "semester": 1,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سازمان های بین المللی 1",
+    "semester": 1,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "تاریخ روابط بین الملل 1",
+    "semester": 1,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مبانی جامع شناسی",
+    "semester": 1,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مبادی حقوق",
+    "semester": 1,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مبادی اقتصاد",
+    "semester": 1,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی 1",
+    "semester": 1,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+  {
+    "id": 1,
+    "name": "انگلیسی",
+    "semester": 1,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "محیط زیست",
+    "semester": 1,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "تاریخ معاصر افغانستان ",
+    "semester": 1,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "مبانی علم سیاست",
+    "semester": 2,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سازمان های بین المللی (منظقوی) 2",
+    "semester": 2,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "تاریخ روابط بین المللی 2",
+    "semester": 2,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "تاریخ اندیشه های سیاسی غرب 1",
+    "semester": 2,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ترمینولوژی سیاسی",
+    "semester": 2,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اصول و مبانی دیموکراسی",
+    "semester": 2,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اداره و مدیریت",
+    "semester": 2,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق اساسی عمومی",
+    "semester": 2,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی 2",
+    "semester": 2,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+  {
+    "id": 1,
+    "name": "انگلیسی",
+    "semester": 2,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "تاریخ اندیشه های سیاسی غرب 2",
+    "semester": 3,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 3
+  },
+  {
+    "id": 1,
+    "name": "روش تحقیق",
+    "semester": 3,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "انگلیسی تخصصی",
+    "semester": 3,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق اساسی افغانستان",
+    "semester": 3,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اندیشه های سیاسی در اسلام",
+    "semester": 3,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سیاست و حکومت در جنوب آسیا",
+    "semester": 3,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "تاریخ روابط خارجی افغانستان",
+    "semester": 3,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "جنبش ها و جریان های سیاسی اسلامی",
+    "semester": 3,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی 3",
+    "semester": 3,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+  {
+    "id": 1,
+    "name": "کمپیوتر",
+    "semester": 3,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+  {
+    "id": 1,
+    "name": "مضمون اختیاری",
+    "semester": 3,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+
+  {
+    "id": 1,
+    "name": "روش تحقیق (تخصصی) 2",
+    "semester": 4,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اصول روابط بین الملل 1",
+    "semester": 4,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اندیشه سیاسی قرن بیست ",
+    "semester": 4,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "جغرافیای سیاسی",
+    "semester": 4,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "نوسازی و توسعه سیاسی",
+    "semester": 4,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "انگلیسی تخصصی",
+    "semester": 4,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سیاست و حکومت در آسیای مرکزی",
+    "semester": 4,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اصول رهبری",
+    "semester": 4,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "نظام های انتخاباتی",
+    "semester": 4,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی 4",
+    "semester": 4,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+
+  {
+    "id": 1,
+    "name": "اصول روابط بین الملل (۲)",
+    "semester": 5,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق بین الملل عمومی (۱)",
+    "semester": 5,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "جامعه شناسی سیاسی (۱)",
+    "semester": 5,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مسایل سیاسی-اقتصادی کشور های کم توسعه",
+    "semester": 5,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق اساسی مقایسوی",
+    "semester": 5,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "صلح و حل منازغات",
+    "semester": 5,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مبانی دیپلوماسی",
+    "semester": 5,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "جهانی شدن",
+    "semester": 5,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی (5)",
+    "semester": 5,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مضمون اختیاری",
+    "semester": 5,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "حقوق بین الملل عمومی (2)",
+    "semester": 6,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "جامعه شناسی سیاسی (2)",
+    "semester": 6,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق اداری ",
+    "semester": 6,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مبانی تحلیلی سیاست خارجی",
+    "semester": 6,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق دیپلوماتیک و قنسلی",
+    "semester": 6,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "آداب و تشریفات دیپلوماتیک ",
+    "semester": 6,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سیاست و حکومت در ایالات متحده آمریکا",
+    "semester": 6,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "نظام سیاسی افغانستان ",
+    "semester": 6,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی(6)",
+    "semester": 6,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مضمون اختیاری",
+    "semester": 6,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+
+  {
+    "id": 1,
+    "name": "تئوری های روابط بین المللی",
+    "semester": 7,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سیاست خارجی قدرتهای بزرگ (1)",
+    "semester": 7,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "امنیت بین الملل",
+    "semester": 7,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "تجارت بین الملل",
+    "semester": 7,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق بشر",
+    "semester": 7,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سیاست مقایسوی",
+    "semester": 7,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی(7)",
+    "semester": 7,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "برنامه عملی(شبیه سازی)",
+    "semester": 7,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "پایان نامه",
+    "semester": 7,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مضمون اختیاری",
+    "semester": 7,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+
+  {
+    "id": 1,
+    "name": "تئوری های روابط بین المللی(2)",
+    "semester": 8,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سیاست خارجی قدرت های بزرگ (2)",
+    "semester": 8,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اقتصاد سیاسی بین المللی",
+    "semester": 8,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "روانشناسی سیاسی",
+    "semester": 8,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مسائل سیاسی جهان",
+    "semester": 8,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "پایان نامه",
+    "semester": 8,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "کارآموزی",
+    "semester": 8,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی (8)",
+    "semester": 8,
+    "department": "قضایی - څارنوالی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+
+  {
+    "id": 1,
+    "name": "مبانی علم سیاست 1",
+    "semester": 1,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سازمان های بین المللی 1",
+    "semester": 1,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "تاریخ روابط بین الملل 1",
+    "semester": 1,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مبانی جامع شناسی",
+    "semester": 1,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مبادی حقوق",
+    "semester": 1,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مبادی اقتصاد",
+    "semester": 1,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی 1",
+    "semester": 1,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+  {
+    "id": 1,
+    "name": "انگلیسی",
+    "semester": 1,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "محیط زیست",
+    "semester": 1,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "تاریخ معاصر افغانستان ",
+    "semester": 1,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "مبانی علم سیاست",
+    "semester": 2,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سازمان های بین المللی (منظقوی) 2",
+    "semester": 2,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "تاریخ روابط بین المللی 2",
+    "semester": 2,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "تاریخ اندیشه های سیاسی غرب 1",
+    "semester": 2,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ترمینولوژی سیاسی",
+    "semester": 2,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اصول و مبانی دیموکراسی",
+    "semester": 2,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اداره و مدیریت",
+    "semester": 2,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق اساسی عمومی",
+    "semester": 2,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی 2",
+    "semester": 2,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+  {
+    "id": 1,
+    "name": "انگلیسی",
+    "semester": 2,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "تاریخ اندیشه های سیاسی غرب 2",
+    "semester": 3,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 3
+  },
+  {
+    "id": 1,
+    "name": "روش تحقیق",
+    "semester": 3,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "انگلیسی تخصصی",
+    "semester": 3,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق اساسی افغانستان",
+    "semester": 3,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اندیشه های سیاسی در اسلام",
+    "semester": 3,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سیاست و حکومت در جنوب آسیا",
+    "semester": 3,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "تاریخ روابط خارجی افغانستان",
+    "semester": 3,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "جنبش ها و جریان های سیاسی اسلامی",
+    "semester": 3,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی 3",
+    "semester": 3,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+  {
+    "id": 1,
+    "name": "کمپیوتر",
+    "semester": 3,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+  {
+    "id": 1,
+    "name": "مضمون اختیاری",
+    "semester": 3,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+
+  {
+    "id": 1,
+    "name": "روش تحقیق (تخصصی) 2",
+    "semester": 4,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اصول روابط بین الملل 1",
+    "semester": 4,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اندیشه سیاسی قرن بیست ",
+    "semester": 4,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "جغرافیای سیاسی",
+    "semester": 4,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "نوسازی و توسعه سیاسی",
+    "semester": 4,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "انگلیسی تخصصی",
+    "semester": 4,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سیاست و حکومت در آسیای مرکزی",
+    "semester": 4,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اصول رهبری",
+    "semester": 4,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "نظام های انتخاباتی",
+    "semester": 4,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی 4",
+    "semester": 4,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+
+  {
+    "id": 1,
+    "name": "اصول روابط بین الملل (۲)",
+    "semester": 5,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق بین الملل عمومی (۱)",
+    "semester": 5,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "جامعه شناسی سیاسی (۱)",
+    "semester": 5,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مسایل سیاسی-اقتصادی کشور های کم توسعه",
+    "semester": 5,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق اساسی مقایسوی",
+    "semester": 5,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "صلح و حل منازغات",
+    "semester": 5,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مبانی دیپلوماسی",
+    "semester": 5,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "جهانی شدن",
+    "semester": 5,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی (5)",
+    "semester": 5,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مضمون اختیاری",
+    "semester": 5,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+
+  {
+    "id": 1,
+    "name": "حقوق بین الملل عمومی (2)",
+    "semester": 6,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "جامعه شناسی سیاسی (2)",
+    "semester": 6,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق اداری ",
+    "semester": 6,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مبانی تحلیلی سیاست خارجی",
+    "semester": 6,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق دیپلوماتیک و قنسلی",
+    "semester": 6,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "آداب و تشریفات دیپلوماتیک ",
+    "semester": 6,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سیاست و حکومت در ایالات متحده آمریکا",
+    "semester": 6,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "نظام سیاسی افغانستان ",
+    "semester": 6,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی(6)",
+    "semester": 6,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مضمون اختیاری",
+    "semester": 6,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+
+  {
+    "id": 1,
+    "name": "تئوری های روابط بین المللی",
+    "semester": 7,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سیاست خارجی قدرتهای بزرگ (1)",
+    "semester": 7,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "امنیت بین الملل",
+    "semester": 7,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "تجارت بین الملل",
+    "semester": 7,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "حقوق بشر",
+    "semester": 7,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سیاست مقایسوی",
+    "semester": 7,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی(7)",
+    "semester": 7,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "برنامه عملی(شبیه سازی)",
+    "semester": 7,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "پایان نامه",
+    "semester": 7,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مضمون اختیاری",
+    "semester": 7,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+
+  {
+    "id": 1,
+    "name": "تئوری های روابط بین المللی(2)",
+    "semester": 8,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "سیاست خارجی قدرت های بزرگ (2)",
+    "semester": 8,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "اقتصاد سیاسی بین المللی",
+    "semester": 8,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "روانشناسی سیاسی",
+    "semester": 8,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "مسائل سیاسی جهان",
+    "semester": 8,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "پایان نامه",
+    "semester": 8,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "کارآموزی",
+    "semester": 8,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 2
+  },
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی (8)",
+    "semester": 8,
+    "department": "اداری - دیپلماسی",
+    "fieldOfStudy": "حقوق",
+    "credit": 1
+  },
+
+  {
+    "id": 1,
+    "name": "ثقافت اسلامی 1",
+    "semester": 1,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 3
+  },
+  {
+    "id": 1,
+    "name": "بیولوژی مالیکولی 1",
+    "semester": 1,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 3
+  },
+  {
+    "id": 1,
+    "name": "کامپیوتر",
+    "semester": 1,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "جنتیک طبی",
+    "semester": 1,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "انگلیسی",
+    "semester": 1,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 3
+  },
+  {
+    "name": "بیوفزیک 1",
+    "semester": 1,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "کیمیا طبی 1",
+    "semester": 1,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 1
+  },
+  {
+    "name": "اناتومی 1",
+    "semester": 1,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "هستولوژی 1",
+    "semester": 1,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "محیط زیست",
+    "semester": 1,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+
+  {
+    "name": "ثقافت اسلامی 2",
+    "semester": 2,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 4
+  },
+  {
+    "name": "بیولوژی مالیکولی 2",
+    "semester": 2,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "کامپیوتر 2",
+    "semester": 2,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "فزیک طبی",
+    "semester": 2,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "انگلیسی 2",
+    "semester": 2,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 3
+  },
+  {
+    "name": "اناتومی 2",
+    "semester": 2,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "کیمیا طبی 2",
+    "semester": 2,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "امبریولوژی عمومی 1",
+    "semester": 2,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 1
+  },
+  {
+    "name": "هستولوژی 2",
+    "semester": 2,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+
+  {
+    "name": "ثقافت اسلامی 3",
+    "semester": 3,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 4
+  },
+  {
+    "name": "اناتومی سر و گردن 3",
+    "semester": 3,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 4
+  },
+  {
+    "name": "هستالوژی جوف دهن 3",
+    "semester": 3,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "امبریولوژی جوف دهن 2",
+    "semester": 3,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 1
+  },
+  {
+    "name": "فزیولوژی طبی 1",
+    "semester": 3,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 3
+  },
+  {
+    "name": "بیوشمی طبی 1",
+    "semester": 3,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 3
+  },
+  {
+    "name": "پتالوژی عمومی 1",
+    "semester": 3,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "میکروبیولوژی عمومی 1",
+    "semester": 3,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+
+  {
+    "name": "ثقافت اسلامی 4",
+    "semester": 4,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 3
+  },
+  {
+    "name": "فزیولوژی 2",
+    "semester": 4,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 3
+  },
+  {
+    "name": "بیوشیمی",
+    "semester": 4,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "پتالوژی سیستمی 2",
+    "semester": 4,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "میکروبیولوژی",
+    "semester": 4,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "مواد دندان",
+    "semester": 4,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "اخلاق طبابت",
+    "semester": 4,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 1
+  },
+  {
+
+    "name": "کمک ها اولیه",
+    "semester": 4,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "ایمینیولوژی",
+    "semester": 4,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 1
+  },
+  {
+
+    "name": "پروستودنتکس 1",
+    "semester": 4,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+
+  {
+
+    "name": "ثقافت اسلامی 5",
+    "semester": 5,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 3
+  },
+  {
+
+    "name": "فزیولوژی جوف دهن 3",
+    "semester": 5,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "پتالوژی جوف دهن 3",
+    "semester": 5,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "پروستودنتکس 3",
+    "semester": 5,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "فارماکولوژی عمومی 3",
+    "semester": 5,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "داخله عمومی 1",
+    "semester": 5,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "جراحی عمومی 1",
+    "semester": 5,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "صحت عامه",
+    "semester": 5,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 1
+  },
+  {
+
+    "name": "داخله دندان",
+    "semester": 5,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "جراحی وجه و فک 1",
+    "semester": 5,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+
+  {
+
+    "name": "ثقافت اسلامی 6",
+    "semester": 6,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "پروستودنتکس 3",
+    "semester": 6,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "فارماکولوژی دندان 2",
+    "semester": 6,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "داخله عمومی 2",
+    "semester": 6,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "جراحی عمومی 2",
+    "semester": 6,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "صحت عامه 2",
+    "semester": 6,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 1
+  },
+  {
+
+    "name": "داخله دندان 2",
+    "semester": 6,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "نیورولوژی",
+    "semester": 6,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "جراحی وجه و فک 2",
+    "semester": 6,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "انستیزی",
+    "semester": 6,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+
+  {
+
+    "name": "ثقافت اسلامی 7",
+    "semester": 7,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "پروستودنتکس 4",
+    "semester": 7,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "داخله عمومی 3",
+    "semester": 7,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+
+    "name": "جراحی عمومی 3",
+    "semester": 7,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "صحت عامه",
+    "semester": 7,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 1
+  },
+  {
+    "name": "داخله دندان (ترمیمی دندان) 3",
+    "semester": 7,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "جراحی وجه و فک 3",
+    "semester": 7,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "گوش و گلو",
+    "semester": 7,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "اطفال دندان",
+    "semester": 7,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "طب عدلی",
+    "semester": 7,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+
+  {
+    "name": "ثقافت اسلامی 8",
+    "semester": 8,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "پروستودنتکس 5",
+    "semester": 8,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "داخله دندان 1",
+    "semester": 8,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "جراحی وجه و فک 4",
+    "semester": 8,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "اطفال دندان",
+    "semester": 8,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "امراض جوف دهن 1",
+    "semester": 8,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "رادیولوژی عمومی 1",
+    "semester": 8,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "پریودنتولوژی 1",
+    "semester": 8,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "ارتودنسی 1",
+    "semester": 8,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "انتانی تبرکلوز",
+    "semester": 8,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+
+  {
+    "name": "پروستودنتکس 6",
+    "semester": 9,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "داخله دندان 2",
+    "semester": 9,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "جراحی وجه و فک 5",
+    "semester": 9,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "اطفال دندان",
+    "semester": 9,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "امراض جوف دهن 2",
+    "semester": 9,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "رادیولوژی جوف دهن 2",
+    "semester": 9,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "پریودنتولوژی 2",
+    "semester": 9,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "ارتودنسی 2",
+    "semester": 9,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "چشم",
+    "semester": 9,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+
+  {
+    "name": "پروستودنتکس 7",
+    "semester": 10,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "داخله دندان 3",
+    "semester": 10,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "امراض جوف دهن 3",
+    "semester": 10,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "پریودنتولوژی 3",
+    "semester": 10,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "ارتودنسی 3",
+    "semester": 10,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "صحت عامه (اپیدیمولوژی)",
+    "semester": 10,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 1
+  },
+  {
+    "name": "صحت عامه (روش تحقیق)",
+    "semester": 10,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 1
+  },
+  {
+    "name": "جراحی عصبی",
+    "semester": 10,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "جراحی پلاستیک",
+    "semester": 10,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
+  },
+  {
+    "name": "دندان پزشکی وقایوی",
+    "semester": 10,
+    "department": "دیپارتمنت عمومی",
+    "fieldOfStudy": "طب داندن",
+    "credit": 2
   }
 ]

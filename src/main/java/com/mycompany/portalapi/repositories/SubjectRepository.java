@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface SubjectRepository extends JpaRepository<Subject, Long> {
     List<Subject> findAllByFieldOfStudyAndDepartment(String field, String department);
+    List<Subject> findAllByFieldOfStudyAndDepartmentAndSemester(String field, String department, Integer semester);
     List<Subject> findAllByFieldOfStudy(String field);
 
     List<Subject> findAllByName(String name);

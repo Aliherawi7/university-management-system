@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -85,11 +86,32 @@ public class AttendanceService {
         return AttendanceStudentListResponse.builder()
                 .students(studentAttendanceResponses)
                 .daysInMonth(localDate.lengthOfMonth())
+                .daysWithoutHolidays(localDate.lengthOfMonth() - getFridays(localDate.getYear(), localDate.getMonthValue()).length)
                 .localDate(localDate)
+                .fieldOfStudy(fieldOfStudy)
+                .department(department)
+                .subject(subject)
                 .build();
     }
 
     public List<Attendance> sortAttendanceBaseOnDay(List<Attendance> attendances){
        return  attendances.stream().sorted().toList();
+    }
+
+    public static LocalDate[] getFridays(int year, int month) {
+        List<LocalDate> fridayList = new ArrayList<>();
+
+        LocalDate date = LocalDate.of(year, month, 1);
+        LocalDate lastDayOfMonth = date.withDayOfMonth(date.lengthOfMonth());
+
+        while (date.isBefore(lastDayOfMonth) || date.isEqual(lastDayOfMonth)) {
+            if (date.getDayOfWeek() == DayOfWeek.FRIDAY) {
+                fridayList.add(date);
+            }
+            date = date.plusDays(1);
+        }
+
+        LocalDate[] fridaysArray = new LocalDate[fridayList.size()];
+        return fridayList.toArray(fridaysArray);
     }
 }

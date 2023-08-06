@@ -14,10 +14,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 @RequiredArgsConstructor
@@ -27,15 +25,15 @@ public class AttendanceService {
     private final AttendanceRepository attendanceRepository;
     private final StudentService studentService;
 
-    public APIResponse addAttendance(Attendance attendance){
+    public APIResponse addAttendance(Attendance attendance) {
         Attendance prevAttendance = attendanceRepository.findByStudentIdAndYearNumberAndMonthNumberAndDayNumberAndSemesterAndSubject(
                 attendance.getStudentId(), attendance.getYearNumber(), attendance.getMonthNumber(),
                 attendance.getDayNumber(), attendance.getSemester(), attendance.getSubject()
         );
-        if(prevAttendance != null){
+        if (prevAttendance != null) {
             attendance.setIsPresent(attendance.getIsPresent());
             attendanceRepository.save((prevAttendance));
-        }else{
+        } else {
             attendanceRepository.save(attendance);
         }
         return APIResponse.builder()
@@ -48,31 +46,30 @@ public class AttendanceService {
 
     public List<Attendance> getStudentAttendanceBySubjectAndSemesterAndSubjectAndDate(
             Long studentId, String subjectId, Integer semester, Integer year, Integer month
-    ){
-        log.info("params: stud:{}, sub:{}, seme:{} year:{}, month:{}",studentId, subjectId, semester, year, month);
+    ) {
         List<Attendance> studentAttendances = attendanceRepository.findAllByStudentIdAndYearNumberAndMonthNumberAndSemesterAndSubject(
                 studentId, year, month, semester, subjectId
         );
-        log.info("all attendance: {}",attendanceRepository.findAll());
-        log.info("query attendance: {}",studentAttendances);
+
         return studentAttendances;
     }
+
     public AttendanceStudentListResponse getTheAttendanceList(
             String fieldOfStudy, String department, Integer semester,
             String subject, Integer year, Integer month
-    ){
+    ) {
         // get all the students from db
         Page<StudentShortInfo> students = studentService.getAllPostsByRequestParams(
                 null, fieldOfStudy, department, semester, 0, 300
         );
 
         /*
-        * get each student's attendances in the provided month and then store them into
-        * an object of StudentAttendanceResponse
-        * and then put the studentAttendanceResponse objects into AttendanceStudentListResponse Object
-        * */
+         * get each student's attendances in the provided month and then store them into
+         * an object of StudentAttendanceResponse
+         * and then put the studentAttendanceResponse objects into AttendanceStudentListResponse Object
+         * */
         List<StudentAttendanceResponse> studentAttendanceResponses = new ArrayList<>();
-        LocalDate localDate = LocalDate.of(year, month,1);
+        LocalDate localDate = LocalDate.of(year, month, 1);
         int daysWithoutHolidays = localDate.lengthOfMonth() - getFridays(localDate.getYear(), localDate.getMonthValue()).length;
 
         students.forEach(student -> {
@@ -81,13 +78,15 @@ public class AttendanceService {
                     (student.id(), subject, semester, year, month);
             List<MonthlyAttendance> monthlyAttendances = new ArrayList<>();
             LocalDate[] fridays = getFridays(localDate.getYear(), localDate.getMonthValue());
-            for(int i = 1; i <= localDate.getMonth().length(localDate.isLeapYear()); i++){
+            for (int i = 1; i <= localDate.getMonth().length(localDate.isLeapYear()); i++) {
+
                 int finalI = i;
                 Optional<Attendance> monthlyAttendance = studentAttendances.stream().filter(item -> item.getDayNumber() == finalI).findFirst();
                 boolean isPresent = false;
-                if(monthlyAttendance.isPresent()){
+                if (monthlyAttendance.isPresent()) {
                     isPresent = true;
                 }
+
                 int currentDay = i;
                 Optional<LocalDate> isFriday = Stream.of(fridays).filter(item -> item.getDayOfMonth() == currentDay).findFirst();
                 monthlyAttendances.add(MonthlyAttendance.builder()
@@ -100,26 +99,27 @@ public class AttendanceService {
                 );
             }
 
-           monthlyAttendances = monthlyAttendances.stream().sorted((o1, o2) -> o1.day().compareTo(o2.day())).toList();
+            monthlyAttendances = monthlyAttendances.stream().sorted((o1, o2) -> o1.day().compareTo(o2.day())).toList();
 
 
-            int totalPresentDays =(int) studentAttendances.stream().filter(Attendance::getIsPresent).count();
+            int totalPresentDays = (int) studentAttendances.stream().filter(Attendance::getIsPresent).count();
             int totalAbsentDays = (int) (studentAttendances.size() - totalPresentDays);
             studentAttendanceResponses.add(
                     StudentAttendanceResponse.builder()
-                    .monthlyAttendance(monthlyAttendances)
-                    .totalPresent(totalPresentDays)
-                    .totalAbsent(totalAbsentDays)
-                    .name(student.name())
-                    .fatherName(student.fatherName())
-                    .studentId(student.id())
-                    .build()
+                            .monthlyAttendance(monthlyAttendances)
+                            .totalPresent(totalPresentDays)
+                            .totalAbsent(totalAbsentDays)
+                            .name(student.name())
+                            .fatherName(student.fatherName())
+                            .studentId(student.id())
+                            .build()
             );
         });
         return AttendanceStudentListResponse.builder()
                 .students(studentAttendanceResponses)
                 .daysInMonth(localDate.lengthOfMonth())
                 .daysWithoutHolidays(daysWithoutHolidays)
+                .monthDetails(getMonthDetails(localDate))
                 .localDate(localDate)
                 .fieldOfStudy(fieldOfStudy)
                 .department(department)
@@ -127,8 +127,8 @@ public class AttendanceService {
                 .build();
     }
 
-    public List<Attendance> sortAttendanceBaseOnDay(List<Attendance> attendances){
-       return  attendances.stream().sorted().toList();
+    public List<Attendance> sortAttendanceBaseOnDay(List<Attendance> attendances) {
+        return attendances.stream().sorted().toList();
     }
 
     public static LocalDate[] getFridays(int year, int month) {
@@ -146,5 +146,21 @@ public class AttendanceService {
 
         LocalDate[] fridaysArray = new LocalDate[fridayList.size()];
         return fridayList.toArray(fridaysArray);
+    }
+
+    public List<DayDetails> getMonthDetails(LocalDate localDate) {
+        List<DayDetails> monthDetails = new ArrayList<>();
+        LocalDate[] fridays = getFridays(localDate.getYear(), localDate.getMonthValue());
+        for (int i = 1; i <= localDate.getMonth().length(localDate.isLeapYear()); i++) {
+            LocalDate date = LocalDate.of(localDate.getYear(), localDate.getMonthValue(), i);
+            boolean isHoliday = date.getDayOfWeek().equals(DayOfWeek.FRIDAY);
+            monthDetails.add(DayDetails.builder()
+                    .dayOfMonth(i)
+                    .dayOfWeek(date.getDayOfWeek().name())
+                    .isHoliday(isHoliday)
+                    .build()
+            );
+        }
+        return monthDetails;
     }
 }

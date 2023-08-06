@@ -103,7 +103,16 @@ public class AttendanceService {
 
 
             int totalPresentDays = (int) studentAttendances.stream().filter(Attendance::getIsPresent).count();
-            int totalAbsentDays = (int) (studentAttendances.size() - totalPresentDays);
+            int totalAbsentDays =  daysWithoutHolidays - totalPresentDays;
+
+//            if(localDate.getMonthValue() == LocalDate.now().getMonthValue()) {
+//                int counter = 0;
+//                for(int i = 1; i <=LocalDate.now().getDayOfMonth(); i++){
+//                    if(LocalDate.of())
+//                }
+//
+//            }
+
             studentAttendanceResponses.add(
                     StudentAttendanceResponse.builder()
                             .monthlyAttendance(monthlyAttendances)

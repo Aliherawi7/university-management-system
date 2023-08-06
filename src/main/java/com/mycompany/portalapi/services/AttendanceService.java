@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -78,16 +80,20 @@ public class AttendanceService {
             List<Attendance> studentAttendances = getStudentAttendanceBySubjectAndSemesterAndSubjectAndDate
                     (student.id(), subject, semester, year, month);
             List<MonthlyAttendance> monthlyAttendances = new ArrayList<>();
-            for(int i = 1; i < localDate.getMonth().length(localDate.isLeapYear()); i++){
+            LocalDate[] fridays = getFridays(localDate.getYear(), localDate.getMonthValue());
+            for(int i = 1; i <= localDate.getMonth().length(localDate.isLeapYear()); i++){
                 int finalI = i;
                 Optional<Attendance> monthlyAttendance = studentAttendances.stream().filter(item -> item.getDayNumber() == finalI).findFirst();
                 boolean isPresent = false;
                 if(monthlyAttendance.isPresent()){
                     isPresent = true;
                 }
+                int currentDay = i;
+                Optional<LocalDate> isFriday = Stream.of(fridays).filter(item -> item.getDayOfMonth() == currentDay).findFirst();
                 monthlyAttendances.add(MonthlyAttendance.builder()
                         .day(i)
                         .isPresent(isPresent)
+                        .isHoliday(isFriday.isPresent())
                         .month(localDate.getMonthValue())
                         .year(localDate.getYear())
                         .build()

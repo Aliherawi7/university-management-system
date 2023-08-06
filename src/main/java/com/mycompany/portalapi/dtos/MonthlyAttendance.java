@@ -7,6 +7,7 @@ public record MonthlyAttendance(
         Integer year,
         Integer month,
         Integer day,
-        boolean isPresent
+        boolean isPresent,
+        boolean isHoliday
 ) {
 }

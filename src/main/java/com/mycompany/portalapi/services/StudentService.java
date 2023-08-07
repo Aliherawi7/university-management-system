@@ -255,7 +255,7 @@ public class StudentService {
         }
         /* check if email is already taken */
         if (studentRepository.existsByEmail(studentRegistrationDTO.studentPersonalInfo().email())) {
-            throw new IllegalArgumentException("the email: { " + studentRegistrationDTO.studentPersonalInfo().email() + " } is already exist");
+            throw new IllegalArgumentException("ایمیل از قبل موجود است!");
         }
         studentRegistrationDTO.relatives().forEach(item -> {
             Relationship relationship = relationshipRepository

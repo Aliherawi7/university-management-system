@@ -34,7 +34,7 @@ public record StudentPersonalInfo(
         @NotBlank(message = "رمز حساب کاربری نباید خالی باشد")
         String password,
         @NotBlank(message = "ایمیل نباید خالی باشد")
-        @Email(message = "ایمیل نامعنبر")
+        @Email(message = "ایمیل نامعتبر")
         String email,
         @NotBlank(message = "شماره تماس نباید خالی باشد")
         String phoneNumber,

@@ -358,6 +358,78 @@
   },
   {
     "studentPersonalInfo": {
+      "name": "فیصل",
+      "lastName": "بارکزی",
+      "fatherName": "محمد عارف",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "joinedDate": "2019-10-03",
+      "fieldOfStudy": "طب دندان",
+      "department": "دیپارتمنت عمومی",
+      "email": "fasal1233@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0796428826",
+      "semester": 9
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "پدر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      },
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "ماما"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      }
+    ],
+    "identification": {
+      "nationalId": 1014006446876,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 975687765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
       "name": "حامد",
       "lastName": "نجرابی",
       "fatherName": "عبدالله",
@@ -5615,6 +5687,78 @@
   },
   {
     "studentPersonalInfo": {
+      "name": "شریف",
+      "lastName": "بارکزی",
+      "fatherName": "محمد عارف",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "joinedDate": "2019-10-03",
+      "fieldOfStudy": "طب دندان",
+      "department": "دیپارتمنت عمومی",
+      "email": "aharifsharif444@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0796428826",
+      "semester": 9
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "پدر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      },
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "ماما"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      }
+    ],
+    "identification": {
+      "nationalId": 60006454446876,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 975687765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
       "name": "ثریا",
       "lastName": "سهرابی",
       "fatherName": "سرور",
@@ -6621,7 +6765,150 @@
     },
     "role": "student"
   },
-
+  {
+    "studentPersonalInfo": {
+      "name": "فیصل",
+      "lastName": "بارکزی",
+      "fatherName": "محمد عارف",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "joinedDate": "2019-10-03",
+      "fieldOfStudy": "طب دندان",
+      "department": "دیپارتمنت عمومی",
+      "email": "ahmadddd121@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0796428826",
+      "semester": 10
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "پدر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      },
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "ماما"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      }
+    ],
+    "identification": {
+      "nationalId": 3444468763434,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 975687765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "فیصل",
+      "lastName": "بارکزی",
+      "fatherName": "محمد عارف",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "joinedDate": "2019-10-03",
+      "fieldOfStudy": "طب دندان",
+      "department": "دیپارتمنت عمومی",
+      "email": "ahmadddd12301@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0796428826",
+      "semester": 10
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "پدر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      },
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "ماما"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      }
+    ],
+    "identification": {
+      "nationalId": 344446876,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 975687765
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
   {
     "studentPersonalInfo": {
       "name": "کمال",
@@ -8839,6 +9126,78 @@
       "caseNumber": 6,
       "pageNumber": 87,
       "registrationNumber": 2027
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "علی",
+      "lastName": "بارکزی",
+      "fatherName": "محمد عارف",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "joinedDate": "2019-10-03",
+      "fieldOfStudy": "طب دندان",
+      "department": "دیپارتمنت عمومی",
+      "email": "alialiali@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0796428826",
+      "semester": 9
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "پدر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      },
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "ماما"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      }
+    ],
+    "identification": {
+      "nationalId": 1014006646,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 975687765
     },
     "locations": {
       "current": {
@@ -11864,6 +12223,78 @@
       "caseNumber": 6,
       "pageNumber": 87,
       "registrationNumber": 12121233
+    },
+    "locations": {
+      "current": {
+        "villageOrQuarter": "بازار چه",
+        "district": "ناحیه 2",
+        "city": "هرات",
+        "current": true
+      },
+      "previous": {
+        "villageOrQuarter": "سرک خواجه صاحب",
+        "district": "ناحیه 8",
+        "city": "هرات",
+        "current": false
+      }
+    },
+    "role": "student"
+  },
+  {
+    "studentPersonalInfo": {
+      "name": "احمد",
+      "lastName": "بارکزی",
+      "fatherName": "محمد عارف",
+      "grandFatherName": "عبدالعزیز",
+      "dob": "1999-03-10",
+      "motherTongue": "دری",
+      "maritalStatus": "مجرد",
+      "highSchool": "عبدالله هاتفی",
+      "schoolGraduationDate": "2017-07-12",
+      "joinedDate": "2019-10-03",
+      "fieldOfStudy": "طب دندان",
+      "department": "دیپارتمنت عمومی",
+      "email": "ahmadahmad0404@gmail.com",
+      "password": "12345",
+      "gender": "مرد",
+      "phoneNumber": "0796428826",
+      "semester": 10
+    },
+    "relatives": [
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "پدر"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "کاکا"
+      },
+      {
+        "name": "احمد",
+        "job": "انجنییر",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "ماما"
+      },
+      {
+        "name": "فهیم",
+        "job": "مهندس",
+        "phoneNumber": "0796428826",
+        "jobLocation": "هرات",
+        "relationship": "برادر"
+      }
+    ],
+    "identification": {
+      "nationalId": 664544460876,
+      "caseNumber": 6,
+      "pageNumber": 87,
+      "registrationNumber": 975687765
     },
     "locations": {
       "current": {

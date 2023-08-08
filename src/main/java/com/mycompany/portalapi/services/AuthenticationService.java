@@ -1,5 +1,6 @@
 package com.mycompany.portalapi.services;
 
+import com.auth0.jwt.interfaces.Claim;
 import com.mycompany.portalapi.constants.APIEndpoints;
 import com.mycompany.portalapi.constants.RoleName;
 import com.mycompany.portalapi.dtos.AuthenticationRequest;
@@ -22,6 +23,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -90,8 +93,11 @@ public class AuthenticationService {
                 .isEnabled();
     }
 
-    public LoginResponse updateUser(UpdateUserDTO updateUserDTO) {
-
+    public LoginResponse updateUser(UpdateUserDTO updateUserDTO, HttpServletRequest httpServletRequest) {
+        String email = jwtUtils.getUserEmailByJWT(jwtUtils.getToken(httpServletRequest).substring(7));
+        boolean isAdmin = userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("اهراز هویت نامعتبر، لطفا دوباره به سیستم وارد شوید!"))
+                .getRoles().stream().anyMatch(role -> role.getRoleName().getValue().equals(RoleName.ADMIN.getValue()));
+        System.out.println("is admin "+isAdmin);
         UserApp userApp = userRepository.findById(updateUserDTO.userId()).orElseThrow(() -> new ResourceNotFoundException(updateUserDTO.userId() + "کاربری با آی دی نمبر ارائه شده یافت نشد: "));
         String previousEmail = userApp.getEmail();
         if (!userApp.isEnabled()) {
@@ -103,9 +109,12 @@ public class AuthenticationService {
         if (!previousEmail.equalsIgnoreCase(updateUserDTO.email())) {
             userApp.setEmail(updateUserDTO.email());
         }
-        if(!passwordEncoder.matches(updateUserDTO.previousPassword(), userApp.getPassword())){
-            throw new IllegalArgumentException("رمز عبور قبلی اشتباه است!");
+        if(!isAdmin){
+            if(!passwordEncoder.matches(updateUserDTO.previousPassword(), userApp.getPassword())){
+                throw new IllegalArgumentException("رمز عبور قبلی اشتباه است!");
+            }
         }
+
         userApp.setPassword(passwordEncoder.encode(updateUserDTO.newPassword()));
         userRepository.save(userApp);
         if(userApp.getRoles().stream().noneMatch(item -> item.getRoleName().getValue().equals(RoleName.ADMIN.getValue()))){

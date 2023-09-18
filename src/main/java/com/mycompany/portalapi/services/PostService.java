@@ -1,6 +1,5 @@
 package com.mycompany.portalapi.services;
 
-
 import com.mycompany.portalapi.constants.APIEndpoints;
 import com.mycompany.portalapi.dtos.PageContainerDTO;
 import com.mycompany.portalapi.dtos.PostRequestDTO;
@@ -24,7 +23,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Comparator;

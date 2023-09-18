@@ -8,16 +8,17 @@ import lombok.NoArgsConstructor;
 
 @Builder
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Data
 public class Attendance implements Comparable {
     @Id
     @SequenceGenerator(sequenceName = "attendance_sequence", name = "attendance_sequence", initialValue = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attendance_sequence")
     private Long id;
-    private Boolean isPresent;
+    @ManyToOne
+    @JoinColumn(name = "attendance_status")
+    private AttendanceStatus attendanceStatus;
     private Integer yearNumber;
     private Integer monthNumber;
     private Integer dayNumber;

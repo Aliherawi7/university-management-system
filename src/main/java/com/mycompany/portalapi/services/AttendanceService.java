@@ -1,9 +1,12 @@
 package com.mycompany.portalapi.services;
 
 
+import com.mycompany.portalapi.constants.AttendanceStatusName;
 import com.mycompany.portalapi.dtos.*;
+import com.mycompany.portalapi.exceptions.IllegalArgumentException;
 import com.mycompany.portalapi.models.Attendance;
 import com.mycompany.portalapi.repositories.AttendanceRepository;
+import com.mycompany.portalapi.repositories.AttendanceStatusRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -16,6 +19,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RequiredArgsConstructor
@@ -24,18 +28,39 @@ import java.util.stream.Stream;
 public class AttendanceService {
     private final AttendanceRepository attendanceRepository;
     private final StudentService studentService;
+    private final AttendanceStatusRepository attendanceStatusRepository;
 
-    public APIResponse addAttendance(Attendance attendance) {
+    public APIResponse addAttendance(AttendanceDTO attendanceDTO) {
         Attendance prevAttendance = attendanceRepository.findByStudentIdAndYearNumberAndMonthNumberAndDayNumberAndSemesterAndSubject(
-                attendance.getStudentId(), attendance.getYearNumber(), attendance.getMonthNumber(),
-                attendance.getDayNumber(), attendance.getSemester(), attendance.getSubject()
+                attendanceDTO.studentId(), attendanceDTO.yearNumber(), attendanceDTO.monthNumber(),
+                attendanceDTO.dayNumber(), attendanceDTO.semester(), attendanceDTO.subject()
         );
+
         if (prevAttendance != null) {
-            attendance.setIsPresent(attendance.getIsPresent());
-            attendanceRepository.save((prevAttendance));
+            prevAttendance.setAttendanceStatus(attendanceStatusRepository.findByName(attendanceDTO.attendanceStatus()).orElseThrow(() -> new IllegalArgumentException("حالت حاضری نامعتبر")));
+//            log.info("prev attendance: id:{}, stdId:{}, isp:{}",prevAttendance.getId(),prevAttendance.getStudentId(),prevAttendance.getAttendanceStatus());
+//            log.info("att after save. id:{}, isP:{} ",prevAttendance.getId(), attendanceRepository.findById(prevAttendance.getId()).get().getAttendanceStatus());
+            attendanceRepository.save(prevAttendance);
+            attendanceRepository.findAll().forEach(item -> {
+                log.info("attlist: id{}, stId:{}, isP:{} ",item.getId(), item.getStudentId(), item.getAttendanceStatus());
+            });
         } else {
-            attendanceRepository.save(attendance);
+           //log.info("curr attendance: id:{}, stdId:{}, isp:{}",attendance.getId(),attendance.getStudentId(),attendance.getAttendanceStatus());
+            attendanceRepository.save(
+                    Attendance.builder()
+                            .attendanceStatus(attendanceStatusRepository.findByName(attendanceDTO.attendanceStatus()).orElseThrow(() -> new IllegalArgumentException("حالت حاضری نامعتبر است")))
+                            .dayNumber(attendanceDTO.dayNumber())
+                            .monthNumber(attendanceDTO.monthNumber())
+                            .subject(attendanceDTO.subject())
+                            .yearNumber(attendanceDTO.yearNumber())
+                            .department(attendanceDTO.department())
+                            .fieldOfStudy(attendanceDTO.fieldOfStudy())
+                            .studentId(attendanceDTO.studentId())
+                            .semester(attendanceDTO.semester())
+                            .build()
+            );
         }
+
         return APIResponse.builder()
                 .zonedDateTime(ZonedDateTime.now())
                 .httpStatus(HttpStatus.CREATED)
@@ -50,6 +75,7 @@ public class AttendanceService {
         List<Attendance> studentAttendances = attendanceRepository.findAllByStudentIdAndYearNumberAndMonthNumberAndSemesterAndSubject(
                 studentId, year, month, semester, subjectId
         );
+        log.info("studentAttendanceLIst:{}", studentAttendances.stream().map(item ->"[" +item.getStudentId() + " " + item.getAttendanceStatus() + "], ").collect(Collectors.joining("")));
 
         return studentAttendances;
     }
@@ -58,8 +84,10 @@ public class AttendanceService {
             String fieldOfStudy, String department, Integer semester,
             String subject, Integer year, Integer month
     ) {
-        // get all the students from db
-        Page<StudentShortInfo> students = studentService.getAllPostsByRequestParams(
+        /*
+        * get all students with the specific fieldOfStudy, semester, and department
+        * */
+        Page<StudentShortInfo> students = studentService.getAllStudentsByRequestParams(
                 null, fieldOfStudy, department, semester, 0, 300
         );
 
@@ -78,20 +106,20 @@ public class AttendanceService {
                     (student.id(), subject, semester, year, month);
             List<MonthlyAttendance> monthlyAttendances = new ArrayList<>();
             LocalDate[] fridays = getFridays(localDate.getYear(), localDate.getMonthValue());
-            for (int i = 1; i <= localDate.getMonth().length(localDate.isLeapYear()); i++) {
 
+            for (int i = 1; i <= localDate.getMonth().length(localDate.isLeapYear()); i++) {
                 int finalI = i;
                 Optional<Attendance> monthlyAttendance = studentAttendances.stream().filter(item -> item.getDayNumber() == finalI).findFirst();
-                boolean isPresent = false;
+                AttendanceStatusName attendanceStatusName = AttendanceStatusName.UNKNOWN;
                 if (monthlyAttendance.isPresent()) {
-                    isPresent = true;
+                    attendanceStatusName = AttendanceStatusName.valueOf(monthlyAttendance.get().getAttendanceStatus().getName());
                 }
 
                 int currentDay = i;
                 Optional<LocalDate> isFriday = Stream.of(fridays).filter(item -> item.getDayOfMonth() == currentDay).findFirst();
                 monthlyAttendances.add(MonthlyAttendance.builder()
                         .day(i)
-                        .isPresent(isPresent)
+                        .attendanceStatusName(attendanceStatusName)
                         .isHoliday(isFriday.isPresent())
                         .month(localDate.getMonthValue())
                         .year(localDate.getYear())
@@ -102,16 +130,10 @@ public class AttendanceService {
             monthlyAttendances = monthlyAttendances.stream().sorted((o1, o2) -> o1.day().compareTo(o2.day())).toList();
 
 
-            int totalPresentDays = (int) studentAttendances.stream().filter(Attendance::getIsPresent).count();
-            int totalAbsentDays =  daysWithoutHolidays - totalPresentDays;
-
-//            if(localDate.getMonthValue() == LocalDate.now().getMonthValue()) {
-//                int counter = 0;
-//                for(int i = 1; i <=LocalDate.now().getDayOfMonth(); i++){
-//                    if(LocalDate.of())
-//                }
-//
-//            }
+            int totalPresentDays = (int) studentAttendances.stream().filter(attendance -> attendance.getAttendanceStatus().getName().equals(AttendanceStatusName.PRESENT.getValue())).count();
+            int totalAbsentDays = (int) studentAttendances.stream().filter(attendance -> attendance.getAttendanceStatus().getName().equals(AttendanceStatusName.ABSENT.getValue())).count();
+            //deprecated
+            //int totalAbsentDays =  daysWithoutHolidays - totalPresentDays;
 
             studentAttendanceResponses.add(
                     StudentAttendanceResponse.builder()

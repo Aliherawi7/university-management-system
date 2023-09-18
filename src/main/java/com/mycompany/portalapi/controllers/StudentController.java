@@ -49,7 +49,7 @@ public class StudentController {
             @RequestParam(name = "offset") Integer offset,
             @RequestParam(name = "pageSize") Integer pageSize
     ) {
-        return ResponseEntity.ok().body(studentService.getAllPostsByRequestParams(keyword, fieldOfStudy, department, semester, offset, pageSize));
+        return ResponseEntity.ok().body(studentService.getAllStudentsByRequestParams(keyword, fieldOfStudy, department, semester, offset, pageSize));
     }
 
     @DeleteMapping("/{studentId}")

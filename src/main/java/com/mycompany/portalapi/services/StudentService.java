@@ -265,7 +265,7 @@ public class StudentService {
 
     /* search methods */
 
-    public Page<StudentShortInfo> getAllPostsByRequestParams(
+    public Page<StudentShortInfo> getAllStudentsByRequestParams(
             String keyword,
             String fieldOfStudy,
             String department,

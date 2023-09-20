@@ -13,8 +13,8 @@ public class FileStorageLocation {
     public FileStorageLocation(
             @Value("${file.userApp.profile.upload.dir}") String studentProfileImageUploadDir,
             @Value("${file.post.upload.dir}") String postFiles) {
-        this.studentProfileImageUploadDir = studentProfileImageUploadDir;
-        this.postFiles = postFiles;
+        this.studentProfileImageUploadDir = System.getProperty("user.dir") + studentProfileImageUploadDir;
+        this.postFiles = System.getProperty("user.dir") + postFiles;
     }
 
     public String getStudentProfileImageUploadDir() {

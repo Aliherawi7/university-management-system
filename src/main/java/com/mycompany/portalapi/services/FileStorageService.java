@@ -27,8 +27,8 @@ public class FileStorageService {
 
     public FileStorageService(FileStorageLocation fileStorageLocation) {
         this.fileStorageLocation = fileStorageLocation;
-        this.studentProfileImageLocation = Paths.get(fileStorageLocation.getStudentProfileImageUploadDir()).toAbsolutePath().normalize();
-        this.post = Paths.get(fileStorageLocation.getPostFiles()).toAbsolutePath().normalize();
+        this.studentProfileImageLocation = Paths.get(fileStorageLocation.getStudentProfileImageUploadDir());
+        this.post = Paths.get(fileStorageLocation.getPostFiles());
         try {
             Files.createDirectories(studentProfileImageLocation);
             Files.createDirectories(post);

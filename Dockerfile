@@ -1,15 +1,16 @@
 FROM ubuntu:latest
 LABEL authors="Ali Herawi"
 # Fetching latest version of Java
-FROM openjdk:17
+FROM openjdk
 
 # Setting up work directory
 WORKDIR /app
 
 # Copy the jar file into our app
-COPY ./target/spring-0.0.1-SNAPSHOT.jar /app
+COPY ./target/portal-api-0.0.1-SNAPSHOT.jar /app
+COPY upload /app/upload
 
 # Exposing port 5000
 EXPOSE 5000
 # Starting the application
-CMD ["java", "-jar", "spring-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "portal-api-0.0.1-SNAPSHOT.jar"]

@@ -29,7 +29,7 @@ public class PortalApiApplication {
 
 
 
-    @Bean
+
     CommandLineRunner run(StudentService studentService,
                           DepartmentService departmentService,
                           FieldOfStudyService fieldOfStudyService,
@@ -50,7 +50,6 @@ public class PortalApiApplication {
             Role studentRole = Role.builder().id(2).roleName(RoleName.STUDENT).build();
             roleRepository.save(adminRole);
             roleRepository.save(studentRole);
-
 
 
 

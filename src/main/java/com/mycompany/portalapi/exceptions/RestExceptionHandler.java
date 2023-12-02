@@ -61,5 +61,17 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(MissingHeaderException.class)
+    public ResponseEntity<Object> handleAccountLockException(MissingHeaderException missingHeaderException, WebRequest webRequest) {
+        ErrorResponse errorResponse = ErrorResponse
+                .builder()
+                .message(missingHeaderException.getMessage())
+                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .zonedDateTime(ZonedDateTime.now(ZoneId.of("UTC")))
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .build();
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
 
 }

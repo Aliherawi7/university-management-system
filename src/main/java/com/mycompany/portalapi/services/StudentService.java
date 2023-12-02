@@ -45,12 +45,13 @@ public class StudentService {
     private final RelationshipRepository relationshipRepository;
     private final RequestObjectValidatorService<StudentRegistrationDTO> studentRegistrationDTORequestValidatorService;
     private final StudentShortInfoMapper studentShortInfoMapper;
-    @PersistenceContext
-    private EntityManager entityManager;
-
     public StudentSuccessfulRegistrationResponse addStudentForController(StudentRegistrationDTO studentRegistrationDTO) {
         Long studentId = addStudent(studentRegistrationDTO);
-        return StudentSuccessfulRegistrationResponse.builder().message("محصل موفقانه ثبت شد!").statusCode(HttpStatus.CREATED.value()).studentId(studentId).imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + studentId).build();
+        return StudentSuccessfulRegistrationResponse.builder().message("محصل موفقانه ثبت شد!")
+                .statusCode(HttpStatus.CREATED.value())
+                .studentId(studentId)
+                .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + studentId)
+                .build();
     }
 
     public Long addStudent(StudentRegistrationDTO studentRegistrationDTO) {
@@ -218,6 +219,9 @@ public class StudentService {
                 .semester(student.getSemester())
                 .year(StudentUtils.getYear(student.getSemester()))
                 .phoneNumber(student.getPhoneNumber())
+                .dob(student.getDob().toString())
+                .highSchool(student.getHighSchool())
+                .schoolGraduationDate(student.getSchoolGraduationDate().toString())
                 .build();
     }
 

@@ -1,6 +1,6 @@
 package com.mycompany.portalapi.repositories;
 
-import com.mycompany.portalapi.models.AttendanceStatus;
+import com.mycompany.portalapi.models.attendance.AttendanceStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

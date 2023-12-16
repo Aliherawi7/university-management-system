@@ -1,7 +1,7 @@
 package com.mycompany.portalapi.repositories;
 
 
-import com.mycompany.portalapi.models.MaritalStatus;
+import com.mycompany.portalapi.models.hrms.MaritalStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

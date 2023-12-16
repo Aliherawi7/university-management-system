@@ -7,8 +7,8 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
-import com.mycompany.portalapi.models.Role;
-import com.mycompany.portalapi.models.UserApp;
+import com.mycompany.portalapi.models.hrms.Role;
+import com.mycompany.portalapi.models.hrms.UserApp;
 import com.mycompany.portalapi.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
@@ -52,7 +52,7 @@ public class JwtUtils {
         }
     }
 
-    public String generateToken(String email, List<Role> roleNames, long day) {
+    public String generateToken(String email, Set<Role> roleNames, long day) {
         return JWT.create()
                 .withSubject(email)
                 .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * day)) //default period time 30 days

@@ -1,9 +1,9 @@
 package com.mycompany.portalapi.constants;
 
 public enum GenderName {
-    MALE("مرد"),
-    FEMALE("زن"),
-    OTHER("دیگر");
+    MALE("MALE"),
+    FEMALE("FEMALE"),
+    OTHER("OTHER");
 
     private final String value;
 

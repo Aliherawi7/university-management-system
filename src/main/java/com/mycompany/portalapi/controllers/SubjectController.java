@@ -1,7 +1,7 @@
 package com.mycompany.portalapi.controllers;
 
 import com.mycompany.portalapi.dtos.CollectionResponse;
-import com.mycompany.portalapi.models.Subject;
+import com.mycompany.portalapi.models.faculty.Subject;
 import com.mycompany.portalapi.services.SubjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -36,26 +36,17 @@ public class SubjectController {
     }
 
 
-    @GetMapping(value = "/search", params = {"field", "department"})
+    @GetMapping(value = "/search", params = {"department", "semester"})
     public ResponseEntity<?> getAllSubjectByFieldAndDepartment(@RequestParam Map<String, String> params) {
-        Collection<Subject> subjects = subjectService.search(params.get("field"), params.get("department"));
+        Collection<Subject> subjects = subjectService
+                .search(params.get("department"), Integer.parseInt(params.get("semester")));
         return ResponseEntity.ok(new CollectionResponse<Subject>(subjects.size(), subjects));
     }
 
-    @GetMapping(value = "/search", params = {"field", "department", "semester"})
+    @GetMapping(value = "/search", params = {"department",})
     public ResponseEntity<?> getAllSubjectByFieldAndDepartmentAndSemester(@RequestParam Map<String, String> params) {
-        Collection<Subject> subjects = subjectService.search(params.get("field"), params.get("department"), params.get("semester"));
+        Collection<Subject> subjects = subjectService.search(params.get("department"));
         return ResponseEntity.ok(new CollectionResponse<Subject>(subjects.size(), subjects));
     }
-
-    @GetMapping(value = "/search", params = {"field"})
-    public ResponseEntity<?> getAllSubjectByFieldAndDepartment(@RequestParam(value = "field") String field) {
-        Collection<Subject> subjects = subjectService.searchByFieldName(field);
-        return ResponseEntity.ok(new CollectionResponse<Subject>(subjects.size(), subjects));
-    }
-
-
-
-
 
 }

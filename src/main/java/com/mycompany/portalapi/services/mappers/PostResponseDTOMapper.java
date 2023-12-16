@@ -1,10 +1,10 @@
 package com.mycompany.portalapi.services.mappers;
 
 import com.mycompany.portalapi.constants.APIEndpoints;
-import com.mycompany.portalapi.dtos.AuthorDTO;
-import com.mycompany.portalapi.dtos.PostResponseDTO;
-import com.mycompany.portalapi.models.Post;
-import com.mycompany.portalapi.models.UserApp;
+import com.mycompany.portalapi.dtos.postDto.AuthorDTO;
+import com.mycompany.portalapi.dtos.postDto.PostResponseDTO;
+import com.mycompany.portalapi.models.GeneralPost;
+import com.mycompany.portalapi.models.hrms.UserApp;
 import com.mycompany.portalapi.repositories.UserRepository;
 import com.mycompany.portalapi.services.FileStorageService;
 import com.mycompany.portalapi.utils.BaseURI;
@@ -17,14 +17,14 @@ import java.util.function.Function;
 
 @Component
 @RequiredArgsConstructor
-public class PostResponseDTOMapper implements Function<Post, PostResponseDTO> {
+public class PostResponseDTOMapper implements Function<GeneralPost, PostResponseDTO> {
     private final UserRepository userRepository;
     private final HttpServletRequest httpServletRequest;
     private final FileStorageService fileStorageService;
     @Override
-    public PostResponseDTO apply(Post post) {
-        UserApp userApp = userRepository.findById(post.getAuthorId()).get();
-        List<String> files = fileStorageService.getAllPostFileName(post.getId());
+    public PostResponseDTO apply(GeneralPost generalPost) {
+        UserApp userApp = generalPost.getAuthor();
+        List<String> files = fileStorageService.getAllPostFileName(generalPost.getId());
         AuthorDTO authorDTO = AuthorDTO.builder()
                 .name(userApp.getName())
                 .lastname(userApp.getLastname())
@@ -32,24 +32,20 @@ public class PostResponseDTOMapper implements Function<Post, PostResponseDTO> {
                 .build();
         return PostResponseDTO
                 .builder()
-                .id(post.getId())
-                .message(post.getMessage())
+                .id(generalPost.getId())
+                .message(generalPost.getMessage())
                 .author(authorDTO)
-                .department(post.getDepartment())
-                .fieldOfStudy(post.getFieldOfStudy())
-                .dateTime(post.getDateTime())
+                .dateTime(generalPost.getDateTime())
                 .images(files.stream()
                         .filter(file -> file.endsWith("png") || file.endsWith("jpeg") || file.endsWith("jpg"))
-                        .map(file -> BaseURI.getBaseURI(httpServletRequest)+APIEndpoints.POST.getValue()+post.getId()+"/"+file)
+                        .map(file -> BaseURI.getBaseURI(httpServletRequest)+APIEndpoints.POST.getValue()+ generalPost.getId()+"/"+file)
                         .toList())
                 .docs(files.stream()
                         .filter(file -> file.endsWith("pdf"))
-                        .map(file -> BaseURI.getBaseURI(httpServletRequest)+APIEndpoints.POST.getValue()+post.getId()+"/"+file)
+                        .map(file -> BaseURI.getBaseURI(httpServletRequest)+APIEndpoints.POST.getValue()+ generalPost.getId()+"/"+file)
                         .toList())
-                .isPublic(post.isPublic())
-                .semester(post.getSemester())
-                .isHidden(post.isHidden())
-                .isUpdated(post.isUpdated())
+                .isHidden(generalPost.isHidden())
+                .isUpdated(generalPost.isUpdated())
                 .build();
     }
 }

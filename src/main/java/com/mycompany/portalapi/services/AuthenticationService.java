@@ -1,18 +1,15 @@
 package com.mycompany.portalapi.services;
 
-import com.auth0.jwt.interfaces.Claim;
 import com.mycompany.portalapi.constants.APIEndpoints;
 import com.mycompany.portalapi.constants.RoleName;
 import com.mycompany.portalapi.dtos.AuthenticationRequest;
 import com.mycompany.portalapi.dtos.LoginResponse;
-import com.mycompany.portalapi.dtos.StudentResponseDTO;
 import com.mycompany.portalapi.dtos.UpdateUserDTO;
 import com.mycompany.portalapi.exceptions.AccountLockException;
-import com.mycompany.portalapi.exceptions.ErrorResponse;
 import com.mycompany.portalapi.exceptions.IllegalArgumentException;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
-import com.mycompany.portalapi.models.Student;
-import com.mycompany.portalapi.models.UserApp;
+import com.mycompany.portalapi.models.hrms.Student;
+import com.mycompany.portalapi.models.hrms.UserApp;
 import com.mycompany.portalapi.repositories.StudentRepository;
 import com.mycompany.portalapi.repositories.UserRepository;
 import com.mycompany.portalapi.security.JwtUtils;
@@ -23,8 +20,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor

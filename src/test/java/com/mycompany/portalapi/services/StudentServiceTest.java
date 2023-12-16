@@ -1,26 +1,20 @@
 package com.mycompany.portalapi.services;
 
 import com.mycompany.portalapi.constants.MaritalStatusName;
-import com.mycompany.portalapi.dtos.StudentRegistrationDTO;
+import com.mycompany.portalapi.dtos.studentDto.StudentRegistrationDTO;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
-import com.mycompany.portalapi.models.Department;
-import com.mycompany.portalapi.models.MaritalStatus;
-import com.mycompany.portalapi.models.Student;
+import com.mycompany.portalapi.models.hrms.MaritalStatus;
+import com.mycompany.portalapi.models.hrms.Student;
 import com.mycompany.portalapi.repositories.*;
 import com.mycompany.portalapi.services.mappers.StudentResponseDTOMapper;
 import com.mycompany.portalapi.services.mappers.StudentShortInfoMapper;
-import com.mycompany.portalapi.utils.StudentUtils;
 import jakarta.servlet.http.HttpServletRequest;
-import org.hibernate.mapping.Collection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDate;
 import java.util.Optional;
 

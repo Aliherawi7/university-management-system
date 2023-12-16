@@ -1,19 +1,20 @@
 package com.mycompany.portalapi.services;
 
-
 import com.mycompany.portalapi.constants.APIEndpoints;
+import com.mycompany.portalapi.constants.RelationName;
 import com.mycompany.portalapi.constants.RoleName;
-import com.mycompany.portalapi.dtos.*;
+import com.mycompany.portalapi.dtos.studentDto.*;
 import com.mycompany.portalapi.exceptions.IllegalArgumentException;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
-import com.mycompany.portalapi.models.*;
+import com.mycompany.portalapi.models.faculty.Department;
+import com.mycompany.portalapi.models.faculty.Faculty;
+import com.mycompany.portalapi.models.faculty.Semester;
+import com.mycompany.portalapi.models.hrms.*;
 import com.mycompany.portalapi.repositories.*;
 import com.mycompany.portalapi.services.mappers.StudentResponseDTOMapper;
 import com.mycompany.portalapi.services.mappers.StudentShortInfoMapper;
 import com.mycompany.portalapi.utils.BaseURI;
 import com.mycompany.portalapi.utils.StudentUtils;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -45,9 +48,12 @@ public class StudentService {
     private final RelationshipRepository relationshipRepository;
     private final RequestObjectValidatorService<StudentRegistrationDTO> studentRegistrationDTORequestValidatorService;
     private final StudentShortInfoMapper studentShortInfoMapper;
+    private final FacultyService facultyService;
+
     public StudentSuccessfulRegistrationResponse addStudentForController(StudentRegistrationDTO studentRegistrationDTO) {
         Long studentId = addStudent(studentRegistrationDTO);
-        return StudentSuccessfulRegistrationResponse.builder().message("محصل موفقانه ثبت شد!")
+        return StudentSuccessfulRegistrationResponse.builder()
+                .message("محصل موفقانه ثبت شد!")
                 .statusCode(HttpStatus.CREATED.value())
                 .studentId(studentId)
                 .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + studentId)
@@ -57,8 +63,17 @@ public class StudentService {
     public Long addStudent(StudentRegistrationDTO studentRegistrationDTO) {
         studentRegistrationDTORequestValidatorService.validate(studentRegistrationDTO);
         validateTheRegistrationRequest(studentRegistrationDTO);
+
         /* save the student in db */
         StudentPersonalInfo studentPersonalInfo = studentRegistrationDTO.studentPersonalInfo();
+        Faculty faculty = facultyService.getById(studentPersonalInfo.faculty());
+        Department department = faculty.getDepartments()
+                .stream()
+                .filter(d -> Objects.equals(d.getId(), studentPersonalInfo.department()))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("invalid department id"));
+        Semester semester = department.getSemesters().stream()
+                .filter(item -> item.getSemester() == studentPersonalInfo.semester())
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("Invalid semester number!"));
         MaritalStatus maritalStatus = maritalStatusRepository.findByName(studentPersonalInfo.maritalStatus()).orElseThrow(() -> new IllegalArgumentException("نوع حالت مدنی نامعتبر است!"));
         Student student = Student.builder()
                 .name(studentPersonalInfo.name())
@@ -68,14 +83,14 @@ public class StudentService {
                 .dob(LocalDate.parse(studentPersonalInfo.dob()))
                 .joinedDate(LocalDate.parse(studentPersonalInfo.joinedDate()))
                 .motherTongue(studentPersonalInfo.motherTongue())
-                .fieldOfStudy(studentPersonalInfo.fieldOfStudy())
-                .department(studentPersonalInfo.department())
+                .faculty(faculty)
+                .department(department)
                 .highSchool(studentPersonalInfo.highSchool())
                 .schoolGraduationDate(LocalDate.parse(studentPersonalInfo.schoolGraduationDate()))
                 .maritalStatus(maritalStatus)
                 .email(studentPersonalInfo.email().toLowerCase())
                 .password(studentPersonalInfo.password())
-                .semester(studentPersonalInfo.semester())
+                .semester(semester)
                 .phoneNumber(studentPersonalInfo.phoneNumber())
                 .build();
         student = studentRepository.save(student);
@@ -88,14 +103,19 @@ public class StudentService {
 
         Student finalStudent = student;
         studentRegistrationDTO.relatives().forEach(item -> {
-            Relationship relationship = relationshipRepository.findByName(item.relationship()).orElseThrow(() -> new IllegalArgumentException("نوعیت اقارب نامعتبر"));
+            Relationship relationship = relationshipRepository.findByRelationName(RelationName.valueOf(item.relationship())).orElseThrow(() -> new IllegalArgumentException("نوعیت اقارب نامعتبر"));
             Relative relative = Relative.builder().job(item.job()).student(finalStudent).jobLocation(item.jobLocation()).phoneNumber(item.phoneNumber())
                     .relationship(relationship).name(item.name()).build();
             relativeService.addRelative(relative);
         });
 
         /* save the identification of the student */
-        Identification identification = Identification.builder().student(student).pageNumber(studentRegistrationDTO.identification().pageNumber()).caseNumber(studentRegistrationDTO.identification().caseNumber()).nationalId(studentRegistrationDTO.identification().nationalId()).registrationNumber(studentRegistrationDTO.identification().registrationNumber()).build();
+        Identification identification = Identification.builder()
+                .pageNumber(studentRegistrationDTO.identification().pageNumber())
+                .caseNumber(studentRegistrationDTO.identification().caseNumber())
+                .nationalId(studentRegistrationDTO.identification().nationalId())
+                .registrationNumber(studentRegistrationDTO.identification().registrationNumber())
+                .build();
         identificationService.addIdentification(identification);
         student.setIdentification(identification);
         /* prepare the student gender to save */
@@ -110,7 +130,7 @@ public class StudentService {
                 .builder()
                 .id(studentId)
                 .email(student.getEmail().toLowerCase())
-                .roles(List.of(role.orElse(roleRepository.findByRoleName(RoleName.STUDENT).get())))
+                .roles(Set.of(role.orElse(roleRepository.findByRoleName(RoleName.STUDENT).get())))
                 .password(student.getPassword())
                 .isEnabled(true)
                 .lastname(student.getLastName())
@@ -121,9 +141,17 @@ public class StudentService {
 
     public StudentSuccessfulRegistrationResponse updateStudent(Long id, StudentRegistrationDTO studentRegistrationDTO) {
         /* we should consider to check the email and nationalId duplication in here */
-        Student student = studentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("محصل با آی دی مورد نظر یافت نشد!"));
-        StudentPersonalInfo studentPersonalInfo = studentRegistrationDTO.studentPersonalInfo();
-        MaritalStatus maritalStatus = maritalStatusRepository.findByName(studentPersonalInfo.maritalStatus()).orElseThrow(() -> new IllegalArgumentException("نوع حالت مدنی نامعتبر است!"));
+        var student = studentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("محصل با آی دی مورد نظر یافت نشد!"));
+        var studentPersonalInfo = studentRegistrationDTO.studentPersonalInfo();
+        var faculty = facultyService.getById(studentPersonalInfo.faculty());
+        var department = faculty.getDepartments()
+                .stream()
+                .filter(d -> Objects.equals(d.getId(), studentPersonalInfo.department()))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("invalid department id"));
+        var semester = department.getSemesters().stream()
+                .filter(item -> Objects.equals(item.getSemester(), studentPersonalInfo.semester()))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("Invalid semester number!"));
+        var maritalStatus = maritalStatusRepository.findByName(studentPersonalInfo.maritalStatus()).orElseThrow(() -> new IllegalArgumentException("نوع حالت مدنی نامعتبر است!"));
         student.setName(studentPersonalInfo.name());
         student.setLastName(studentPersonalInfo.lastName());
         student.setFatherName(studentPersonalInfo.fatherName());
@@ -131,18 +159,18 @@ public class StudentService {
         student.setDob(LocalDate.parse(studentPersonalInfo.dob()));
         student.setJoinedDate(LocalDate.now());
         student.setMotherTongue(studentPersonalInfo.motherTongue());
-        student.setFieldOfStudy(studentPersonalInfo.fieldOfStudy());
-        student.setDepartment(studentPersonalInfo.department());
+        student.setFaculty(faculty);
+        student.setDepartment(department);
         student.setHighSchool(studentPersonalInfo.highSchool());
         student.setSchoolGraduationDate(LocalDate.parse(studentPersonalInfo.schoolGraduationDate()));
         student.setMaritalStatus(maritalStatus);
         student.setEmail(studentPersonalInfo.email().toLowerCase());
         student.setPassword(studentPersonalInfo.password());
-        student.setSemester(studentPersonalInfo.semester());
+        student.setSemester(semester);
         student.setPhoneNumber(studentPersonalInfo.phoneNumber());
 
         /* update the identification of the student */
-        Identification identification = identificationService.getIdentificationByStudentId(student.getId());
+        Identification identification = student.getIdentification();
         identification.setCaseNumber(studentRegistrationDTO.identification().caseNumber());
         identification.setNationalId(studentRegistrationDTO.identification().nationalId());
         identification.setPageNumber(studentRegistrationDTO.identification().pageNumber());
@@ -156,8 +184,8 @@ public class StudentService {
         /* update the student relatives in db */
         List<Relative> relativeList = relativeService.getAllStudentRelativesById(student.getId());
         studentRegistrationDTO.relatives().forEach(item -> {
-            Relationship relationship = relationshipRepository.findByName(item.relationship()).orElseThrow(() -> new IllegalArgumentException("نوعیت اقارب نامعتبر"));
-            Relative relative =  relativeList.stream().filter(r -> r.getRelationship().equals(relationship)).findFirst().get();
+            Relationship relationship = relationshipRepository.findByRelationName(RelationName.valueOf(item.relationship())).orElseThrow(() -> new IllegalArgumentException("نوعیت اقارب نامعتبر"));
+            Relative relative = relativeList.stream().filter(r -> r.getRelationship().equals(relationship)).findFirst().get();
             relative.setName(item.name());
             relative.setJob(item.job());
             relative.setPhoneNumber(item.phoneNumber());
@@ -168,11 +196,11 @@ public class StudentService {
         /* save the student current and previous locations in db */
         List<Location> locations = locationService.getAllLocationsByStudentId(student.getId());
         locations.forEach(item -> {
-            if(item.isCurrent()){
+            if (item.isCurrent()) {
                 item.setCity(studentRegistrationDTO.locations().current().city());
                 item.setDistrict(studentRegistrationDTO.locations().current().city());
                 item.setVillageOrQuarter(studentRegistrationDTO.locations().current().city());
-            }else {
+            } else {
                 item.setCity(studentRegistrationDTO.locations().previous().city());
                 item.setDistrict(studentRegistrationDTO.locations().previous().city());
                 item.setVillageOrQuarter(studentRegistrationDTO.locations().previous().city());
@@ -187,12 +215,17 @@ public class StudentService {
                 .build();
     }
 
-    public StudentResponseDTO getStudentById(Long studentId) {
-        Optional<Student> student = studentRepository.findById(studentId);
-        if (student.isEmpty()) {
-            throw new ResourceNotFoundException("محصل با آی دی مورد نظر یافت نشد!");
-        }
-        return studentResponseDTOMapper.apply(student.get());
+    public Student getStudentById(Long studentId) {
+        return studentRepository
+                .findById(studentId)
+                .orElseThrow(() -> new ResourceNotFoundException("محصل با آی دی مورد نظر یافت نشد!"));
+    }
+
+    public StudentResponseDTO getStudentResponseDTOById(Long studentId) {
+        return studentResponseDTOMapper
+                .apply(studentRepository
+                        .findById(studentId)
+                        .orElseThrow(() -> new ResourceNotFoundException("محصل با آی دی مورد نظر یافت نشد!")));
     }
 
     public Student getStudentByEmail(String email) {
@@ -211,13 +244,13 @@ public class StudentService {
                 .fatherName(student.getFatherName())
                 .grandFatherName(student.getGrandFatherName())
                 .maritalStatus(student.getMaritalStatus().getName())
-                .department(student.getDepartment())
-                .fieldOfStudy(student.getFieldOfStudy())
+                .department(student.getDepartment().getDepartmentName())
+                .faculty(student.getFaculty().getFacultyName())
                 .email(student.getEmail())
                 .joinedDate(student.getJoinedDate())
                 .motherTongue(student.getMotherTongue())
-                .semester(student.getSemester())
-                .year(StudentUtils.getYear(student.getSemester()))
+                .semester(student.getSemester().getSemester())
+                .year(StudentUtils.getYear(student.getSemester().getSemester()))
                 .phoneNumber(student.getPhoneNumber())
                 .dob(student.getDob().toString())
                 .highSchool(student.getHighSchool())
@@ -235,8 +268,8 @@ public class StudentService {
             return StudentShortInfo.builder()
                     .name(student.getName())
                     .lastname(student.getLastName())
-                    .fieldStudy(student.getFieldOfStudy())
-                    .department(student.getDepartment())
+                    .faculty(student.getFaculty().getFacultyName())
+                    .department(student.getDepartment().getDepartmentName())
                     .id(student.getId())
                     .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId() + ".png").build();
         }).toList();
@@ -262,8 +295,9 @@ public class StudentService {
             throw new IllegalArgumentException("ایمیل از قبل موجود است!");
         }
         studentRegistrationDTO.relatives().forEach(item -> {
-            Relationship relationship = relationshipRepository
-                    .findByName(item.relationship()).orElseThrow(() -> new IllegalArgumentException("نوعیت اقارب نامعتبر"));
+            relationshipRepository
+                    .findByRelationName(RelationName.valueOf(item.relationship()))
+                    .orElseThrow(() -> new IllegalArgumentException("نوعیت اقارب نامعتبر"));
         });
     }
 
@@ -271,9 +305,9 @@ public class StudentService {
 
     public Page<StudentShortInfo> getAllStudentsByRequestParams(
             String keyword,
-            String fieldOfStudy,
-            String department,
-            Integer semester,
+            Long faculty,
+            Long department,
+            Long semester,
             int offset,
             int pageSize
     ) {
@@ -281,11 +315,11 @@ public class StudentService {
         PageRequest pageRequest = PageRequest.of(offset, pageSize);
         if (semester != null) {
             students = studentRepository.fetchAllStudentByKeywordAndFieldOfStudyAndDepartmentAndSemester(
-                    keyword, fieldOfStudy, department, semester, pageRequest
+                    keyword, faculty, department, semester, pageRequest
             );
         } else {
             students = studentRepository.fetchAllStudentByKeywordAndFieldOfStudyAndDepartment(
-                    keyword, fieldOfStudy, department, pageRequest
+                    keyword, faculty, department, pageRequest
             );
         }
         return students.map(studentShortInfoMapper);
@@ -295,12 +329,12 @@ public class StudentService {
     public void deleteStudentById(Long studentId) {
         Student student = studentRepository.findById(studentId).orElseThrow(() -> new ResourceNotFoundException("محصل مورد نظر یافت نشد!"));
         relativeService.deleteAllRelativesByStudent(studentId);
-        System.out.println(student.getEmail());
         authenticationService.deleteUser(student.getEmail());
         locationService.deleteLocationsByStudentId(studentId);
-        identificationService.deleteIdentificationByStudent(studentId);
+        identificationService.deleteIdentificationById(student.getIdentification().getId());
         studentRepository.deleteById(studentId);
 
-        //must remove the student image
+        //TODO: must remove the student image
+
     }
 }

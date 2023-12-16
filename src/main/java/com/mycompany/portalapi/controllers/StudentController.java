@@ -2,18 +2,16 @@ package com.mycompany.portalapi.controllers;
 
 
 import com.mycompany.portalapi.dtos.APIResponse;
-import com.mycompany.portalapi.dtos.StudentRegistrationDTO;
+import com.mycompany.portalapi.dtos.studentDto.StudentRegistrationDTO;
 import com.mycompany.portalapi.services.FileStorageService;
 import com.mycompany.portalapi.services.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Map;
 
 @AllArgsConstructor
 @RestController
@@ -43,13 +41,15 @@ public class StudentController {
     @GetMapping(value = "/")
     public ResponseEntity<?> getStudentsByName(
             @RequestParam(name = "keyword", required = false) String keyword,
-            @RequestParam(name = "fieldOfStudy", required = false) String fieldOfStudy,
-            @RequestParam(name = "department", required = false) String department,
-            @RequestParam(name = "semester", required = false) Integer semester,
+            @RequestParam(name = "faculty", required = false) Long facultyId,
+            @RequestParam(name = "department", required = false) Long departmentId,
+            @RequestParam(name = "semester", required = false) Long semester,
             @RequestParam(name = "offset") Integer offset,
             @RequestParam(name = "pageSize") Integer pageSize
     ) {
-        return ResponseEntity.ok().body(studentService.getAllStudentsByRequestParams(keyword, fieldOfStudy, department, semester, offset, pageSize));
+        return ResponseEntity.ok()
+                .body(studentService.
+                        getAllStudentsByRequestParams(keyword, facultyId, departmentId, semester, offset, pageSize));
     }
 
     @DeleteMapping("/{studentId}")

@@ -1,7 +1,7 @@
 package com.mycompany.portalapi.services.mappers;
 
-import com.mycompany.portalapi.dtos.RelativeRegistrationDTO;
-import com.mycompany.portalapi.models.Relative;
+import com.mycompany.portalapi.dtos.studentDto.RelativeRegistrationDTO;
+import com.mycompany.portalapi.models.hrms.Relative;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
@@ -16,7 +16,7 @@ public class RelativeRegistrationDTOMapper implements Function<Relative, Relativ
                 .job(relative.getJob())
                 .phoneNumber(relative.getPhoneNumber())
                 .jobLocation(relative.getJobLocation())
-                .relationship(relative.getRelationship().getName())
+                .relationship(relative.getRelationship().getRelationName().getValue())
                 .build();
     }
 }

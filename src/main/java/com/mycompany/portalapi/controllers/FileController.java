@@ -1,11 +1,11 @@
 package com.mycompany.portalapi.controllers;
 
 import com.mycompany.portalapi.constants.APIEndpoints;
-import com.mycompany.portalapi.dtos.StudentSuccessfulRegistrationResponse;
+import com.mycompany.portalapi.dtos.studentDto.StudentSuccessfulRegistrationResponse;
 import com.mycompany.portalapi.exceptions.ErrorResponse;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
 import com.mycompany.portalapi.services.FileStorageService;
-import com.mycompany.portalapi.services.PostService;
+import com.mycompany.portalapi.services.GeneralPostService;
 import com.mycompany.portalapi.services.StudentService;
 import com.mycompany.portalapi.utils.BaseURI;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +13,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,7 +27,7 @@ public class FileController {
     private final FileStorageService fileStorageService;
     private final StudentService studentService;
     private final HttpServletRequest httpServletRequest;
-    private final PostService postService;
+    private final GeneralPostService generalPostService;
 
     @GetMapping("user-profiles/{studentId}")
     public ResponseEntity<byte[]> getUserProfilePicture(@PathVariable String studentId) {
@@ -61,7 +60,7 @@ public class FileController {
 
     @PostMapping("post-files/{postId}")
     public ResponseEntity<?> addPostFiles(@PathVariable Long postId, @RequestParam List<MultipartFile> files) {
-        postService.checkIfNotExist(postId);
+        generalPostService.checkIfNotExist(postId);
         fileStorageService.storePostFiles(files, postId);
         return ResponseEntity.ok("پوسست همراه با فایل ها  موفقانه ذخیره شد");
     }

@@ -1,6 +1,6 @@
 package com.mycompany.portalapi.repositories;
 
-import com.mycompany.portalapi.models.Location;
+import com.mycompany.portalapi.models.hrms.Location;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

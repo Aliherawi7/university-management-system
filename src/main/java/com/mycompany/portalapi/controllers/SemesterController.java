@@ -1,6 +1,6 @@
 package com.mycompany.portalapi.controllers;
 
-import com.mycompany.portalapi.models.Semester;
+import com.mycompany.portalapi.models.faculty.Semester;
 import com.mycompany.portalapi.services.SemesterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +22,10 @@ public class SemesterController {
         return ResponseEntity.ok("added ...");
     }
 
-    @GetMapping(value = "/search", params = {"semester", "field", "department"})
-    public ResponseEntity<?> getSemesterBySemesterAndFieldOfStudyAndDepartment(@RequestParam Map<String, String> params){
-        int semester = Integer.parseInt(params.get("semester"));
+    @GetMapping(value = "/search", params = {"semester", "department"})
+    public ResponseEntity<?> getSemesterBySemesterAndFieldOfStudyAndDepartment(@RequestParam Map<String, Long> params){
         return ResponseEntity.ok(
-                semesterService.getSemesterBySemesterAndFieldOfStudyAndDepartment((long) semester, params.get("field"), params.get("department"))
+                semesterService.getSemesterBySemesterAndFieldOfStudyAndDepartment(params.get("semester"), params.get("department"))
         );
     }
 

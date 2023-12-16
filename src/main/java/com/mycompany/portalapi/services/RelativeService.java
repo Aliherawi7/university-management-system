@@ -1,9 +1,7 @@
 package com.mycompany.portalapi.services;
 
-import com.mycompany.portalapi.models.Relative;
-import com.mycompany.portalapi.models.Student;
+import com.mycompany.portalapi.models.hrms.Relative;
 import com.mycompany.portalapi.repositories.RelativeRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -2,9 +2,9 @@ package com.mycompany.portalapi.services.mappers;
 
 import com.mycompany.portalapi.constants.APIEndpoints;
 import com.mycompany.portalapi.dtos.IdentificationDTO;
-import com.mycompany.portalapi.dtos.StudentResponseDTO;
-import com.mycompany.portalapi.dtos.StudentResponsePersonalInfo;
-import com.mycompany.portalapi.models.Student;
+import com.mycompany.portalapi.dtos.studentDto.StudentResponseDTO;
+import com.mycompany.portalapi.dtos.studentDto.StudentResponsePersonalInfo;
+import com.mycompany.portalapi.models.hrms.Student;
 import com.mycompany.portalapi.services.AuthenticationService;
 import com.mycompany.portalapi.utils.BaseURI;
 import com.mycompany.portalapi.utils.StudentUtils;
@@ -35,14 +35,14 @@ public class StudentResponseDTOMapper implements Function<Student, StudentRespon
                 .gender(student.getGender().getName())
                 .maritalStatus(student.getMaritalStatus().getName())
                 .schoolGraduationDate(student.getSchoolGraduationDate().toString())
-                .department(student.getDepartment())
-                .fieldOfStudy(student.getFieldOfStudy())
+                .department(student.getDepartment().getDepartmentName())
+                .faculty(student.getFaculty().getFacultyName())
                 .highSchool(student.getHighSchool())
                 .phoneNumber(student.getPhoneNumber())
                 .email(student.getEmail())
                 .joinedDate(student.getJoinedDate())
-                .semester(student.getSemester())
-                .year(StudentUtils.getYear(student.getSemester()))
+                .semester(student.getSemester().getSemester())
+                .year(StudentUtils.getYear(student.getSemester().getSemester()))
                 .build();
         IdentificationDTO identificationDTO = IdentificationDTO
                 .builder()

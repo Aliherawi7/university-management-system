@@ -1,7 +1,7 @@
 package com.mycompany.portalapi.repositories;
 
 import com.mycompany.portalapi.constants.GenderName;
-import com.mycompany.portalapi.models.Gender;
+import com.mycompany.portalapi.models.hrms.Gender;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

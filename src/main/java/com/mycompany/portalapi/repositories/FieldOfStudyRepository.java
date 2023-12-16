@@ -1,8 +1,11 @@
 package com.mycompany.portalapi.repositories;
 
 
-import com.mycompany.portalapi.models.FieldOfStudy;
+import com.mycompany.portalapi.models.faculty.Faculty;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface FieldOfStudyRepository extends JpaRepository<FieldOfStudy, Long> {
+import java.util.Optional;
+
+public interface FieldOfStudyRepository extends JpaRepository<Faculty, Long> {
+    Optional<Faculty> findByFacultyName(String name);
 }

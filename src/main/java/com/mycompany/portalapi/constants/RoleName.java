@@ -9,6 +9,7 @@ public enum RoleName {
     SUPER_ADMIN("SUPER_ADMIN"),
     ADMIN("ADMIN"),
     TEACHER("TEACHER"),
+    EMPLOYEE("EMPLOYEE"),
     STUDENT("STUDENT");
 
     private final String value;

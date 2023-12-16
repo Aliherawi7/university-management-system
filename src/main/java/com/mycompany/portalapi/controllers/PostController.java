@@ -2,74 +2,53 @@ package com.mycompany.portalapi.controllers;
 
 
 import com.mycompany.portalapi.dtos.APIResponse;
-import com.mycompany.portalapi.dtos.PostRequestDTO;
-import com.mycompany.portalapi.dtos.PostResponseDTO;
-import com.mycompany.portalapi.dtos.PostSuccessfulRegistrationDTO;
-import com.mycompany.portalapi.exceptions.ErrorResponse;
-import com.mycompany.portalapi.models.Post;
-import com.mycompany.portalapi.services.PostService;
+import com.mycompany.portalapi.dtos.postDto.PostRequestDTO;
+import com.mycompany.portalapi.dtos.postDto.PostSuccessfulRegistrationDTO;
+import com.mycompany.portalapi.services.GeneralPostService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/posts")
 @RequiredArgsConstructor
 public class PostController {
-    private final PostService postService;
+    private final GeneralPostService generalPostService;
 
     @PostMapping
     public ResponseEntity<?> addPost(@RequestBody PostRequestDTO postRequestDTO){
-        return new ResponseEntity<>(postService.addPost(postRequestDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(generalPostService.addPost(postRequestDTO), HttpStatus.CREATED);
     }
     @GetMapping("/{id}")
     public ResponseEntity<?> getAllPosts(@PathVariable Long id){
-        return ResponseEntity.ok(postService.getPost(id));
+        return ResponseEntity.ok(generalPostService.getPost(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<PostSuccessfulRegistrationDTO> updatePost(@PathVariable Long id, @RequestBody PostRequestDTO postRequestDTO){
-        return ResponseEntity.ok(postService.updatePost(id, postRequestDTO));
+        return ResponseEntity.ok(generalPostService.updatePost(id, postRequestDTO));
     }
-
-    @GetMapping("/student")
-    public ResponseEntity<?> getAllPosts(@RequestParam(name = "offset") int offset,
-                                         @RequestParam(name = "pageSize") int pageSize,
-                                         HttpServletRequest httpServletRequest){
-        return ResponseEntity.ok(postService.getPostAllPostByPagination(offset, pageSize, httpServletRequest));
-    }
-
-
 
     @GetMapping( "/")
-    public ResponseEntity<?> getAllPosts(@RequestParam(name = "semester", required = false) Integer semester,
-                                         @RequestParam(name = "fieldOfStudy",required = false) String fieldOfStudy,
-                                         @RequestParam(name = "department",required = false) String department,
-                                         @RequestParam(name = "offset") int offset,
+    public ResponseEntity<?> getAllPosts(@RequestParam(name = "offset") int offset,
                                          @RequestParam(name = "pageSize") int pageSize){
-        return ResponseEntity.ok(postService.getAllPostsByRequestParams(
-                semester,fieldOfStudy, department, offset, pageSize
-        ));
+        return ResponseEntity.ok(generalPostService.getPostAllPostByPagination(offset, pageSize));
     }
 
     @GetMapping("/{id}/hide-show")
     public ResponseEntity<?> toggleHideShowPost(@PathVariable Long id){
-        postService.toggleHideShowPost(id);
+        generalPostService.toggleHideShowPost(id);
         return ResponseEntity.ok("پست موفقانه بروزرسانی شد!");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePost(@PathVariable Long id){
-        postService.deletePost(id);
+        generalPostService.deletePost(id);
         return ResponseEntity.ok(APIResponse.builder()
                         .message("پست با موفقیت حذف شد!")
                         .httpStatus(HttpStatus.OK)

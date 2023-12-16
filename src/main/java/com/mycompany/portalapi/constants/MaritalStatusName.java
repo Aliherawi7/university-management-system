@@ -1,8 +1,8 @@
 package com.mycompany.portalapi.constants;
 
 public enum MaritalStatusName {
-    MARRIED("متاهل"),
-    SINGLE("مجرد");
+    MARRIED("MARRIED"),
+    SINGLE("SINGLE");
 
     private final String value;
 

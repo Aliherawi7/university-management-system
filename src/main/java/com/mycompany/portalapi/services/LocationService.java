@@ -2,9 +2,8 @@ package com.mycompany.portalapi.services;
 
 import com.mycompany.portalapi.dtos.LocationDTO;
 import com.mycompany.portalapi.dtos.Locations;
-import com.mycompany.portalapi.models.Location;
+import com.mycompany.portalapi.models.hrms.Location;
 import com.mycompany.portalapi.repositories.LocationRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

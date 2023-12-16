@@ -4,21 +4,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycompany.portalapi.constants.*;
 import com.mycompany.portalapi.dtos.DepartmentDTO;
 import com.mycompany.portalapi.dtos.FieldOfStudyDTO;
-import com.mycompany.portalapi.dtos.PostRequestDTO;
-import com.mycompany.portalapi.dtos.StudentRegistrationDTO;
-import com.mycompany.portalapi.models.*;
+import com.mycompany.portalapi.dtos.postDto.PostRequestDTO;
+import com.mycompany.portalapi.dtos.studentDto.StudentRegistrationDTO;
+import com.mycompany.portalapi.models.attendance.AttendanceStatus;
+import com.mycompany.portalapi.models.faculty.Subject;
+import com.mycompany.portalapi.models.hrms.*;
 import com.mycompany.portalapi.repositories.*;
 import com.mycompany.portalapi.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 
 @SpringBootApplication
 public class PortalApiApplication {
@@ -32,13 +33,13 @@ public class PortalApiApplication {
 
     CommandLineRunner run(StudentService studentService,
                           DepartmentService departmentService,
-                          FieldOfStudyService fieldOfStudyService,
+                          FacultyService facultyService,
                           RoleRepository roleRepository,
                           GenderRepository genderRepository,
                           MaritalStatusRepository maritalStatusRepository,
                           RelationshipRepository relationshipRepository,
                           AuthenticationService authenticationService,
-                          PostService postService,
+                          GeneralPostService generalPostService,
                           SubjectService subjectService,
                           AttendanceStatusRepository attendanceStatusRepository) {
         return args -> {
@@ -81,7 +82,7 @@ public class PortalApiApplication {
                     .id(0L)
                     .email("admin@gmail.com")
                     .lastname("عمومی")
-                    .roles(List.of(adminRole))
+                    .roles(Set.of(adminRole))
                     .genderName(gender1)
                     .isEnabled(true)
                     .password("admin")
@@ -89,15 +90,15 @@ public class PortalApiApplication {
             authenticationService.registerUser(userApp);
 
             /* relationships */
-            Relationship father = Relationship.builder().id(1).name(RelationName.FATHER.getValue()).build();
+            Relationship father = Relationship.builder().id(1).relationName(RelationName.FATHER).build();
             relationshipRepository.save(father);
-            Relationship brother = Relationship.builder().id(2).name(RelationName.BROTHER.getValue()).build();
+            Relationship brother = Relationship.builder().id(2).relationName(RelationName.BROTHER).build();
             relationshipRepository.save(brother);
-            Relationship husband = Relationship.builder().id(3).name(RelationName.HUSBAND.getValue()).build();
+            Relationship husband = Relationship.builder().id(3).relationName(RelationName.HUSBAND).build();
             relationshipRepository.save(husband);
-            Relationship uncle = Relationship.builder().id(4).name(RelationName.UNCLE.getValue()).build();
+            Relationship uncle = Relationship.builder().id(4).relationName(RelationName.PATERNAL_UNCLE).build();
             relationshipRepository.save(uncle);
-            Relationship aunt = Relationship.builder().id(5).name(RelationName.AUNT.getValue()).build();
+            Relationship aunt = Relationship.builder().id(5).relationName(RelationName.MATERNAL_UNCLE).build();
             relationshipRepository.save(aunt);
             URL jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json/student.json");
             StudentRegistrationDTO[] students = null;
@@ -118,7 +119,7 @@ public class PortalApiApplication {
             try {
                 fieldOfStudyDTO = objectMapper.readValue(jsonUrl, FieldOfStudyDTO[].class);
                 ArrayList<FieldOfStudyDTO> fList = new ArrayList<>(Arrays.asList(fieldOfStudyDTO));
-                fList.forEach(fieldOfStudyService::addFieldOfStudy);
+                fList.forEach(facultyService::addFieldOfStudy);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -140,7 +141,7 @@ public class PortalApiApplication {
             try {
                 postRequestDTOS = objectMapper.readValue(jsonUrl, PostRequestDTO[].class);
                 ArrayList<PostRequestDTO> dList = new ArrayList<>(Arrays.asList(postRequestDTOS));
-                dList.forEach(postService::addRawPost);
+                dList.forEach(generalPostService::addRawPost);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

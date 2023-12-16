@@ -1,7 +1,7 @@
 package com.mycompany.portalapi.services;
 
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
-import com.mycompany.portalapi.models.Semester;
+import com.mycompany.portalapi.models.faculty.Semester;
 import com.mycompany.portalapi.repositories.SemesterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,8 +18,8 @@ public class SemesterService {
         semesterRepository.save(semester);
     }
 
-    public Semester getSemesterBySemesterAndFieldOfStudyAndDepartment(Long semester, String fieldOfStudy, String department){
-        return semesterRepository.findBySemesterAndFieldOfStudyAndDepartment(semester, fieldOfStudy, department)
+    public Semester getSemesterBySemesterAndFieldOfStudyAndDepartment(Long semester, Long department){
+        return semesterRepository.findBySemesterAndDepartment_Id(semester, department)
                 .orElseThrow(() -> new ResourceNotFoundException("semester not found with provided information"));
     }
 

@@ -1,17 +1,23 @@
 package com.mycompany.portalapi.services;
 
+import com.mycompany.portalapi.exceptions.IllegalArgumentException;
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
-import com.mycompany.portalapi.models.Subject;
+import com.mycompany.portalapi.models.faculty.Department;
+import com.mycompany.portalapi.models.faculty.Semester;
+import com.mycompany.portalapi.models.faculty.Subject;
 import com.mycompany.portalapi.repositories.SubjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 public class SubjectService {
     private final SubjectRepository subjectRepository;
+    private final FacultyService facultyService;
+    private final DepartmentService departmentService;
 
     public void addSubject(Subject subject){
         subjectRepository.save(subject);
@@ -22,17 +28,20 @@ public class SubjectService {
     }
 
     /* find by something else */
-    public List<Subject> search(String field, String department){
-        return subjectRepository.findAllByFieldOfStudyAndDepartment(field, department);
+    public List<Subject> search(String department){
+        Department d = departmentService.getDepartmentByName(department);
+        return subjectRepository.findAllByDepartmentsContaining(d);
     }
-    public List<Subject> search(String field, String department, String semester){
-        return subjectRepository.findAllByFieldOfStudyAndDepartmentAndSemester(field, department, Integer.parseInt(semester));
+    public List<Subject> search(String department, Integer semester){
+        Department d = departmentService.getDepartmentByName(department);
+        Semester s = d.getSemesters()
+                .stream()
+                .filter(item -> Objects.equals(item.getSemester(), semester))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("semester not found!"));
+        return subjectRepository.findAllByDepartmentsContainingAndSemesterContaining(d, s);
     }
     public List<Subject> searchByName(String name){
         return subjectRepository.findAllByName(name);
-    }
-    public List<Subject> searchByFieldName(String field){
-        return subjectRepository.findAllByFieldOfStudy(field);
     }
 
     public void deleteSubjectById(Long id){

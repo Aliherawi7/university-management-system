@@ -1,8 +1,8 @@
 package com.mycompany.portalapi.services.mappers;
 
 import com.mycompany.portalapi.constants.APIEndpoints;
-import com.mycompany.portalapi.dtos.StudentShortInfo;
-import com.mycompany.portalapi.models.Student;
+import com.mycompany.portalapi.dtos.studentDto.StudentShortInfo;
+import com.mycompany.portalapi.models.hrms.Student;
 import com.mycompany.portalapi.utils.BaseURI;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +20,8 @@ public class StudentShortInfoMapper implements Function<Student, StudentShortInf
                 .name(student.getName())
                 .lastname(student.getLastName())
                 .fatherName(student.getFatherName())
-                .fieldStudy(student.getFieldOfStudy())
-                .department(student.getDepartment())
+                .faculty(student.getFaculty().getFacultyName())
+                .department(student.getDepartment().getDepartmentName())
                 .id(student.getId())
                 .imageUrl(BaseURI.getBaseURI(httpServletRequest) + APIEndpoints.STUDENT_PROFILE_IMAGE.getValue() + student.getId()+".png").build();
     }

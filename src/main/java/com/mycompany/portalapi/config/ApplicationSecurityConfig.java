@@ -1,7 +1,7 @@
 package com.mycompany.portalapi.config;
 
 import com.mycompany.portalapi.exceptions.ResourceNotFoundException;
-import com.mycompany.portalapi.models.UserApp;
+import com.mycompany.portalapi.models.hrms.UserApp;
 import com.mycompany.portalapi.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

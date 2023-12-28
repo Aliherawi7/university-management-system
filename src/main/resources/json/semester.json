@@ -1,32 +1,32 @@
 [
   {
-    "facultyId": 1,
-    "departmentName": "مهندسی نرم افزار",
+    "departmentId": 1,
+    "semesterName": "مهندسی نرم افزار",
     "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!",
     "semesterNumber": 8
   },
   {
-    "facultyId": 1,
-    "departmentName": "دیتابیس",
+    "departmentId": 1,
+    "semesterName": "دیتابیس",
     "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!",
     "semesterNumber": 8
   },
   {
-    "facultyId": 2,
-    "departmentName": "قضایی - څارنوالی",
+    "departmentId": 2,
+    "semesterName": "قضایی - څارنوالی",
     "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!",
     "semesterNumber": 8
   },
 
   {
-    "facultyId": 2,
-    "departmentName": "اداری - دیپلماسی",
+    "departmentId": 2,
+    "semesterName": "اداری - دیپلماسی",
     "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!",
     "semesterNumber": 8
   },
   {
-    "facultyId": 3,
-    "departmentName": "دیپارتمنت عمومی",
+    "departmentId": 3,
+    "semesterName": "دیپارتمنت عمومی",
     "description": "این یک متن تستی بخاطر نمایش اطلاعات در رابط  کاربری می باشد!",
     "semesterNumber": 10
   }

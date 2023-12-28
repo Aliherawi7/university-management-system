@@ -85,35 +85,35 @@ public class UMSApiApplication {
 
 
             /* add all field of studies from the json file */
-            URL jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json/fieldOfStudy.json");
-            FacultyDTO[] facultyDTO = null;
-            try {
-                facultyDTO = objectMapper.readValue(jsonUrl, FacultyDTO[].class);
-                ArrayList<FacultyDTO> fList = new ArrayList<>(Arrays.asList(facultyDTO));
-                fList.forEach(facultyService::addFaculty);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+//            URL jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json/fieldOfStudy.json");
+//            FacultyDTO[] facultyDTO = null;
+//            try {
+//                facultyDTO = objectMapper.readValue(jsonUrl, FacultyDTO[].class);
+//                ArrayList<FacultyDTO> fList = new ArrayList<>(Arrays.asList(facultyDTO));
+//                fList.forEach(facultyService::addFaculty);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
 
             /* add all field of studies from the json file */
-            jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json/department.json");
-            Department[] departmentDTOs = null;
-            try {
-                departmentDTOs = objectMapper.readValue(jsonUrl, Department[].class);
-                ArrayList<Department> dList = new ArrayList<>(Arrays.asList(departmentDTOs));
-                departmentRepository.saveAll(dList);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json/semester.json");
-            SemesterDTO[] semesterDTOS = null;
-            try {
-                semesterDTOS = objectMapper.readValue(jsonUrl, SemesterDTO[].class);
-                ArrayList<SemesterDTO> dList = new ArrayList<>(Arrays.asList(semesterDTOS));
-                dList.forEach(semesterService::addSemester);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+//            jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json/department.json");
+//            Department[] departmentDTOs = null;
+//            try {
+//                departmentDTOs = objectMapper.readValue(jsonUrl, Department[].class);
+//                ArrayList<Department> dList = new ArrayList<>(Arrays.asList(departmentDTOs));
+//                departmentRepository.saveAll(dList);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json/semester.json");
+//            SemesterDTO[] semesterDTOS = null;
+//            try {
+//                semesterDTOS = objectMapper.readValue(jsonUrl, SemesterDTO[].class);
+//                ArrayList<SemesterDTO> dList = new ArrayList<>(Arrays.asList(semesterDTOS));
+//                dList.forEach(semesterService::addSemester);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
 
             /* attendance status*/
             AttendanceStatus absent = AttendanceStatus.builder().id(1).attendanceStatusName(AttendanceStatusName.ABSENT).build();
@@ -148,18 +148,18 @@ public class UMSApiApplication {
             relationshipRepository.save(uncle);
             Relationship aunt = Relationship.builder().id(5).relationName(RelationName.MATERNAL_UNCLE).build();
             relationshipRepository.save(aunt);
-            jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json/student.json");
+            URL jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json/student.json");
             StudentRegistrationDTO[] students = null;
-            try {
-                students = objectMapper.readValue(jsonUrl, StudentRegistrationDTO[].class);
-
-                Arrays.asList(students).forEach(student -> {
-                    studentService.addStudent(student);
-                });
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+//            try {
+//                students = objectMapper.readValue(jsonUrl, StudentRegistrationDTO[].class);
+//
+//                Arrays.asList(students).forEach(student -> {
+//                    studentService.addStudent(student);
+//                });
+//
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
 
             /* add all posts from the json file */
 //            jsonUrl = Thread.currentThread().getContextClassLoader().getResource("json/posts.json");
